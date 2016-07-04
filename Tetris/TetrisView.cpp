@@ -16,12 +16,17 @@
 #define new DEBUG_NEW
 #endif
 
+// 其他头文件
+#include "HeroDlg.h"
+#include "HelpDlg.h"
 
 // CTetrisView
 
 IMPLEMENT_DYNCREATE(CTetrisView, CFormView)
 
 BEGIN_MESSAGE_MAP(CTetrisView, CFormView)
+	ON_COMMAND(ID_HERO_LIST, &CTetrisView::OnHeroList)
+	ON_COMMAND(ID_HELP_DOC, &CTetrisView::OnHelpDoc)
 END_MESSAGE_MAP()
 
 // CTetrisView 构造/析构
@@ -46,8 +51,6 @@ BOOL CTetrisView::PreCreateWindow(CREATESTRUCT& cs)
 {
 	// TODO: 在此处通过修改
 	//  CREATESTRUCT cs 来修改窗口类或样式
-	cs.cx = 700;
-	cs.cy = 800;
 
 	return CFormView::PreCreateWindow(cs);
 }
@@ -83,3 +86,26 @@ CTetrisDoc* CTetrisView::GetDocument() const // 非调试版本是内联的
 
 
 // CTetrisView 消息处理程序
+
+
+void CTetrisView::OnDraw(CDC* pDC)
+{
+	// TODO: Add your specialized code here and/or call the base class
+
+}
+
+
+void CTetrisView::OnHeroList()
+{
+	// 打开英雄榜
+	CHeroDlg herodlg;
+	herodlg.DoModal();
+}
+
+
+void CTetrisView::OnHelpDoc()
+{
+	// 显示帮助文档
+	CHelpDlg helpdlg;
+	helpdlg.DoModal();
+}

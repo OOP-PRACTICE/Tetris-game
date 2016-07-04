@@ -74,7 +74,7 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 	//  CREATESTRUCT cs 来修改窗口类或样式
 	// 窗口大小
 	cs.cx = 700;
-	cs.cy = 800;
+	cs.cy = 1000;
 
 	return TRUE;
 }

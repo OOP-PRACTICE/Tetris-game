@@ -43,6 +43,10 @@ protected:
 // 生成的消息映射函数
 protected:
 	DECLARE_MESSAGE_MAP()
+	virtual void OnDraw(CDC* /*pDC*/);
+public:
+	afx_msg void OnHeroList();
+	afx_msg void OnHelpDoc();
 };
 
 #ifndef _DEBUG  // TetrisView.cpp 中的调试版本
