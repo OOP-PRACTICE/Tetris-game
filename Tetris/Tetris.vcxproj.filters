@@ -45,6 +45,9 @@
     <ClInclude Include="HelpDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GetNameDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Tetris.cpp">
@@ -66,6 +69,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="HelpDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GetNameDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

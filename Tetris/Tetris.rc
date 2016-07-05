@@ -114,9 +114,13 @@ BEGIN
         MENUITEM "退出游戏",                        ID_32773
     END
     MENUITEM "英雄榜",                         ID_HERO_LIST
+    POPUP "设置"
+    BEGIN
+        MENUITEM "游戏等级",                        ID_32779
+        MENUITEM "背景音乐",                        ID_32780
+    END
     MENUITEM "帮助",                          ID_HELP_DOC
     MENUITEM "关于",                          ID_APP_ABOUT
-    MENUITEM "设置",                          0
 END
 
 
@@ -165,13 +169,18 @@ FONT 9, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
 END
 
-IDD_HERO_DLG DIALOGEX 0, 0, 309, 176
+IDD_HERO_DLG DIALOGEX 0, 0, 273, 153
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "英雄榜"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    DEFPUSHBUTTON   "OK",IDOK,198,155,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,252,155,50,14
+    DEFPUSHBUTTON   "牛逼",IDOK,112,122,50,14
+    LTEXT           "等级:",IDC_LEVEL_STATIC,59,26,22,10
+    LTEXT           "大名:",IDC_NAME_STATIC,59,56,22,10
+    LTEXT           "成绩:",IDC_SCORE_STATIC,57,86,24,11
+    EDITTEXT        IDC_LEVEL_EDIT,87,23,129,15,ES_AUTOHSCROLL
+    EDITTEXT        IDC_NAME_EDIT,87,54,129,15,ES_AUTOHSCROLL
+    EDITTEXT        IDC_SCORE_EDIT,87,84,129,15,ES_AUTOHSCROLL
 END
 
 IDD_HELP_DLG DIALOGEX 0, 0, 237, 186
@@ -182,8 +191,19 @@ BEGIN
     LTEXT           "      选中游戏界面的“游戏->游戏开始”开始游戏，每当用方块填充完一行或者多行时，则可以消除这一行或者多行，并得到一定的积分。当方块的高度到达主界面的高度时，游戏结束。",IDC_STATIC,29,31,177,36
     GROUPBOX        "游戏介绍",IDC_STATIC,17,14,202,64
     GROUPBOX        "操作说明",IDC_STATIC,18,87,200,56
-    PUSHBUTTON      "OK",IDOK,93,154,50,14
+    PUSHBUTTON      "好的",IDOK,93,154,50,14
     LTEXT           "\t利用键盘的方向键进行操作：\n\n\t↑  方块旋转 \t↓  直接落下\n\t←  向左移动\t→ 向右移动",IDC_STATIC,28,100,178,38
+END
+
+IDD_HERONAME_GET DIALOGEX 0, 0, 271, 123
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "英雄请留步！"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,68,77,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,153,77,50,14
+    LTEXT           "英雄大名:",IDC_BIGNAME,56,33,38,12
+    EDITTEXT        IDC_GETNAME_EDIT,99,31,116,16,ES_AUTOHSCROLL
 END
 
 
@@ -253,9 +273,9 @@ BEGIN
     IDD_HERO_DLG, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 302
+        RIGHTMARGIN, 266
         TOPMARGIN, 7
-        BOTTOMMARGIN, 169
+        BOTTOMMARGIN, 146
     END
 
     IDD_HELP_DLG, DIALOG
@@ -264,6 +284,14 @@ BEGIN
         RIGHTMARGIN, 228
         TOPMARGIN, 7
         BOTTOMMARGIN, 179
+    END
+
+    IDD_HERONAME_GET, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 264
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 116
     END
 END
 #endif    // APSTUDIO_INVOKED
@@ -285,6 +313,11 @@ BEGIN
 END
 
 IDD_HELP_DLG AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_HERONAME_GET AFX_DIALOG_LAYOUT
 BEGIN
     0
 END
