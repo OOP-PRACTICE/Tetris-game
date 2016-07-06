@@ -110,14 +110,15 @@ IDR_MAINFRAME MENU
 BEGIN
     POPUP "游戏"
     BEGIN
-        MENUITEM "开始游戏",                        ID_32772
-        MENUITEM "退出游戏",                        ID_32773
+        MENUITEM "新游戏",                         ID_NEW_GAME
+        MENUITEM "继续游戏",                        ID_CONTINUE_GAME
+        MENUITEM "退出游戏",                        ID_EXIT_GAME
     END
     MENUITEM "英雄榜",                         ID_HERO_LIST
     POPUP "设置"
     BEGIN
-        MENUITEM "游戏等级",                        ID_32779
-        MENUITEM "背景音乐",                        ID_32780
+        MENUITEM "游戏等级",                        ID_GAME_LEVEL
+        MENUITEM "背景音乐",                        ID_BK_MUSIC
     END
     MENUITEM "帮助",                          ID_HELP_DOC
     MENUITEM "关于",                          ID_APP_ABOUT

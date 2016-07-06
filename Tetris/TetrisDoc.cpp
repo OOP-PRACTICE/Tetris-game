@@ -37,6 +37,30 @@ CTetrisDoc::~CTetrisDoc()
 {
 }
 
+void CTetrisDoc::SetHeroData(CString name)
+{
+	WritePrivateProfileString((LPCWSTR)"HERO", (LPCWSTR)"name", name, (LPCWSTR)".\\config\\setup.ini");
+}
+
+void CTetrisDoc::SetHeroData(int level, int score)
+{
+	CString tm;
+	tm.Format(_T("%d"), level);
+	WritePrivateProfileString((LPCWSTR)"HERO", (LPCWSTR)"level", tm, (LPCWSTR)".\\config\\setup.ini");
+	tm.Format(_T("%d"), score);
+	WritePrivateProfileString((LPCWSTR)"HERO", (LPCWSTR)"score", tm, (LPCWSTR)".\\config\\setup.ini");
+}
+
+void CTetrisDoc::SetHeroData(CString name, int level, int score)
+{
+	CString tm;
+	WritePrivateProfileString((LPCWSTR)"HERO", (LPCWSTR)"name", name, (LPCWSTR)".\\config\\setup.ini");
+	tm.Format(_T("%d"), level);
+	WritePrivateProfileString((LPCWSTR)"HERO", (LPCWSTR)"level", tm, (LPCWSTR)".\\config\\setup.ini");
+	tm.Format(_T("%d"), score);
+	WritePrivateProfileString((LPCWSTR)"HERO", (LPCWSTR)"score", tm, (LPCWSTR)".\\config\\setup.ini");
+}
+
 BOOL CTetrisDoc::OnNewDocument()
 {
 	if (!CDocument::OnNewDocument())

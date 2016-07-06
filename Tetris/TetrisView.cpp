@@ -91,7 +91,6 @@ CTetrisDoc* CTetrisView::GetDocument() const // 非调试版本是内联的
 void CTetrisView::OnDraw(CDC* pDC)
 {
 	// TODO: Add your specialized code here and/or call the base class
-
 }
 
 

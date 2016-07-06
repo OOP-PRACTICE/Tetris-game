@@ -17,7 +17,9 @@ public:
 
 // 操作
 public:
-
+	void SetHeroData(CString name);		// 修改配置文件中的英雄信息（名字）
+	void SetHeroData(int level, int score);		// 修改配置文件中的英雄信息（级别、分数）
+	void SetHeroData(CString name, int level, int score);	// 修改配置文件中的英雄信息
 // 重写
 public:
 	virtual BOOL OnNewDocument();
