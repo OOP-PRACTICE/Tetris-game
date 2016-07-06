@@ -1,4 +1,5 @@
 #pragma once
+#include "afxwin.h"
 
 
 // CHeroDlg dialog
@@ -12,6 +13,10 @@ public:
 	virtual ~CHeroDlg();
 	
 // Dialog Data
+public:
+	int m_level = 1;			// 记录等级
+	CHAR m_name[128];			// 记录名字
+	int m_score = 0;			// 记录分数
 #ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_HERO_DLG };
 #endif
@@ -19,9 +24,8 @@ public:
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 public:
-	int m_level;			// 记录等级
-	CString m_name;			// 记录名字
-	int m_score;			// 记录分数
-	BOOL m_bWriteflg;		// 设置读写标志
 	DECLARE_MESSAGE_MAP()
+	afx_msg void OnEnChangeLevelEdit();
+	virtual BOOL OnInitDialog();
+	void GetHeroData();
 };

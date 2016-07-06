@@ -10,6 +10,7 @@
 #define IDD_HERO_DLG                    310
 #define IDD_HELP_DLG                    312
 #define IDD_HERONAME_GET                314
+#define IDD_NEWREC_DLG                  316
 #define IDC_BUTTON1                     1000
 #define IDC_LEVEL_EDIT                  1001
 #define IDC_NAME_EDIT                   1002
@@ -20,6 +21,13 @@
 #define IDC_GETNAME_EDIT                1007
 #define IDC_NAME                        1008
 #define IDC_BIGNAME                     1008
+#define IDC_SHOW_LEVEL                  1009
+#define IDC_SHOW_NAME                   1010
+#define IDC_BREAKREC_INFO               1010
+#define IDC_LEVEL3                      1011
+#define IDC_SHOW_SCORE                  1011
+#define IDC_LEVEL_INFO                  1011
+#define IDC_SCORE_INFO                  1012
 #define ID_32771                        32771
 #define ID_32772                        32772
 #define ID_32773                        32773
@@ -35,9 +43,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        316
+#define _APS_NEXT_RESOURCE_VALUE        318
 #define _APS_NEXT_COMMAND_VALUE         32781
-#define _APS_NEXT_CONTROL_VALUE         1009
+#define _APS_NEXT_CONTROL_VALUE         1013
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
 #endif

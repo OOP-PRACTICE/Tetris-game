@@ -29,7 +29,16 @@ void CGetNameDlg::DoDataExchange(CDataExchange* pDX)
 
 
 BEGIN_MESSAGE_MAP(CGetNameDlg, CDialogEx)
+	ON_BN_CLICKED(IDOK, &CGetNameDlg::OnBnClickedOk)
 END_MESSAGE_MAP()
 
 
 // CGetNameDlg message handlers
+
+
+void CGetNameDlg::OnBnClickedOk()
+{
+	// 设置英雄姓名，并更新配置文件
+	WritePrivateProfileString((LPCWSTR)"HERO", (LPCWSTR)"name", m_getname, (LPCWSTR)".\\config\\setup.ini");
+	CDialogEx::OnOK();
+}
