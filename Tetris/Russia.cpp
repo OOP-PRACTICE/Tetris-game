@@ -15,6 +15,273 @@ CRussia::~CRussia()
 {
 }
 
+//消行处理
+void CRussia::LineDelete()
+{
+	int m = 0;//连续消行的次数
+	bool flag = 0;
+	for (int i = 0; i < m_RowCount; i++)//检查是否消行
+	{
+		flag = true;
+		for (int j = 0; j < m_ColCount; j++)
+		{
+			if (Russia[i][j] == 0)
+			{
+				flag = false;
+			}
+			if (flag == true)
+			{
+				m++;
+				for (int k = i; k > 0; k--)
+				{
+					for (int l = 0; l < m_ColCount; l++)
+					{
+						Russia[k][l] = Russia[k - 1][l];//上行给下行
+					}
+				}
+				for (int l = 0; l < m_ColCount; l++)
+				{
+					Russia[0][l] = 0;//第一行为0
+				}
+			}
+		}
+		DrawWill();//绘制将要出现的方块
+		/**************************************************
+		*
+		*
+		*
+		*迟玉强
+		*
+		*
+		***************************************************/
+
+
+		end = rule.UpLevel(m_CountLine);
+
+
+		/**************************************************
+		*
+		*
+		*
+		*迟玉强
+		*
+		*
+		***************************************************/
+		if (end)
+		{
+			AfxMessageBox(L"游戏结束!");
+		}
+	}
+}
+
+void CRussia::Move(int direction)
+{
+	if (end)//end为游戏结束Bool型
+		return;
+	switch (direction)
+	{
+	case KEY_LEFT:
+		if (Meet(Now, KEY_LEFT, NowPosition))
+		{break; }
+		NowPosition.y--;
+		break;
+	case KEY_RIGHT:
+		if(Meet(Now,KEY_RIGHT,NowPosition))
+		{break; }
+		NowPosition.y++;
+		break;
+	case KEY_DOWN:
+		if (Meet(Now, KEY_DOWN, NowPosition))
+		{
+			LineDelete();//消除行
+			break;
+		}
+		NowPosition.x++;
+		break;
+	case KEY_UP:
+		Meet(Now, KEY_UP, NowPosition);
+		break;
+	default :
+		break;
+	}
+}
+
+//旋转函数
+//不能旋转返回false，反之返回true
+bool CRussia::Change(int a[][4], CPoint p, int b[][100])
+{
+	int tep[4][4];
+	int i, j;
+	int k = 4, l = 4;
+	for (i = 0; i < 4; i++)
+	{
+		for (j = 0; j < 4; j++)
+		{
+			tep[i][j] = a[j][3 - i];
+			After[i][j] = 0;//初始化After全为0
+		}
+	}
+	for (i = 0; i < 4;i++)
+	{
+		for (j = 0; j < 4; j++)
+		{
+			if (tep[i][j] == 1)//判断当前位置是否有填充
+			{
+				if (k > i)
+					k = i;
+				if (l > j)
+					l = j;
+			}
+		}
+	}
+	for (i = k; i < 4; i++)
+	{
+		for (j = l; j < 4; j++)
+		{
+			After[i - k][j - l] = tep[i][j];//变换后的矩阵移到左上角
+		}
+	}
+	for (i = 0; i < 4; i++)
+	{
+		for (j = 0; j < 4; j++)
+		{
+			if (After[i][j] == 0)//如果为空则继续插找
+			{
+				continue;
+			}
+			if(((p.x+i)>m_RowCount)||((p.y+j)<0)||((p.y+j)>m_ColCount))//p碰界判断
+			{
+				return false;//旋转失败
+			}
+			if (b[p.x + i][p.y + j] == 1)//碰其他方块
+			{
+				return false;//旋转失败
+			}
+		}
+	}
+	return true;
+
+}
+
+//碰撞检测
+//无碰撞返回false，反之返回true
+bool CRussia::Meet(int a[][4], int direction, CPoint p)
+{
+	int i, j;
+	//原位置清零
+	for (i = 0; i < 4; i++)
+	{
+		for (j = 0; j < 4;j++)
+		{
+			if(a[i][j] == 1)
+			{
+				Russia[p.x + i][p.y + j] = 0;//清空数据
+			}
+		}
+	}
+
+	for (i = 0; i < 4; i++)
+	{
+		for (j = 0; j < 4;j++)
+		{
+			if (a[i][j] == 1)
+			{
+				switch (direction)//检测移动后是否发生越界
+				{
+				case KEY_LEFT:
+					if ((p.y + j - 1) < 0)//出框
+					{
+						goto exit;
+					}
+					if (Russia[p.x + i][p.y + j - 1] == 1)//与已有方块碰撞
+					{
+						goto exit;
+					}
+					break;
+				case KEY_RIGHT:
+					if ((p.x + i + 1) >= m_ColCount)
+					{
+						goto exit;
+					}
+					if (Russia[p.x + i][p.y + j + 1] == 1)
+					{
+						goto exit;
+					}
+					break;
+				case KEY_DOWN:
+					if ((p.x + 1 + i) >= m_RowCount)
+					{
+						goto exit;
+					}
+					if (Russia[p.x + i + 1][p.y + j + 1] == 1)
+					{
+						goto exit;
+					}
+					break;
+				case KEY_UP:
+					if (!Change(a, p, Russia))//旋转失败则退出
+					{
+						goto exit;
+					}
+					for (i = 0; i < 4; i++)//方块改变样式
+					{
+						for (j = 0; j < 4; j++)
+						{
+							Now[i][j] = After[i][j];
+							a[i][j] = Now[i][j];
+						}
+					}
+					return false;
+					break;
+				}
+			}
+		}
+	}
+
+	int x, y;//临时变量用来存储变换后的图形坐标
+	x = p.x;
+	y = p.y;
+	switch (direction)
+	{
+	case KEY_RIGHT:
+		y--;
+		break;
+	case KEY_LEFT:
+		y++;
+		break;
+	case KEY_DOWN:
+		x++;
+		break;
+	case KEY_UP:
+		break;
+	}
+	for (i = 0; i < 4; i++)//填充变换后的图形
+	{
+		for (j = 0; j < 4; j++)
+		{
+			if (a[i][j] == 1)
+			{
+				Russia[x + i][y + j] = 1;
+			}
+		}
+	}
+
+	return false;
+
+exit:
+	for (i = 0; i < 4; i++)
+	{
+		for (j = 0; j < 4; j++)
+		{
+			if (a[i][j] == 1)
+			{
+				Russia[p.x + i][p.y + j] = 1;
+			}
+		}
+	}
+	return true;//发生碰撞
+}
+
 void CRussia::DrawWill()
 {
 	int i, j;
@@ -110,15 +377,87 @@ void CRussia::DrawWill()
 		}
 	}
 
-	for (i = k; i < 4; i++)
+	for (i = k; i < 4; i++)//将变换后的矩阵移到左上角
 	{
 		for (j = l; j < 4;j++)
 		{
-			Will[i - k][j - l] = tmp[i][j];//
+			Will[i - k][j - l] = tmp[i][j];
 		}
 	}
 
 	//开始位置
 	NowPosition.x = 0;
 	NowPosition.x = m_ColCount / 2;
+}
+
+void CRussia::DrawBK(CDC * pDC)
+{
+	CDC Dc;
+	if (Dc.CreateCompatibleDC(pDC) == FALSE)//一个CDC对象,声明后是“空”的,没有设备属性,CreateCompatibleDC进行初始化
+		                                    //pDC=NULL时该函数创建一个与应用程序的当前显示器兼容的内存设备上下文环境。
+	{
+		AfxMessageBox(L"Can't creat DC");
+	}
+
+	Dc.SelectObject(bkMap);
+	pDC->BitBlt(0, 0, 540, 550, &Dc, 0, 0, SRCCOPY);//画背景,SRCCOPY是直接复制原设备到逻辑设备
+	//DrawScore(pDC);  画分数、速度、难度
+
+	for (int i = 0; i < m_RowCount; i++)
+	{
+		for (int j = 0; j < m_ColCount; j++)
+		{
+			if (Russia[i][j] == 1)
+			{
+				Dc.SelectObject(fkMap);
+				pDC->BitBlt(j * 30, i * 30, 30, 30, &Dc, 0, 0, SRCCOPY);
+			}
+		}
+	}
+	for (int n = 0; n < 4; n++)
+	{
+		for (int m = 0; m < 4; m++)
+		{
+			if (Will[n][m] == 1)
+			{
+				Dc.SelectObject(fkMap);
+				pDC->BitBlt(365+m * 30, 240+n * 30, 30, 30, &Dc, 0, 0, SRCCOPY);
+			}
+		}
+	}
+}
+
+//开始游戏
+void CRussia::GameStart()
+{
+	end = false;
+	m_Score = 0;
+	m_RowCount = 18;//初始化行数
+	m_ColCount = 12;//初始化列数
+	Count = 7;
+	m_CountLine = 0;//初始化消去行数为0
+	TCHAR pszTmp[128] = { 0 };
+
+	GetPrivateProfileString(_T("SETUP"), _T("level"), _T("1"), pszTmp, 127, _T(".\\setup.ini"));//读取.ini文件，读取当前游戏等级
+
+	m_Level = _wtoi(pszTmp);//TCHAR转为int，初始化等级
+	m_Speed = 320 - m_Level * 20;//初始化速度
+
+	for (int i = 0; i < m_RowCount; i++)//初始化界面
+	{
+		for (int j = 0; j < m_ColCount; j++)
+		{
+			Russia[i][j] = 0;
+		}
+	}
+	for (int i = 0; i < 4; i++)//初始化图形
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			Now[i][j] = 0;
+			Will[i][j] = 0;
+		}
+	}
+	DrawWill();//初始化的图形没有生成，所以调用俩次
+	DrawWill();
 }
