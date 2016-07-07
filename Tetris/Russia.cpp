@@ -168,21 +168,21 @@ bool CRussia::Change(int a[][4], CPoint p, int b[][100])
 bool CRussia::Meet(int a[][4], int direction, CPoint p)
 {
 	int i, j;
-	//原位置清零
-	for (i = 0; i < 4; i++)
+	//先把原位置清0 
+	for (i = 0; i<4; i++)
 	{
-		for (j = 0; j < 4;j++)
+		for (j = 0; j<4; j++)
 		{
-			if(a[i][j] == 1)
+			if (a[i][j] == 1)
 			{
-				Russia[p.x + i][p.y + j] = 0;//清空数据
+				Russia[p.x + i][p.y + j] = 0;
 			}
 		}
 	}
 
-	for (i = 0; i < 4; i++)
+	for (i = 0; i<4; i++)
 	{
-		for (j = 0; j < 4;j++)
+		for (j = 0; j<4; j++)
 		{
 			if (a[i][j] == 1)
 			{
@@ -199,7 +199,7 @@ bool CRussia::Meet(int a[][4], int direction, CPoint p)
 					}
 					break;
 				case KEY_RIGHT:
-					if ((p.x + i + 1) >= m_ColCount)
+					if ((p.y + j + 1) >= m_ColCount)
 					{
 						goto exit;
 					}
@@ -238,26 +238,24 @@ bool CRussia::Meet(int a[][4], int direction, CPoint p)
 		}
 	}
 
-	int x, y;//临时变量用来存储变换后的图形坐标
+	int x, y;
 	x = p.x;
 	y = p.y;
+	//移动位置，重新给数组赋值
 	switch (direction)
 	{
-	case KEY_RIGHT:
-		y--;
-		break;
 	case KEY_LEFT:
-		y++;
-		break;
+		y--; break;
+	case KEY_RIGHT:
+		y++; break;
 	case KEY_DOWN:
-		x++;
-		break;
+		x++; break;
 	case KEY_UP:
 		break;
 	}
-	for (i = 0; i < 4; i++)//填充变换后的图形
+	for (i = 0; i<4; i++)//填充变换后的图形
 	{
-		for (j = 0; j < 4; j++)
+		for (j = 0; j<4; j++)
 		{
 			if (a[i][j] == 1)
 			{
@@ -267,11 +265,10 @@ bool CRussia::Meet(int a[][4], int direction, CPoint p)
 	}
 
 	return false;
-
 exit:
-	for (i = 0; i < 4; i++)
+	for (i = 0; i<4; i++)
 	{
-		for (j = 0; j < 4; j++)
+		for (j = 0; j<4; j++)
 		{
 			if (a[i][j] == 1)
 			{
@@ -279,15 +276,16 @@ exit:
 			}
 		}
 	}
-	return true;//发生碰撞
+	return true;
 }
+
 
 void CRussia::DrawWill()
 {
 	int i, j;
 	int k = 4, l = 4;
 
-	for (i = 0; i < i; i++)
+	for (i = 0; i < 4; i++)
 	{
 		for (j = 0; j < 4; j++)
 		{
@@ -387,12 +385,15 @@ void CRussia::DrawWill()
 
 	//开始位置
 	NowPosition.x = 0;
-	NowPosition.x = m_ColCount / 2;
+	NowPosition.y = m_ColCount / 2;
 }
 
-void CRussia::DrawBK(CDC * pDC)
+void CRussia::DrawBK(CDC * pDC, CRect r)
 {
 	CDC Dc;
+	int x, y;
+	x = r.Width();
+	y = r.Height();
 	if (Dc.CreateCompatibleDC(pDC) == FALSE)//一个CDC对象,声明后是“空”的,没有设备属性,CreateCompatibleDC进行初始化
 		                                    //pDC=NULL时该函数创建一个与应用程序的当前显示器兼容的内存设备上下文环境。
 	{
@@ -400,7 +401,7 @@ void CRussia::DrawBK(CDC * pDC)
 	}
 
 	Dc.SelectObject(bkMap);
-	pDC->BitBlt(0, 0, 540, 550, &Dc, 0, 0, SRCCOPY);//画背景,SRCCOPY是直接复制原设备到逻辑设备
+	pDC->BitBlt(0, 0, x, y, &Dc, 0, 0, SRCCOPY);//画背景,SRCCOPY是直接复制原设备到逻辑设备
 	//DrawScore(pDC);  画分数、速度、难度
 
 	for (int i = 0; i < m_RowCount; i++)
@@ -410,7 +411,7 @@ void CRussia::DrawBK(CDC * pDC)
 			if (Russia[i][j] == 1)
 			{
 				Dc.SelectObject(fkMap);
-				pDC->BitBlt(j * 30, i * 30, 30, 30, &Dc, 0, 0, SRCCOPY);
+				pDC->BitBlt(j * 30, i * 30, (x / 10), (x / 10), &Dc, 0, 0, SRCCOPY);
 			}
 		}
 	}
@@ -421,10 +422,13 @@ void CRussia::DrawBK(CDC * pDC)
 			if (Will[n][m] == 1)
 			{
 				Dc.SelectObject(fkMap);
-				pDC->BitBlt(365+m * 30, 240+n * 30, 30, 30, &Dc, 0, 0, SRCCOPY);
 			}
 		}
 	}
+}
+
+void CRussia::DrawScore(CDC * pDC)
+{
 }
 
 //开始游戏
@@ -460,4 +464,8 @@ void CRussia::GameStart()
 	}
 	DrawWill();//初始化的图形没有生成，所以调用俩次
 	DrawWill();
+}
+
+void CRussia::HeroWrite()
+{
 }

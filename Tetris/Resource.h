@@ -11,6 +11,9 @@
 #define IDD_HELP_DLG                    312
 #define IDD_HERONAME_GET                314
 #define IDD_NEWREC_DLG                  316
+#define IDB_DIAMOND                     318
+#define IDB_BITMAP1                     322
+#define IDB_BACKGROUND                  322
 #define IDC_BUTTON1                     1000
 #define IDC_LEVEL_EDIT                  1001
 #define IDC_NAME_EDIT                   1002
@@ -49,7 +52,7 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        318
+#define _APS_NEXT_RESOURCE_VALUE        323
 #define _APS_NEXT_COMMAND_VALUE         32787
 #define _APS_NEXT_CONTROL_VALUE         1013
 #define _APS_NEXT_SYMED_VALUE           310

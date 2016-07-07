@@ -3,7 +3,7 @@
 //
 
 #pragma once
-
+#include "Russia.h"
 
 class CTetrisView : public CFormView
 {
@@ -37,9 +37,9 @@ public:
 	virtual void AssertValid() const;
 	virtual void Dump(CDumpContext& dc) const;
 #endif
-
+	// member variables
 protected:
-
+	CRussia m_russia;
 // 生成的消息映射函数
 protected:
 	DECLARE_MESSAGE_MAP()
@@ -47,6 +47,11 @@ protected:
 public:
 	afx_msg void OnHeroList();
 	afx_msg void OnHelpDoc();
+	afx_msg void OnNewGame();
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
+	afx_msg void OnExitGame();
+	virtual BOOL PreTranslateMessage(MSG* pMsg);
+	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
 };
 
 #ifndef _DEBUG  // TetrisView.cpp 中的调试版本
