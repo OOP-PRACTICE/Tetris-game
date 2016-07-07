@@ -15,7 +15,7 @@ void CRule::SetLevel(int nLevel)
 {
 }
 
-int CRule::UpLevel(int nLine)
+bool CRule::UpLevel(int nLine)
 {
 	return 0;
 }

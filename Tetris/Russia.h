@@ -43,7 +43,7 @@ public:
 	//绘制方块图
 	void DrawWill();
 	//绘制界面
-	void DrawBK(CDC*pDC);
+	void DrawBK(CDC*pDC, CRect r);
 	//绘制分数
 	void DrawScore(CDC*pDC);
 	//开始游戏

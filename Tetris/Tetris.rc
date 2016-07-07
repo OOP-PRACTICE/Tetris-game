@@ -80,6 +80,10 @@ IDR_TetrisTYPE          ICON                    "res\\TetrisDoc.ico"
 
 IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
 
+IDB_DIAMOND             BITMAP                  "res\\Diamond.bmp"
+
+IDB_BACKGROUND          BITMAP                  "res\\Background.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
