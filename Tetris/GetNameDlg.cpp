@@ -35,10 +35,14 @@ END_MESSAGE_MAP()
 
 // CGetNameDlg message handlers
 
-
 void CGetNameDlg::OnBnClickedOk()
 {
 	// 设置英雄姓名，并更新配置文件
-	WritePrivateProfileString((LPCWSTR)"HERO", (LPCWSTR)"name", m_getname, (LPCWSTR)".\\config\\setup.ini");
+	SetHeroData(m_getname);
 	CDialogEx::OnOK();
+}
+
+void CGetNameDlg::SetHeroData(CString name)
+{
+	WritePrivateProfileString((LPCWSTR)"HERO", (LPCWSTR)"name", name, (LPCWSTR)".\\config\\setup.ini");
 }

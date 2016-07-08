@@ -1,13 +1,20 @@
 #include "stdafx.h"
 #include "Russia.h"
 #include "Tetris.h"
+#include "Newrecdlg.h"
+#include "GetNameDlg.h"
 
 CRussia::CRussia()
 {
 	//CDC dcMemory;
 	//dcMemory.CreateCompatibleDC(pDC);
-	bkMap.LoadBitmapW(IDB_BACKGROUND);
-	fkMap.LoadBitmapW(IDB_DIAMOND);
+	bkMap.LoadBitmapW(IDB_BKG);
+	fkMap.LoadBitmapW(IDB_SQUARE);
+	fmMap1.LoadBitmapW(IDB_RIGHTCOL1);
+	fmMap2.LoadBitmapW(IDB_BITMAP6);
+	fmMap3.LoadBitmapW(IDB_BITMAP7);
+	fmMap4.LoadBitmapW(IDB_BITMAP8);
+	fmMap5.LoadBitmapW(IDB_BITMAP9);
 }
 
 
@@ -18,90 +25,105 @@ CRussia::~CRussia()
 //消行处理
 void CRussia::LineDelete()
 {
-	int m = 0;//连续消行的次数
+	int m = 0;		//本次共消去的行数
 	bool flag = 0;
-	for (int i = 0; i < m_RowCount; i++)//检查是否消行
+	for (int i = 0; i<m_RowCount; i++)//m_RowCount行
 	{
+		//检查要不要消行
 		flag = true;
-		for (int j = 0; j < m_ColCount; j++)
+		for (int j = 1; j<m_ColCount; j++)
 		{
 			if (Russia[i][j] == 0)
 			{
 				flag = false;
 			}
-			if (flag == true)
+		}
+
+		//如果要
+		if (flag == true)
+		{
+			m++;
+			for (int k = i; k>0; k--)
 			{
-				m++;
-				for (int k = i; k > 0; k--)
+				//上行给下行
+				for (int l = 1; l<m_ColCount; l++)
 				{
-					for (int l = 0; l < m_ColCount; l++)
-					{
-						Russia[k][l] = Russia[k - 1][l];//上行给下行
-					}
-				}
-				for (int l = 0; l < m_ColCount; l++)
-				{
-					Russia[0][l] = 0;//第一行为0
+					Russia[k][l] = Russia[k - 1][l];
 				}
 			}
+			//第一行为零
+			for (int l = 1; l<m_ColCount; l++)
+			{
+				Russia[0][l] = 0;
+			}
 		}
-		DrawWill();//绘制将要出现的方块
-		/**************************************************
-		*
-		*
-		*
-		*迟玉强
-		*
-		*
-		***************************************************/
+	}
 
+	DrawWill();
+	//加分
+	switch (m)
+	{
+	case 1:
+		m_Score = m_Score + 10 + m_Level * 10;
+		break;
+	case 2:
+		m_Score = m_Score + 30 + m_Level * 10;
+		break;
+	case 3:
+		m_Score = m_Score + 50 + m_Level * 10;
+		break;
+	case 4:
+		m_Score = m_Score + 100 + m_Level * 10;
+		break;
+	default:
+		break;
+	}
 
-		end = rule.UpLevel(m_CountLine);
+	m_CountLine += m;
 
+	m_Level = rule.UpLevel(m_CountLine);
 
-		/**************************************************
-		*
-		*
-		*
-		*迟玉强
-		*
-		*
-		***************************************************/
-		if (end)
-		{
-			AfxMessageBox(L"游戏结束!");
-		}
+	end = rule.Win(Now, Russia, NowPosition);
+
+	//速度
+	m_Speed = 320 - m_Level * 20;
+
+	if (end)
+	{
+		HeroWrite();
 	}
 }
 
 void CRussia::Move(int direction)
 {
-	if (end)//end为游戏结束Bool型
-		return;
+	if (end) return;
+
 	switch (direction)
 	{
+		//左
 	case KEY_LEFT:
-		if (Meet(Now, KEY_LEFT, NowPosition))
-		{break; }
+		if (Meet(Now, KEY_LEFT, NowPosition)) break;
 		NowPosition.y--;
 		break;
+		//右
 	case KEY_RIGHT:
-		if(Meet(Now,KEY_RIGHT,NowPosition))
-		{break; }
+		if (Meet(Now, KEY_RIGHT, NowPosition)) break;
 		NowPosition.y++;
 		break;
+		//下
 	case KEY_DOWN:
 		if (Meet(Now, KEY_DOWN, NowPosition))
 		{
-			LineDelete();//消除行
+			LineDelete();
 			break;
 		}
 		NowPosition.x++;
 		break;
+		//上
 	case KEY_UP:
 		Meet(Now, KEY_UP, NowPosition);
 		break;
-	default :
+	default:
 		break;
 	}
 }
@@ -110,57 +132,57 @@ void CRussia::Move(int direction)
 //不能旋转返回false，反之返回true
 bool CRussia::Change(int a[][4], CPoint p, int b[][100])
 {
-	int tep[4][4];
+	int tmp[4][4];
 	int i, j;
 	int k = 4, l = 4;
-	for (i = 0; i < 4; i++)
+
+	for (i = 0; i<4; i++)
 	{
-		for (j = 0; j < 4; j++)
+		for (j = 0; j<4; j++)
 		{
-			tep[i][j] = a[j][3 - i];
-			After[i][j] = 0;//初始化After全为0
+			tmp[i][j] = a[j][3 - i];
+			After[i][j] = 0;	//存放变换后的方块矩阵
 		}
 	}
-	for (i = 0; i < 4;i++)
+
+	for (i = 0; i<4; i++)
 	{
-		for (j = 0; j < 4; j++)
+		for (j = 0; j<4; j++)
 		{
-			if (tep[i][j] == 1)//判断当前位置是否有填充
+			if (tmp[i][j] == 1)
 			{
-				if (k > i)
-					k = i;
-				if (l > j)
-					l = j;
+				if (k>i) k = i;
+				if (l>j) l = j;
 			}
 		}
 	}
-	for (i = k; i < 4; i++)
+	for (i = k; i<4; i++)
 	{
-		for (j = l; j < 4; j++)
+		for (j = l; j<4; j++)
 		{
-			After[i - k][j - l] = tep[i][j];//变换后的矩阵移到左上角
-		}
+			After[i - k][j - l] = tmp[i][j];
+		}	//把变换后的矩阵移到左上角
 	}
-	for (i = 0; i < 4; i++)
+	//判断是否接触，是：返回失败
+	for (i = 0; i<4; i++)
 	{
-		for (j = 0; j < 4; j++)
+		for (j = 0; j<4; j++)
 		{
-			if (After[i][j] == 0)//如果为空则继续插找
+			if (After[i][j] == 0)
 			{
 				continue;
 			}
-			if(((p.x+i)>m_RowCount)||((p.y+j)<0)||((p.y+j)>m_ColCount))//p碰界判断
+			if (((p.x + i) >= m_RowCount) || ((p.y + j)<0) || ((p.y + j) >= m_ColCount))
 			{
-				return false;//旋转失败
+				return false;
 			}
-			if (b[p.x + i][p.y + j] == 1)//碰其他方块
+			if (b[p.x + i][p.y + j] == 1)
 			{
-				return false;//旋转失败
+				return false;
 			}
 		}
 	}
 	return true;
-
 }
 
 //碰撞检测
@@ -186,46 +208,25 @@ bool CRussia::Meet(int a[][4], int direction, CPoint p)
 		{
 			if (a[i][j] == 1)
 			{
-				switch (direction)//检测移动后是否发生越界
+				switch (direction)
 				{
-				case KEY_LEFT:
-					if ((p.y + j - 1) < 0)//出框
-					{
-						goto exit;
-					}
-					if (Russia[p.x + i][p.y + j - 1] == 1)//与已有方块碰撞
-					{
-						goto exit;
-					}
+				case 1:	//左移
+					if ((p.y + j - 1)<1) goto exit;
+					if (Russia[p.x + i][p.y + j - 1] == 1) goto exit;
 					break;
-				case KEY_RIGHT:
-					if ((p.y + j + 1) >= m_ColCount)
-					{
-						goto exit;
-					}
-					if (Russia[p.x + i][p.y + j + 1] == 1)
-					{
-						goto exit;
-					}
+				case 2://右移
+					if ((p.y + j + 1) >= m_ColCount) goto exit;
+					if (Russia[p.x + i][p.y + j + 1] == 1) goto exit;
 					break;
-				case KEY_DOWN:
-					if ((p.x + 1 + i) >= m_RowCount)
-					{
-						goto exit;
-					}
-					if (Russia[p.x + i + 1][p.y + j + 1] == 1)
-					{
-						goto exit;
-					}
+				case 3://下移
+					if ((p.x + i + 1) >= m_RowCount) goto exit;
+					if (Russia[p.x + i + 1][p.y + j] == 1) goto exit;
 					break;
-				case KEY_UP:
-					if (!Change(a, p, Russia))//旋转失败则退出
+				case 4://变换
+					if (!Change(a, p, Russia)) goto exit;
+					for (i = 0; i<4; i++)
 					{
-						goto exit;
-					}
-					for (i = 0; i < 4; i++)//方块改变样式
-					{
-						for (j = 0; j < 4; j++)
+						for (j = 0; j<4; j++)
 						{
 							Now[i][j] = After[i][j];
 							a[i][j] = Now[i][j];
@@ -244,16 +245,16 @@ bool CRussia::Meet(int a[][4], int direction, CPoint p)
 	//移动位置，重新给数组赋值
 	switch (direction)
 	{
-	case KEY_LEFT:
+	case 1:
 		y--; break;
-	case KEY_RIGHT:
+	case 2:
 		y++; break;
-	case KEY_DOWN:
+	case 3:
 		x++; break;
-	case KEY_UP:
+	case 4:
 		break;
 	}
-	for (i = 0; i<4; i++)//填充变换后的图形
+	for (i = 0; i<4; i++)
 	{
 		for (j = 0; j<4; j++)
 		{
@@ -285,17 +286,19 @@ void CRussia::DrawWill()
 	int i, j;
 	int k = 4, l = 4;
 
-	for (i = 0; i < 4; i++)
+	//把将要出现的方块给当前数组，并把将要出现数组赋值为零
+	for (i = 0; i<4; i++)
 	{
-		for (j = 0; j < 4; j++)
+		for (j = 0; j<4; j++)
 		{
 			Now[i][j] = Will[i][j];
 			Will[i][j] = 0;
 		}
 	}
-	srand(GetTickCount());//初始化随机种子
-
+	//初始化随即数种子
+	srand(GetTickCount());
 	int nTemp = rand() % Count;
+	//各种图形
 	switch (nTemp)
 	{
 	case 0:
@@ -326,13 +329,13 @@ void CRussia::DrawWill()
 		Will[0][0] = 1;
 		Will[1][0] = 1;
 		Will[1][1] = 1;
-		Will[2][0] = 1;
+		Will[2][1] = 1;
 		break;
 	case 5:
 		Will[0][0] = 1;
 		Will[1][0] = 1;
 		Will[1][1] = 1;
-		Will[2][1] = 1;
+		Will[2][0] = 1;
 		break;
 	case 6:
 		Will[0][0] = 1;
@@ -344,49 +347,47 @@ void CRussia::DrawWill()
 		break;
 	}
 
-	//实际设备对应逻辑坐标
-	int tmp[4][4];//临时方块样式数组
-	for (i = 0; i < 4; i++)//
+	int tmp[4][4];
+	for (i = 0; i<4; i++)
 	{
-		for (j = 0; j < 4; j++)
+		for (j = 0; j<4; j++)
 		{
-			tmp[i][j] = Will[j][3 - i];//把方块换个方向
+			tmp[i][j] = Will[j][3 - i];
 		}
 	}
 
-	for (i = 0; i < 4; i++)
+	for (i = 0; i<4; i++)
 	{
-		for (j = 0; j < 4; j++)
+		for (j = 0; j<4; j++)
 		{
-			if (tmp[i][j] == 1)//选出最小填充坐标
+			if (tmp[i][j] == 1)
 			{
-				if (k > i)
-					k = i;
-				if (l > j)
-					l = j;
+				if (k>i) k = i;
+				if (l>j) l = j;
 			}
 		}
 	}
-	for (i = 0; i < 4; i++)
+
+	for (i = 0; i<4; i++)
 	{
-		for (j = 0; j < 4; j++)
+		for (j = 0; j<4; j++)
 		{
-			Will[i][j] = 0;//置零
+			Will[i][j] = 0;
 		}
 	}
-
-	for (i = k; i < 4; i++)//将变换后的矩阵移到左上角
+	//把变换后的矩阵移到左上角
+	for (i = k; i<4; i++)
 	{
-		for (j = l; j < 4;j++)
+		for (j = l; j<4; j++)
 		{
 			Will[i - k][j - l] = tmp[i][j];
 		}
 	}
-
 	//开始位置
 	NowPosition.x = 0;
 	NowPosition.y = m_ColCount / 2;
 }
+
 
 void CRussia::DrawBK(CDC * pDC, CRect r)
 {
@@ -394,16 +395,27 @@ void CRussia::DrawBK(CDC * pDC, CRect r)
 	int x, y;
 	x = r.Width();
 	y = r.Height();
+
 	if (Dc.CreateCompatibleDC(pDC) == FALSE)//一个CDC对象,声明后是“空”的,没有设备属性,CreateCompatibleDC进行初始化
-		                                    //pDC=NULL时该函数创建一个与应用程序的当前显示器兼容的内存设备上下文环境。
+											//pDC=NULL时该函数创建一个与应用程序的当前显示器兼容的内存设备上下文环境。
 	{
 		AfxMessageBox(L"Can't creat DC");
 	}
 
 	Dc.SelectObject(bkMap);
 	pDC->BitBlt(0, 0, x, y, &Dc, 0, 0, SRCCOPY);//画背景,SRCCOPY是直接复制原设备到逻辑设备
-	DrawScore(pDC);					//画分数、速度、难度
-
+												//DrawScore(pDC);  画分数、速度、难度
+	Dc.SelectObject(fmMap2);//上边框
+	pDC->StretchBlt(0, 0, 29 * 20, 50, &Dc, 0, 0, 20, 30, SRCCOPY);
+	Dc.SelectObject(fmMap3);//下边框
+	pDC->StretchBlt(0, y - 30, 29 * 20, 50, &Dc, 0, 0, 20, 30, SRCCOPY);
+	Dc.SelectObject(fmMap1);//左边框
+	pDC->StretchBlt(0, 0, 32, y, &Dc, 0, 0, 15, 555, SRCCOPY);
+	Dc.SelectObject(fmMap5);//中间边框
+	pDC->StretchBlt(330, 20, 32, y, &Dc, 0, 0, 15, 567, SRCCOPY);
+	Dc.SelectObject(fmMap4);//右边框
+	pDC->StretchBlt(570, 0, 32, y, &Dc, 0, 0, 15, 555, SRCCOPY);
+	//pDC->BitBlt(40, 0, x, y, &Dc, 0, 0, SRCCOPY);
 	for (int i = 0; i < m_RowCount; i++)
 	{
 		for (int j = 0; j < m_ColCount; j++)
@@ -411,7 +423,7 @@ void CRussia::DrawBK(CDC * pDC, CRect r)
 			if (Russia[i][j] == 1)
 			{
 				Dc.SelectObject(fkMap);
-				pDC->BitBlt(j * 30, i * 30, (x / 10), (x / 10), &Dc, 0, 0, SRCCOPY);
+				pDC->BitBlt(j * 30, i * 30, 30, 30, &Dc, 0, 0, SRCCOPY);
 			}
 		}
 	}
@@ -422,6 +434,10 @@ void CRussia::DrawBK(CDC * pDC, CRect r)
 			if (Will[n][m] == 1)
 			{
 				Dc.SelectObject(fkMap);
+				/*pDC->BitBlt(365 * ((x + y) / 1090) + m * 30, 240 * ((x + y) / 1090) + n * 30,
+				30*((x+y)/1090), 30 * ((x + y) / 1090), &Dc, 0, 0, SRCCOPY);*/
+				pDC->BitBlt(365 + m * 30, 240 + n * 30,
+					30 * ((x + y) / 1090), 30 * ((x + y) / 1090), &Dc, 0, 0, SRCCOPY);
 			}
 		}
 	}
@@ -429,43 +445,18 @@ void CRussia::DrawBK(CDC * pDC, CRect r)
 
 void CRussia::DrawScore(CDC * pDC)
 {
-	int nOldDC = pDC->SaveDC();
-	CFont font;
-	//设置字体
-	VERIFY(font.CreatePointFont(300, _T("Comic Sans MS")));
-	
-	pDC->SelectObject(&font);
-	
-	CString str;
-	pDC->SetTextColor(RGB(39, 244, 10));	//设置字体颜色及背景颜色
-	pDC->SetBkColor(RGB(255, 255, 0));
-	
-	str.Format(_T("%d"), m_Level);
-	
-	if (m_Level >= 0)
-	{
-		pDC->TextOut(420, 120, str);	//输出等级数字
-	}
-	str.Format(_T("%d"), m_CountLine);
-	if (m_Speed >= 0)
-	{
-		pDC->TextOut(420, 64, str);		//输出消除行数
-	}
-	str.Format(_T("%d"), m_Score);
-	if (m_Score >= 0)
-	{
-		pDC->TextOut(420, 2, str);		//输出分数
-	}
-	pDC->RestoreDC(nOldDC);
 }
 
 //开始游戏
-void CRussia::GameStart()
+void CRussia::GameStart(CRect cr)
 {
+
 	end = false;
+	int x = cr.Width();
+	int y = cr.Height();
 	m_Score = 0;
-	m_RowCount = 18;//初始化行数
-	m_ColCount = 12;//初始化列数
+	m_RowCount = 20;//初始化行数
+	m_ColCount = 11;//初始化列数
 	Count = 7;
 	m_CountLine = 0;//初始化消去行数为0
 	TCHAR pszTmp[128] = { 0 };

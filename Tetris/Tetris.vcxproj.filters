@@ -126,5 +126,17 @@
     <Image Include="res\background.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\square.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bkg.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\rightcol1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bottom1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

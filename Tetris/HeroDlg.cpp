@@ -67,3 +67,12 @@ void CHeroDlg::GetHeroData()
 	SetDlgItemInt(IDC_SHOW_SCORE, m_score);
 }
 
+void CHeroDlg::SetHeroData(int level, int score)
+{
+	CString tm;
+	tm.Format(_T("%d"), level);
+	WritePrivateProfileString((LPCWSTR)"HERO", (LPCWSTR)"level", tm, (LPCWSTR)".\\config\\setup.ini");
+	tm.Format(_T("%d"), score);
+	WritePrivateProfileString((LPCWSTR)"HERO", (LPCWSTR)"score", tm, (LPCWSTR)".\\config\\setup.ini");
+}
+

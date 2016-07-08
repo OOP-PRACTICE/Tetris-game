@@ -60,7 +60,8 @@ BOOL CTetrisView::PreCreateWindow(CREATESTRUCT& cs)
 {
 	// TODO: 在此处通过修改
 	//  CREATESTRUCT cs 来修改窗口类或样式
-
+	//cs.cx = 700;
+	//cs.cy = 2000;
 	return CFormView::PreCreateWindow(cs);
 }
 
@@ -69,7 +70,7 @@ void CTetrisView::OnInitialUpdate()
 	CFormView::OnInitialUpdate();
 	GetParentFrame()->RecalcLayout();
 	ResizeParentToFit();
-
+	// m_nMapMode = -1;
 }
 
 
@@ -125,31 +126,35 @@ void CTetrisView::OnHelpDoc()
 
 void CTetrisView::OnNewGame()
 {
-	// TODO: Add your command handler code here
+	// 游戏开始
+	m_start = true;
+	CRect cr;
+	GetClientRect(&cr);
 	m_russia.GameStart();
-	SetTimer(1, 100, NULL);
+	SetTimer(1, m_russia.m_Speed, NULL);
 }
 
 
 void CTetrisView::OnTimer(UINT_PTR nIDEvent)
 {
-	// TODO: Add your message handler code here and/or call default
-	Invalidate();
-	m_russia.Move(3);		// 自动向下移动
+	CRect cr;
+	GetClientRect(cr);
+	//下移
+	m_russia.Move(KEY_DOWN);
+	//重画
+	m_russia.DrawBK(GetDC(), cr);
+	//关闭TIME1
+	KillTimer(1);
+	//调整速度
+	SetTimer(1, m_russia.m_Speed, NULL);
 	CFormView::OnTimer(nIDEvent);
-	for (int i = 0; i < 4; i++)
-	{
-		for (int j = 0; j < 4; j++)
-		{
-			m_russia.Now[i][j] = m_russia.Will[i][j];
-		}
-	}
 }
 
 
 void CTetrisView::OnExitGame()
 {
-	// TODO: Add your command handler code here
+	// 退出游戏
+	m_start = false;
 	KillTimer(1);
 }
 

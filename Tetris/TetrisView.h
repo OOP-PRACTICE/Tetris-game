@@ -19,7 +19,7 @@ public:
 // ÌØĞÔ
 public:
 	CTetrisDoc* GetDocument() const;
-
+	bool m_start;
 // ²Ù×÷
 public:
 

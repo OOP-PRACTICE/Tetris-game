@@ -11,9 +11,13 @@
 #define IDD_HELP_DLG                    312
 #define IDD_HERONAME_GET                314
 #define IDD_NEWREC_DLG                  316
-#define IDB_DIAMOND                     318
 #define IDB_BACKGROUND                  322
 #define IDD_GAME_LEVEL_DIALOG           323
+#define IDB_SQUARE                      325
+#define IDB_BKG                         326
+#define IDB_RIGHTCOL1                   327
+#define IDB_BITMAP2                     328
+#define IDB_BOTTOM1                     328
 #define IDC_BUTTON1                     1000
 #define IDC_LEVEL_EDIT                  1001
 #define IDC_NAME_EDIT                   1002
@@ -24,7 +28,6 @@
 #define IDC_GETNAME_EDIT                1007
 #define IDC_NAME                        1008
 #define IDC_BIGNAME                     1009
-#define IDC_SHOW_LEVEL                  10010
 #define IDC_SHOW_NAME                   1011
 #define IDC_BREAKREC_INFO               1012
 #define IDC_SHOW_SCORE                  1013
@@ -33,6 +36,7 @@
 #define IDC_GAME_LEVEL_EDIT             1016
 #define IDC_CHANGE_LEVEL_SPIN           1017
 #define IDC_GAME_LEVEL_STATIC           1018
+#define IDC_SHOW_LEVEL                  10010
 #define ID_32771                        32771
 #define ID_32772                        32772
 #define ID_32773                        32773
@@ -58,7 +62,7 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        325
+#define _APS_NEXT_RESOURCE_VALUE        329
 #define _APS_NEXT_COMMAND_VALUE         32791
 #define _APS_NEXT_CONTROL_VALUE         1016
 #define _APS_NEXT_SYMED_VALUE           310

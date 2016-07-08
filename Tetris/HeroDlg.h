@@ -28,4 +28,5 @@ public:
 	afx_msg void OnEnChangeLevelEdit();
 	virtual BOOL OnInitDialog();
 	void GetHeroData();
+	void SetHeroData(int level, int score);		// 修改配置文件中的英雄信息（级别、分数）
 };

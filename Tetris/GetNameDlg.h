@@ -23,4 +23,5 @@ protected:
 public:
 	CString m_getname;
 	afx_msg void OnBnClickedOk();
+	void SetHeroData(CString name);
 };
