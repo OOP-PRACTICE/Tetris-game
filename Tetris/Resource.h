@@ -12,8 +12,8 @@
 #define IDD_HERONAME_GET                314
 #define IDD_NEWREC_DLG                  316
 #define IDB_DIAMOND                     318
-#define IDB_BITMAP1                     322
 #define IDB_BACKGROUND                  322
+#define IDD_GAME_LEVEL_DIALOG           323
 #define IDC_BUTTON1                     1000
 #define IDC_LEVEL_EDIT                  1001
 #define IDC_NAME_EDIT                   1002
@@ -23,14 +23,16 @@
 #define IDC_SCORE_STATIC                1006
 #define IDC_GETNAME_EDIT                1007
 #define IDC_NAME                        1008
-#define IDC_BIGNAME                     1008
-#define IDC_SHOW_LEVEL                  1009
-#define IDC_SHOW_NAME                   1010
-#define IDC_BREAKREC_INFO               1010
-#define IDC_LEVEL3                      1011
-#define IDC_SHOW_SCORE                  1011
-#define IDC_LEVEL_INFO                  1011
-#define IDC_SCORE_INFO                  1012
+#define IDC_BIGNAME                     1009
+#define IDC_SHOW_LEVEL                  10010
+#define IDC_SHOW_NAME                   1011
+#define IDC_BREAKREC_INFO               1012
+#define IDC_SHOW_SCORE                  1013
+#define IDC_LEVEL_INFO                  1014
+#define IDC_SCORE_INFO                  1015
+#define IDC_GAME_LEVEL_EDIT             1016
+#define IDC_CHANGE_LEVEL_SPIN           1017
+#define IDC_GAME_LEVEL_STATIC           1018
 #define ID_32771                        32771
 #define ID_32772                        32772
 #define ID_32773                        32773
@@ -47,14 +49,18 @@
 #define ID_NEW_GAME                     32784
 #define ID_GAME_LEVEL                   32785
 #define ID_BK_MUSIC                     32786
+#define ID_32787                        32787
+#define ID_32788                        32788
+#define ID_BKMUSIC_ON                   32789
+#define ID_BKMUSIC_OFF                  32790
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        323
-#define _APS_NEXT_COMMAND_VALUE         32787
-#define _APS_NEXT_CONTROL_VALUE         1013
+#define _APS_NEXT_RESOURCE_VALUE        325
+#define _APS_NEXT_COMMAND_VALUE         32791
+#define _APS_NEXT_CONTROL_VALUE         1016
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
 #endif

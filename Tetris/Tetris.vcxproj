@@ -95,6 +95,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
+      <AdditionalDependencies>winmm.lib</AdditionalDependencies>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -188,6 +189,7 @@
     <ClInclude Include="GetNameDlg.h" />
     <ClInclude Include="HelpDlg.h" />
     <ClInclude Include="HeroDlg.h" />
+    <ClInclude Include="Leveldlg.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="Newrecdlg.h" />
     <ClInclude Include="Resource.h" />
@@ -203,6 +205,7 @@
     <ClCompile Include="GetNameDlg.cpp" />
     <ClCompile Include="HelpDlg.cpp" />
     <ClCompile Include="HeroDlg.cpp" />
+    <ClCompile Include="Leveldlg.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="Newrecdlg.cpp" />
     <ClCompile Include="Rule.cpp" />

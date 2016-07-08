@@ -52,6 +52,9 @@ public:
 	afx_msg void OnExitGame();
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
+	afx_msg void OnGameLevel();
+	afx_msg void OnBkmusicOn();
+	afx_msg void OnBkmusicOff();
 };
 
 #ifndef _DEBUG  // TetrisView.cpp 中的调试版本

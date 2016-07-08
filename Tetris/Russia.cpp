@@ -402,7 +402,7 @@ void CRussia::DrawBK(CDC * pDC, CRect r)
 
 	Dc.SelectObject(bkMap);
 	pDC->BitBlt(0, 0, x, y, &Dc, 0, 0, SRCCOPY);//画背景,SRCCOPY是直接复制原设备到逻辑设备
-	//DrawScore(pDC);  画分数、速度、难度
+	DrawScore(pDC);					//画分数、速度、难度
 
 	for (int i = 0; i < m_RowCount; i++)
 	{
@@ -429,6 +429,34 @@ void CRussia::DrawBK(CDC * pDC, CRect r)
 
 void CRussia::DrawScore(CDC * pDC)
 {
+	int nOldDC = pDC->SaveDC();
+	CFont font;
+	//设置字体
+	VERIFY(font.CreatePointFont(300, _T("Comic Sans MS")));
+	
+	pDC->SelectObject(&font);
+	
+	CString str;
+	pDC->SetTextColor(RGB(39, 244, 10));	//设置字体颜色及背景颜色
+	pDC->SetBkColor(RGB(255, 255, 0));
+	
+	str.Format(_T("%d"), m_Level);
+	
+	if (m_Level >= 0)
+	{
+		pDC->TextOut(420, 120, str);	//输出等级数字
+	}
+	str.Format(_T("%d"), m_CountLine);
+	if (m_Speed >= 0)
+	{
+		pDC->TextOut(420, 64, str);		//输出消除行数
+	}
+	str.Format(_T("%d"), m_Score);
+	if (m_Score >= 0)
+	{
+		pDC->TextOut(420, 2, str);		//输出分数
+	}
+	pDC->RestoreDC(nOldDC);
 }
 
 //开始游戏

@@ -19,7 +19,8 @@
 // 其他头文件
 #include "HeroDlg.h"
 #include "HelpDlg.h"
-
+#include "Leveldlg.h"
+#include <mmsystem.h>
 
 // CTetrisView
 
@@ -32,6 +33,9 @@ BEGIN_MESSAGE_MAP(CTetrisView, CFormView)
 	ON_WM_TIMER()
 	ON_COMMAND(ID_EXIT_GAME, &CTetrisView::OnExitGame)
 	ON_WM_KEYDOWN()
+	ON_COMMAND(ID_GAME_LEVEL, &CTetrisView::OnGameLevel)
+	ON_COMMAND(ID_BKMUSIC_ON, &CTetrisView::OnBkmusicOn)
+	ON_COMMAND(ID_BKMUSIC_OFF, &CTetrisView::OnBkmusicOff)
 END_MESSAGE_MAP()
 
 // CTetrisView 构造/析构
@@ -100,7 +104,6 @@ void CTetrisView::OnDraw(CDC* pDC)
 	
 	GetClientRect(&rect);
 	m_russia.DrawBK(pDC, rect);
-	
 }
 
 
@@ -154,13 +157,6 @@ void CTetrisView::OnExitGame()
 BOOL CTetrisView::PreTranslateMessage(MSG* pMsg)
 {
 	// TODO: Add your specialized code here and/or call the base class
-	if (pMsg->wParam == VK_UP)
-	{
-		m_russia.Move(2);
-		
-		//AfxMessageBox(_T("Up_key"));
-	}
-	
 	return CFormView::PreTranslateMessage(pMsg);
 }
 
@@ -189,4 +185,31 @@ void CTetrisView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	}
 	m_russia.Move(key);
 	CFormView::OnKeyDown(nChar, nRepCnt, nFlags);
+}
+
+
+void CTetrisView::OnGameLevel()
+{
+	// 设置游戏等级
+	CLeveldlg leveldlg;
+	leveldlg.m_level = m_russia.m_Level;
+	if (leveldlg.DoModal() == IDOK)
+	{
+		m_russia.m_Level = leveldlg.m_level;
+	}
+}
+
+
+void CTetrisView::OnBkmusicOn()
+{
+	// 打开背景音乐
+	LPCWSTR BGM = L".\\sound\\BGM.wav";
+	sndPlaySound(BGM, SND_ASYNC | SND_LOOP);
+}
+
+
+void CTetrisView::OnBkmusicOff()
+{
+	// 关闭背景音乐
+	sndPlaySound(NULL, SND_ASYNC);
 }
