@@ -434,8 +434,6 @@ void CRussia::DrawBK(CDC * pDC, CRect r)
 			if (Will[n][m] == 1)
 			{
 				Dc.SelectObject(fkMap);
-				/*pDC->BitBlt(365 * ((x + y) / 1090) + m * 30, 240 * ((x + y) / 1090) + n * 30,
-				30*((x+y)/1090), 30 * ((x + y) / 1090), &Dc, 0, 0, SRCCOPY);*/
 				pDC->BitBlt(365 + m * 30, 240 + n * 30,
 					30 * ((x + y) / 1090), 30 * ((x + y) / 1090), &Dc, 0, 0, SRCCOPY);
 			}

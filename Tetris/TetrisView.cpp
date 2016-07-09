@@ -65,9 +65,9 @@ BOOL CTetrisView::PreCreateWindow(CREATESTRUCT& cs)
 
 void CTetrisView::OnInitialUpdate()
 {
-	CFormView::OnInitialUpdate();
+	/*CFormView::OnInitialUpdate();
 	GetParentFrame()->RecalcLayout();
-	ResizeParentToFit();
+	ResizeParentToFit();*/
 	// m_nMapMode = -1;
 }
 
@@ -167,26 +167,24 @@ BOOL CTetrisView::PreTranslateMessage(MSG* pMsg)
 void CTetrisView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	// TODO: Add your message handler code here and/or call default
-	int key;
+	if (!m_start)
+		return;
+
 	switch (nChar)
 	{
 	case VK_LEFT:
-		key = 1;
+		m_russia.Move(KEY_LEFT);
 		break;
 	case VK_RIGHT:
-		key = 2;
-		break;
-	case VK_DOWN:
-		key = 3;
+		m_russia.Move(KEY_RIGHT);
 		break;
 	case VK_UP:
-		key = 4;
+		m_russia.Move(KEY_UP);
 		break;
-	default:
-		key = 3;
+	case VK_DOWN:
+		m_russia.Move(KEY_DOWN);
 		break;
 	}
-	m_russia.Move(key);
 	CFormView::OnKeyDown(nChar, nRepCnt, nFlags);
 }
 
