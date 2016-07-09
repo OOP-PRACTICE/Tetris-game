@@ -10,11 +10,11 @@ CRussia::CRussia()
 	//dcMemory.CreateCompatibleDC(pDC);
 	bkMap.LoadBitmapW(IDB_BKG);
 	fkMap.LoadBitmapW(IDB_SQUARE);
-	fmMap1.LoadBitmapW(IDB_RIGHTCOL1);
-	fmMap2.LoadBitmapW(IDB_BITMAP6);
-	fmMap3.LoadBitmapW(IDB_BITMAP7);
-	fmMap4.LoadBitmapW(IDB_BITMAP8);
-	fmMap5.LoadBitmapW(IDB_BITMAP9);
+	fmMap1.LoadBitmapW(IDB_LEFTCOL);
+	fmMap2.LoadBitmapW(IDB_TOP);
+	fmMap3.LoadBitmapW(IDB_BOTTOM);
+	fmMap4.LoadBitmapW(IDB_RIGHTCOL);
+	fmMap5.LoadBitmapW(IDB_MIDDLE);
 }
 
 
@@ -448,12 +448,10 @@ void CRussia::DrawScore(CDC * pDC)
 }
 
 //开始游戏
-void CRussia::GameStart(CRect cr)
+void CRussia::GameStart()
 {
 
 	end = false;
-	int x = cr.Width();
-	int y = cr.Height();
 	m_Score = 0;
 	m_RowCount = 20;//初始化行数
 	m_ColCount = 11;//初始化列数

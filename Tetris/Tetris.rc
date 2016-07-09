@@ -86,9 +86,15 @@ IDB_SQUARE              BITMAP                  "res\\square.bmp"
 
 IDB_BKG                 BITMAP                  "res\\bkg.bmp"
 
-IDB_RIGHTCOL1           BITMAP                  "res\\rightcol1.bmp"
+IDB_LEFTCOL             BITMAP                  "res\\leftcol.bmp"
 
-IDB_BOTTOM1             BITMAP                  "res\\bottom1.bmp"
+IDB_TOP                 BITMAP                  "res\\top.bmp"
+
+IDB_BOTTOM              BITMAP                  "res\\Botton.bmp"
+
+IDB_RIGHTCOL            BITMAP                  "res\\rightcol.bmp"
+
+IDB_MIDDLE              BITMAP                  "res\\middle.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

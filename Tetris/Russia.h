@@ -12,7 +12,7 @@
 class CRussia
 {
 public:
-	
+
 	int Russia[100][100];
 	int Now[4][4];//现在图形
 	int Will[4][4];//下个图形
@@ -28,6 +28,11 @@ public:
 	int m_ColCount;
 	CBitmap fkMap;
 	CBitmap bkMap;
+	CBitmap fmMap1;
+	CBitmap fmMap2;
+	CBitmap fmMap3;
+	CBitmap fmMap4;
+	CBitmap fmMap5;
 	CRule rule;
 
 	CRussia();

@@ -73,11 +73,8 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 	// TODO: 在此处通过修改
 	//  CREATESTRUCT cs 来修改窗口类或样式
 	// 窗口大小
-	cs.cx = 800;
-	cs.cy = 2000;
-	//cs.style &= ~(WS_VSCROLL | WS_HSCROLL);
-	cs.style = WS_OVERLAPPED | WS_CAPTION | FWS_ADDTOTITLE 
-						| WS_MINIMIZEBOX | WS_SYSMENU;
+	cs.cx = 615;
+	cs.cy = 850;
 	
 	return TRUE;
 }

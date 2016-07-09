@@ -138,5 +138,20 @@
     <Image Include="res\bottom1.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\leftcol.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\top.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Botton.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\rightcol.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\middle.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

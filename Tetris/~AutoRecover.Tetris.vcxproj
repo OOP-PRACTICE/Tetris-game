@@ -234,8 +234,6 @@
     <Image Include="res\Botton.bmp" />
     <Image Include="res\diamond.bmp" />
     <Image Include="res\leftcol.bmp" />
-    <Image Include="res\middle.bmp" />
-    <Image Include="res\rightcol.bmp" />
     <Image Include="res\rightcol1.bmp" />
     <Image Include="res\square.bmp" />
     <Image Include="res\Tetris.ico" />
