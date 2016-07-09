@@ -233,6 +233,7 @@
     <Image Include="res\bottom1.bmp" />
     <Image Include="res\Botton.bmp" />
     <Image Include="res\diamond.bmp" />
+    <Image Include="res\gameRun.bmp" />
     <Image Include="res\leftcol.bmp" />
     <Image Include="res\middle.bmp" />
     <Image Include="res\rightcol.bmp" />

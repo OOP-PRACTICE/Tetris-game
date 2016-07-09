@@ -153,5 +153,8 @@
     <Image Include="res\middle.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\gameRun.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

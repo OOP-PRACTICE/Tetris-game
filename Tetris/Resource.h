@@ -20,8 +20,9 @@
 #define IDB_TOP                         330
 #define IDB_BOTTOM                      331
 #define IDB_RIGHTCOL                    332
-#define IDB_BITMAP3                     333
 #define IDB_MIDDLE                      333
+#define IDB_BITMAP1                     335
+#define IDB_START_BK                    335
 #define IDC_BUTTON1                     1000
 #define IDC_LEVEL_EDIT                  1001
 #define IDC_NAME_EDIT                   1002
@@ -66,7 +67,7 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        334
+#define _APS_NEXT_RESOURCE_VALUE        336
 #define _APS_NEXT_COMMAND_VALUE         32791
 #define _APS_NEXT_CONTROL_VALUE         1016
 #define _APS_NEXT_SYMED_VALUE           310

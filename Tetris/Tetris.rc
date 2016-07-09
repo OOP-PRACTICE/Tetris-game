@@ -96,6 +96,8 @@ IDB_RIGHTCOL            BITMAP                  "res\\rightcol.bmp"
 
 IDB_MIDDLE              BITMAP                  "res\\middle.bmp"
 
+IDB_START_BK            BITMAP                  "res\\gameRun.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

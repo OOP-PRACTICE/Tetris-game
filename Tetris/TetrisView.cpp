@@ -100,7 +100,10 @@ void CTetrisView::OnDraw(CDC* pDC)
 {
 	// TODO: Add your specialized code here and/or call the base class
 	CRect rect;
-	
+	if (!m_start)
+	{
+
+	}
 	GetClientRect(&rect);
 	m_russia.DrawBK(pDC, rect);
 }

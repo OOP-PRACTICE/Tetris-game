@@ -443,6 +443,7 @@ void CRussia::DrawBK(CDC * pDC, CRect r)
 
 void CRussia::DrawScore(CDC * pDC)
 {
+
 }
 
 //©╙й╪сно╥
@@ -483,4 +484,5 @@ void CRussia::GameStart()
 
 void CRussia::HeroWrite()
 {
+
 }
