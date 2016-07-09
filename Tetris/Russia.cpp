@@ -493,7 +493,7 @@ void CRussia::GameStart()
 
 	GetPrivateProfileString(_T("SETUP"), _T("level"), _T("1"), pszTmp, 127, _T(".\\setup.ini"));//读取.ini文件，读取当前游戏等级
 
-	m_Level = _wtoi(pszTmp);//TCHAR转为int，初始化等级
+	m_Level = _wtoi(pszTmp);// TCHAR转为int，初始化等级
 	m_Speed = 320 - m_Level * 20;//初始化速度
 
 	for (int i = 0; i < m_RowCount; i++)//初始化界面
@@ -517,5 +517,8 @@ void CRussia::GameStart()
 
 void CRussia::HeroWrite()
 {
-
+	CNewrecdlg newdlg;
+	newdlg.ShowHeroData(m_Level, m_Score);
+	newdlg.DoModal();
+	
 }

@@ -39,6 +39,8 @@
 #define IDC_LEVEL_INFO                  1014
 #define IDC_SCORE_INFO                  1015
 #define IDC_GAME_LEVEL_EDIT             1016
+#define IDC_                            1016
+#define IDC_NEWLEVEL_INFO               1016
 #define IDC_CHANGE_LEVEL_SPIN           1017
 #define IDC_GAME_LEVEL_STATIC           1018
 #define IDC_SHOW_LEVEL                  10010
@@ -69,7 +71,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        336
 #define _APS_NEXT_COMMAND_VALUE         32791
-#define _APS_NEXT_CONTROL_VALUE         1016
+#define _APS_NEXT_CONTROL_VALUE         1017
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
 #endif

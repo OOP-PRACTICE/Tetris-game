@@ -34,8 +34,9 @@ void CNewrecdlg::ShowHeroData(int level, int score)
 {
 	CString temp;
 	temp.Format(_T("等级: %d"), level);
-	//SetDlgItemText(IDC_LEVEL_INFO, temp);
-	temp.Format(_T("分数: %d"), score);
+	//SetDlgItemInt(IDC_NEWLEVEL_INFO, level);
+	//SetDlgItemText(IDC_NEWLEVEL_INFO, temp);
+	//temp.Format(_T("分数: %d"), score);
 	//SetDlgItemText(IDC_SCORE_INFO, temp);
 }
 
@@ -51,9 +52,3 @@ END_MESSAGE_MAP()
 
 // CNewrecdlg message handlers
 
-
-INT_PTR CNewrecdlg::DoModal()
-{
-	// 初始化对话框显示信息
-	return CDialogEx::DoModal();
-}

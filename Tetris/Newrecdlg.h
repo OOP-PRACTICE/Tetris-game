@@ -26,5 +26,5 @@ protected:
 
 	DECLARE_MESSAGE_MAP()
 public:
-	virtual INT_PTR DoModal();
+	
 };
