@@ -36,6 +36,8 @@ BEGIN_MESSAGE_MAP(CTetrisView, CFormView)
 	ON_COMMAND(ID_GAME_LEVEL, &CTetrisView::OnGameLevel)
 	ON_COMMAND(ID_BKMUSIC_ON, &CTetrisView::OnBkmusicOn)
 	ON_COMMAND(ID_BKMUSIC_OFF, &CTetrisView::OnBkmusicOff)
+	ON_WM_MOUSEMOVE()
+	ON_WM_LBUTTONDOWN()
 END_MESSAGE_MAP()
 
 // CTetrisView 构造/析构
@@ -44,6 +46,11 @@ CTetrisView::CTetrisView()
 	: CFormView(IDD_TETRIS_FORM)
 {
 	m_start = false;
+	startBK.LoadBitmapW(IDB_START_BK);
+	startButtons.m_unclickedbutton.LoadBitmapW(IDB_UNCLICKED_START);
+	startButtons.m_activatebutton.LoadBitmapW(IDB_ACTIVATE_START);
+	startButtons.m_clickedbutton.LoadBitmapW(IDB_CLICKED_START);
+	startButtons.flag = 0;
 }
 
 CTetrisView::~CTetrisView()
@@ -74,12 +81,37 @@ void CTetrisView::OnInitialUpdate()
 void CTetrisView::DrawStartbk(CDC * pDC, CRect rect)
 {
 	CDC dc;
-	startBK.LoadBitmap(IDB_START_BK);
 	BITMAP bmp;
 	startBK.GetBitmap(&bmp);
 	dc.CreateCompatibleDC(pDC);
 	dc.SelectObject(startBK);
 	pDC->StretchBlt(0, 0, rect.Width(), rect.Height(), &dc, 0, 0, bmp.bmWidth, bmp.bmHeight, SRCCOPY);
+}
+
+void CTetrisView::DrawButtons(CDC * pDC, CRect rect, int flag)
+{
+	CDC dc;
+	BITMAP bmp;
+	CBitmap *tbutton = NULL;
+	
+	switch (flag)
+	{
+	case 0:
+		tbutton = &startButtons.m_unclickedbutton;
+		break;
+	case 1:
+		tbutton = &startButtons.m_activatebutton;
+		break;
+	case 2:
+		tbutton = &startButtons.m_clickedbutton;
+		break;
+	default:
+		break;
+	}
+	tbutton->GetBitmap(&bmp);
+	dc.CreateCompatibleDC(pDC);
+	dc.SelectObject(*tbutton);
+	pDC->BitBlt((rect.Width() / 2) - (bmp.bmWidth / 2), (rect.Height() / 2) - (bmp.bmHeight / 2) - 80, bmp.bmWidth, bmp.bmHeight, &dc, 0, 0, SRCCOPY);
 }
 
 
@@ -116,6 +148,7 @@ void CTetrisView::OnDraw(CDC* pDC)
 	{
 		// 游戏未开始，加载游戏菜单界面
 		DrawStartbk(pDC, rect);
+		DrawButtons(pDC, rect, startButtons.flag);
 	}
 }
 
@@ -143,6 +176,7 @@ void CTetrisView::OnNewGame()
 	CRect cr;
 	GetClientRect(&cr);
 	m_russia.GameStart();
+	KillTimer(1);		// 游戏开始关闭第一个Timer
 	SetTimer(2, m_russia.m_Speed, NULL);
 }
 
@@ -234,4 +268,37 @@ void CTetrisView::OnBkmusicOff()
 {
 	// 关闭背景音乐
 	sndPlaySound(NULL, SND_ASYNC);
+}
+
+
+void CTetrisView::OnMouseMove(UINT nFlags, CPoint point)
+{
+	// TODO: Add your message handler code here and/or call default
+	CFormView::OnMouseMove(nFlags, point);
+}
+
+
+void CTetrisView::OnLButtonDown(UINT nFlags, CPoint point)
+{
+	// TODO: Add your message handler code here and/or call default
+	POINT curPos;
+	CRect rect;
+	GetClientRect(&rect);
+	GetCursorPos(&curPos);
+	bool isOnButton = (curPos.x >= ((rect.Width() / 2) - (194 / 2)) &&
+		curPos.x <= ((rect.Width() / 2) + (194 / 2)) &&
+		curPos.y >= ((rect.Height() / 2) - (41 / 2)) &&
+		curPos.y <= ((rect.Height() / 2) + (41 / 2)));
+	if (isOnButton)
+	{
+		startButtons.flag = 2;
+		OnNewGame();
+	}
+	else
+	{
+		startButtons.flag = 1;
+	}
+	startButtons.flag = 0;
+	
+	CFormView::OnLButtonDown(nFlags, point);
 }

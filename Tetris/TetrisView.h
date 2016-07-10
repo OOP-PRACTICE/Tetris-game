@@ -4,6 +4,7 @@
 
 #pragma once
 #include "Russia.h"
+#include "Buttons.h"
 
 class CTetrisView : public CFormView
 {
@@ -21,6 +22,7 @@ public:
 	CTetrisDoc* GetDocument() const;
 	bool m_start;
 	CBitmap startBK;
+	Buttons startButtons;
 // 操作
 public:
 
@@ -30,7 +32,8 @@ public:
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
 	virtual void OnInitialUpdate(); // 构造后第一次调用
-	void DrawStartbk(CDC* pdc, CRect rect);
+	void DrawStartbk(CDC* pDC, CRect rect);
+	void DrawButtons(CDC* pDC, CRect rect, int flag = 0);
 // 实现
 public:
 	virtual ~CTetrisView();
@@ -56,6 +59,8 @@ public:
 	afx_msg void OnGameLevel();
 	afx_msg void OnBkmusicOn();
 	afx_msg void OnBkmusicOff();
+	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 };
 
 #ifndef _DEBUG  // TetrisView.cpp 中的调试版本

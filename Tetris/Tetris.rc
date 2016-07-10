@@ -98,6 +98,12 @@ IDB_MIDDLE              BITMAP                  "res\\middle.bmp"
 
 IDB_START_BK            BITMAP                  "res\\gameRun.bmp"
 
+IDB_UNCLICKED_START     BITMAP                  "res\\start_buttons\\unclicked_start.bmp"
+
+IDB_ACTIVATE_START      BITMAP                  "res\\start_buttons\\activate_start.bmp"
+
+IDB_CLICKED_START       BITMAP                  "res\\start_buttons\\clicked_start.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -186,7 +192,7 @@ BEGIN
     DEFPUSHBUTTON   "È·¶¨",IDOK,113,41,50,14,WS_GROUP
 END
 
-IDD_TETRIS_FORM DIALOGEX 0, 0, 391, 295
+IDD_TETRIS_FORM DIALOGEX 0, 0, 338, 295
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
 FONT 9, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
@@ -311,7 +317,7 @@ BEGIN
     IDD_TETRIS_FORM, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 384
+        RIGHTMARGIN, 331
         TOPMARGIN, 7
         BOTTOMMARGIN, 288
     END

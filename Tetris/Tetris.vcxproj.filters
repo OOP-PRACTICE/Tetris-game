@@ -60,6 +60,9 @@
     <ClInclude Include="Leveldlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Buttons.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Tetris.cpp">
@@ -145,6 +148,15 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\gameRun.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\start_buttons\unclicked_start.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\start_buttons\activate_start.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\start_buttons\clicked_start.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
