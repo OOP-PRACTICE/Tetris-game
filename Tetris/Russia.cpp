@@ -10,11 +10,11 @@ CRussia::CRussia()
 	//dcMemory.CreateCompatibleDC(pDC);
 	bkMap.LoadBitmapW(IDB_BKG);
 	fkMap.LoadBitmapW(IDB_SQUARE);
-	fmMap1.LoadBitmapW(IDB_LEFTCOL);
-	fmMap2.LoadBitmapW(IDB_TOP);
-	fmMap3.LoadBitmapW(IDB_BOTTOM);
-	fmMap4.LoadBitmapW(IDB_RIGHTCOL);
-	fmMap5.LoadBitmapW(IDB_MIDDLE);
+	leftFrame.LoadBitmapW(IDB_LEFTCOL);
+	topFrame.LoadBitmapW(IDB_TOP);
+	bottomFrame.LoadBitmapW(IDB_BOTTOM);
+	rightFrame.LoadBitmapW(IDB_RIGHTCOL);
+	middleFrame.LoadBitmapW(IDB_MIDDLE);
 }
 
 
@@ -405,18 +405,18 @@ void CRussia::DrawBK(CDC * pDC, CRect r)
 	Dc.SelectObject(bkMap);
 	pDC->BitBlt(0, 0, x, y, &Dc, 0, 0, SRCCOPY);//画背景,SRCCOPY是直接复制原设备到逻辑设备
 	DrawScore(pDC);  // 画分数、速度、难度
-	Dc.SelectObject(fmMap2);//上边框
+	Dc.SelectObject(topFrame);//上边框
 	pDC->StretchBlt(0, 0, 29 * 20, 50, &Dc, 0, 0, 20, 30, SRCCOPY);
-	Dc.SelectObject(fmMap3);//下边框
+	Dc.SelectObject(bottomFrame);//下边框
 	pDC->StretchBlt(0, y - 30, 29 * 20, 50, &Dc, 0, 0, 20, 30, SRCCOPY);
-	Dc.SelectObject(fmMap1);//左边框
+	Dc.SelectObject(leftFrame);//左边框
 	pDC->StretchBlt(0, 0, 32, y, &Dc, 0, 0, 15, 555, SRCCOPY);
-	Dc.SelectObject(fmMap5);//中间边框
+	Dc.SelectObject(middleFrame);//中间边框
 	pDC->StretchBlt(330, 20, 32, y, &Dc, 0, 0, 15, 567, SRCCOPY);
-	Dc.SelectObject(fmMap4);//右边框
+	Dc.SelectObject(rightFrame);//右边框
 	pDC->StretchBlt(570, 0, 32, y, &Dc, 0, 0, 15, 555, SRCCOPY);
 	//pDC->BitBlt(40, 0, x, y, &Dc, 0, 0, SRCCOPY);
-	for (int i = 0; i < m_RowCount; i++)
+	for (int i = 0; i < m_RowCount; i++) 
 	{
 		for (int j = 0; j < m_ColCount; j++)
 		{

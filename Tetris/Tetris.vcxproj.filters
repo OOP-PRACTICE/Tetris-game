@@ -120,9 +120,6 @@
     <Image Include="res\Toolbar.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\diamond.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\background.bmp">
       <Filter>Resource Files</Filter>
     </Image>
@@ -130,12 +127,6 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\bkg.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\rightcol1.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\bottom1.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\leftcol.bmp">

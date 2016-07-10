@@ -1,4 +1,5 @@
 #pragma once
+#include "afxwin.h"
 
 
 // CNewrecdlg dialog
@@ -27,4 +28,5 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	
+	CStatic m_staticShowLevel;
 };

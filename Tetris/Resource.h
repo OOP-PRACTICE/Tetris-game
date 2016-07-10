@@ -15,13 +15,11 @@
 #define IDD_GAME_LEVEL_DIALOG           323
 #define IDB_SQUARE                      325
 #define IDB_BKG                         326
-#define IDB_BITMAP2                     328
 #define IDB_LEFTCOL                     329
 #define IDB_TOP                         330
 #define IDB_BOTTOM                      331
 #define IDB_RIGHTCOL                    332
 #define IDB_MIDDLE                      333
-#define IDB_BITMAP1                     335
 #define IDB_START_BK                    335
 #define IDC_BUTTON1                     1000
 #define IDC_LEVEL_EDIT                  1001
@@ -39,10 +37,9 @@
 #define IDC_LEVEL_INFO                  1014
 #define IDC_SCORE_INFO                  1015
 #define IDC_GAME_LEVEL_EDIT             1016
-#define IDC_                            1016
-#define IDC_NEWLEVEL_INFO               1016
 #define IDC_CHANGE_LEVEL_SPIN           1017
 #define IDC_GAME_LEVEL_STATIC           1018
+#define IDC_NEWLEVEL_INFO               1019
 #define IDC_SHOW_LEVEL                  10010
 #define ID_32771                        32771
 #define ID_32772                        32772

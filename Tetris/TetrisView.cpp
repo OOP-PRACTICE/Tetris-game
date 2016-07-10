@@ -43,8 +43,7 @@ END_MESSAGE_MAP()
 CTetrisView::CTetrisView()
 	: CFormView(IDD_TETRIS_FORM)
 {
-	// TODO: 在此处添加构造代码
-
+	m_start = false;
 }
 
 CTetrisView::~CTetrisView()
@@ -68,7 +67,19 @@ void CTetrisView::OnInitialUpdate()
 	/*CFormView::OnInitialUpdate();
 	GetParentFrame()->RecalcLayout();
 	ResizeParentToFit();*/
+	SetTimer(1, 1000, NULL);
 	// m_nMapMode = -1;
+}
+
+void CTetrisView::DrawStartbk(CDC * pDC, CRect rect)
+{
+	CDC dc;
+	startBK.LoadBitmap(IDB_START_BK);
+	BITMAP bmp;
+	startBK.GetBitmap(&bmp);
+	dc.CreateCompatibleDC(pDC);
+	dc.SelectObject(startBK);
+	pDC->StretchBlt(0, 0, rect.Width(), rect.Height(), &dc, 0, 0, bmp.bmWidth, bmp.bmHeight, SRCCOPY);
 }
 
 
@@ -98,14 +109,14 @@ CTetrisDoc* CTetrisView::GetDocument() const // 非调试版本是内联的
 
 void CTetrisView::OnDraw(CDC* pDC)
 {
-	// TODO: Add your specialized code here and/or call the base class
 	CRect rect;
+	GetClientRect(&rect);
+	
 	if (!m_start)
 	{
-
+		// 游戏未开始，加载游戏菜单界面
+		DrawStartbk(pDC, rect);
 	}
-	GetClientRect(&rect);
-	m_russia.DrawBK(pDC, rect);
 }
 
 
@@ -132,23 +143,30 @@ void CTetrisView::OnNewGame()
 	CRect cr;
 	GetClientRect(&cr);
 	m_russia.GameStart();
-	SetTimer(1, m_russia.m_Speed, NULL);
+	SetTimer(2, m_russia.m_Speed, NULL);
 }
 
 
 void CTetrisView::OnTimer(UINT_PTR nIDEvent)
 {
-	CRect cr;
-	GetClientRect(cr);
-	//下移
-	m_russia.Move(KEY_DOWN);
-	//重画
-	m_russia.DrawBK(GetDC(), cr);
-	//关闭TIME1
-	KillTimer(1);
-	//调整速度
-	SetTimer(1, m_russia.m_Speed, NULL);
-	CFormView::OnTimer(nIDEvent);
+	if (m_start)
+	{
+		CRect cr;
+		GetClientRect(cr);
+		//下移
+		m_russia.Move(KEY_DOWN);
+		//重画
+		m_russia.DrawBK(GetDC(), cr);
+		//关闭Timer2
+		KillTimer(2);
+		//调整速度
+		SetTimer(2, m_russia.m_Speed, NULL);
+		CFormView::OnTimer(nIDEvent);
+	}
+	else
+	{
+		Invalidate();
+	}	
 }
 
 
@@ -156,7 +174,7 @@ void CTetrisView::OnExitGame()
 {
 	// 退出游戏
 	m_start = false;
-	KillTimer(1);
+	KillTimer(2);
 }
 
 

@@ -230,14 +230,11 @@
   <ItemGroup>
     <Image Include="res\background.bmp" />
     <Image Include="res\bkg.bmp" />
-    <Image Include="res\bottom1.bmp" />
     <Image Include="res\Botton.bmp" />
-    <Image Include="res\diamond.bmp" />
     <Image Include="res\gameRun.bmp" />
     <Image Include="res\leftcol.bmp" />
     <Image Include="res\middle.bmp" />
     <Image Include="res\rightcol.bmp" />
-    <Image Include="res\rightcol1.bmp" />
     <Image Include="res\square.bmp" />
     <Image Include="res\Tetris.ico" />
     <Image Include="res\TetrisDoc.ico" />

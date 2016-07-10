@@ -34,7 +34,7 @@ void CNewrecdlg::ShowHeroData(int level, int score)
 {
 	CString temp;
 	temp.Format(_T("等级: %d"), level);
-	//SetDlgItemInt(IDC_NEWLEVEL_INFO, level);
+	SetDlgItemInt(IDC_NEWLEVEL_INFO, level);
 	//SetDlgItemText(IDC_NEWLEVEL_INFO, temp);
 	//temp.Format(_T("分数: %d"), score);
 	//SetDlgItemText(IDC_SCORE_INFO, temp);
@@ -43,6 +43,7 @@ void CNewrecdlg::ShowHeroData(int level, int score)
 void CNewrecdlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_NEWLEVEL_INFO, m_staticShowLevel);
 }
 
 

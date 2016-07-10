@@ -28,11 +28,11 @@ public:
 	int m_ColCount;
 	CBitmap fkMap;
 	CBitmap bkMap;
-	CBitmap fmMap1;
-	CBitmap fmMap2;
-	CBitmap fmMap3;
-	CBitmap fmMap4;
-	CBitmap fmMap5;
+	CBitmap leftFrame;
+	CBitmap topFrame;
+	CBitmap bottomFrame;
+	CBitmap rightFrame;
+	CBitmap middleFrame;
 	CRule rule;
 
 	CRussia();

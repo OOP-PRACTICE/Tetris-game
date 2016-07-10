@@ -20,6 +20,7 @@ public:
 public:
 	CTetrisDoc* GetDocument() const;
 	bool m_start;
+	CBitmap startBK;
 // 操作
 public:
 
@@ -29,7 +30,7 @@ public:
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
 	virtual void OnInitialUpdate(); // 构造后第一次调用
-
+	void DrawStartbk(CDC* pdc, CRect rect);
 // 实现
 public:
 	virtual ~CTetrisView();
