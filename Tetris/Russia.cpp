@@ -523,5 +523,4 @@ void CRussia::HeroWrite()
 	
 	newdlg.DoModal();
 	newdlg.ShowHeroData(m_Level, m_Score);*/
-	
 }
