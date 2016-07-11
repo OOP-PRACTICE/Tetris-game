@@ -29,4 +29,5 @@ protected:
 public:
 	
 	CStatic m_staticShowLevel;
+	virtual BOOL OnInitDialog();
 };

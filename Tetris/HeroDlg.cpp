@@ -50,7 +50,6 @@ BOOL CHeroDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 	GetHeroData();
-	
 	return TRUE;  // return TRUE unless you set the focus to a control
 				  // EXCEPTION: OCX Property Pages should return FALSE
 }

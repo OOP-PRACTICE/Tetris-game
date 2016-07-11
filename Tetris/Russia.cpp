@@ -3,6 +3,7 @@
 #include "Tetris.h"
 #include "Newrecdlg.h"
 #include "GetNameDlg.h"
+#include "HeroDlg.h"
 
 CRussia::CRussia()
 {
@@ -519,8 +520,14 @@ void CRussia::GameStart()
 
 void CRussia::HeroWrite()
 {
-	/*CNewrecdlg newdlg;
-	
-	newdlg.DoModal();
-	newdlg.ShowHeroData(m_Level, m_Score);*/
+	CNewrecdlg newdlg;
+	CGetNameDlg getnamedlg;
+	int t_level, t_score;
+	t_score = GetPrivateProfileInt((LPCWSTR)"HERO", (LPCWSTR)"score", 0, (LPCWSTR)".\\config\\setup.ini");
+	if (m_Score > t_score)
+	{
+		newdlg.SetHeroData(m_Level, m_Score);
+		newdlg.DoModal();
+		getnamedlg.DoModal();
+	}
 }

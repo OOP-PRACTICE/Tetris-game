@@ -188,6 +188,7 @@ void CTetrisView::OnHeroList()
 {
 	// ´ò¿ªÓ¢ÐÛ°ñ
 	CHeroDlg herodlg;
+	
 	herodlg.DoModal();
 }
 
