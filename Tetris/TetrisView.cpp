@@ -203,6 +203,7 @@ void CTetrisView::OnHelpDoc()
 void CTetrisView::OnNewGame()
 {
 	// 游戏开始
+	//Invalidate();		// 刷新屏幕，更新等级
 	m_start = true;
 	CRect cr;
 	GetClientRect(&cr);
