@@ -55,6 +55,7 @@ CTetrisView::CTetrisView()
 	helpButtons.m_activatebutton.LoadBitmapW(IDB_HELP_ACTIVATE);
 	helpButtons.m_clickedbutton.LoadBitmapW(IDB_HELP_CLICKED);
 	helpButtons.flag = 0;
+	OnBkmusicOn();
 }
 
 CTetrisView::~CTetrisView()
