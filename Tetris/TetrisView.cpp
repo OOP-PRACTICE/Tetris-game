@@ -79,7 +79,7 @@ void CTetrisView::OnInitialUpdate()
 	/*CFormView::OnInitialUpdate();
 	GetParentFrame()->RecalcLayout();
 	ResizeParentToFit();*/
-	SetTimer(1, 100, NULL);
+	//SetTimer(1, 100, NULL);
 	// m_nMapMode = -1;
 }
 
@@ -234,7 +234,7 @@ void CTetrisView::OnTimer(UINT_PTR nIDEvent)
 	}
 	else
 	{
-		Invalidate();
+		//Invalidate();
 	}	
 }
 
@@ -244,7 +244,8 @@ void CTetrisView::OnExitGame()
 	// ÍË³öÓÎÏ·
 	m_start = false;
 	KillTimer(2);
-	SetTimer(1, 1000, NULL);
+	//SetTimer(1, 1000, NULL);
+	Invalidate();
 }
 
 
