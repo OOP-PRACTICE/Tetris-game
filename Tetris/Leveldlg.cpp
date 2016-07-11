@@ -14,7 +14,7 @@ IMPLEMENT_DYNAMIC(CLeveldlg, CDialogEx)
 CLeveldlg::CLeveldlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(IDD_GAME_LEVEL_DIALOG, pParent)
 {
-
+	m_level = 0;
 }
 
 CLeveldlg::~CLeveldlg()
@@ -40,7 +40,7 @@ END_MESSAGE_MAP()
 BOOL CLeveldlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
-
+	m_level = 0;
 	// 设置spin控件的调节范围
 	m_level_spin.SetRange(1, 10);
 	return TRUE;  // return TRUE unless you set the focus to a control

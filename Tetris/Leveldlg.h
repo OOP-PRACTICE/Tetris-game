@@ -24,6 +24,6 @@ protected:
 public:
 	// 调节游戏等级
 	CSpinButtonCtrl m_level_spin;
-	int m_level;			// 游戏等级
+	int m_level = 0;			// 游戏等级
 	virtual BOOL OnInitDialog();
 };

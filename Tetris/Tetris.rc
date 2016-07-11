@@ -104,6 +104,12 @@ IDB_ACTIVATE_START      BITMAP                  "res\\start_buttons\\activate_st
 
 IDB_CLICKED_START       BITMAP                  "res\\start_buttons\\clicked_start.bmp"
 
+IDB_HELP_UNCLICKED      BITMAP                  "res\\help\\helpbutton_unclicked.bmp"
+
+IDB_HELP_ACTIVATE       BITMAP                  "res\\help\\helpbutton_activate.bmp"
+
+IDB_HELP_CLICKED        BITMAP                  "res\\help\\helpbutton_clicked.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

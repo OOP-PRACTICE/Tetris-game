@@ -16,15 +16,16 @@ void CRule::SetLevel(int nLevel)
 	m_nLevel = nLevel;
 }
 
-bool CRule::UpLevel(int nLine)
+int CRule::UpLevel(int nLine, int &countline)
 {
 	LPCWSTR UPM = L".\\sound\\upgrade.wav";
-	if (nLine / 30)					//如果可以整除，等级升级
+	if (nLine / 2)					//如果可以整除，等级升级
 	{
 		m_nLevel++;
 		sndPlaySound(UPM, SND_ASYNC);
+		countline = 0;		// 行数清零
 	}
-	return TRUE;				//返回当前游戏等级
+	return m_nLevel;				//返回当前游戏等级
 }
 
 bool CRule::Win(int Now[4][4], int Russia[100][100], CPoint NowPosition)

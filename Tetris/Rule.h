@@ -9,7 +9,7 @@ public:
 	CRule();
 	~CRule();
 	void SetLevel(int nLevel);//设置等级
-	bool UpLevel(int nLine);//升级判断
+	int UpLevel(int nLine, int &countline);//升级判断
 	bool Win(int Now[4][4], int Russia[100][100], CPoint NowPosition);//胜负判断
 
 private:

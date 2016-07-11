@@ -23,8 +23,11 @@
 #define IDB_START_BK                    335
 #define IDB_UNCLICKED_START             336
 #define IDB_ACTIVATE_START              337
-#define IDB_BITMAP2                     338
 #define IDB_CLICKED_START               338
+#define IDB_HELP_UNCLICKED              340
+#define IDB_HELP_ACTIVATE               341
+#define IDB_BITMAP2                     342
+#define IDB_HELP_CLICKED                342
 #define IDC_BUTTON1                     1000
 #define IDC_LEVEL_EDIT                  1001
 #define IDC_NAME_EDIT                   1002
@@ -70,7 +73,7 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        339
+#define _APS_NEXT_RESOURCE_VALUE        343
 #define _APS_NEXT_COMMAND_VALUE         32791
 #define _APS_NEXT_CONTROL_VALUE         1017
 #define _APS_NEXT_SYMED_VALUE           310

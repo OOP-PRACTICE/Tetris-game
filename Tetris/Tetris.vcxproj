@@ -233,6 +233,10 @@
     <Image Include="res\bkg.bmp" />
     <Image Include="res\Botton.bmp" />
     <Image Include="res\gameRun.bmp" />
+    <Image Include="res\help\helpbutton.bmp" />
+    <Image Include="res\help\helpbutton_activate.bmp" />
+    <Image Include="res\help\helpbutton_clicked.bmp" />
+    <Image Include="res\help\helpbutton_unclicked.bmp" />
     <Image Include="res\leftcol.bmp" />
     <Image Include="res\middle.bmp" />
     <Image Include="res\rightcol.bmp" />

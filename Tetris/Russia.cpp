@@ -15,6 +15,7 @@ CRussia::CRussia()
 	bottomFrame.LoadBitmapW(IDB_BOTTOM);
 	rightFrame.LoadBitmapW(IDB_RIGHTCOL);
 	middleFrame.LoadBitmapW(IDB_MIDDLE);
+	m_Level = 0;
 }
 
 
@@ -81,7 +82,8 @@ void CRussia::LineDelete()
 
 	m_CountLine += m;
 
-	m_Level = rule.UpLevel(m_CountLine);
+	m_Level = rule.UpLevel(m_CountLine, m_CountLine);
+	
 
 	end = rule.Win(Now, Russia, NowPosition);
 
@@ -511,14 +513,15 @@ void CRussia::GameStart()
 			Will[i][j] = 0;
 		}
 	}
-	DrawWill();//初始化的图形没有生成，所以调用俩次
+	DrawWill();		// 初始化的图形没有生成，所以调用俩次
 	DrawWill();
 }
 
 void CRussia::HeroWrite()
 {
-	CNewrecdlg newdlg;
-	newdlg.ShowHeroData(m_Level, m_Score);
+	/*CNewrecdlg newdlg;
+	
 	newdlg.DoModal();
+	newdlg.ShowHeroData(m_Level, m_Score);*/
 	
 }

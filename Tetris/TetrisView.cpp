@@ -51,6 +51,10 @@ CTetrisView::CTetrisView()
 	startButtons.m_activatebutton.LoadBitmapW(IDB_ACTIVATE_START);
 	startButtons.m_clickedbutton.LoadBitmapW(IDB_CLICKED_START);
 	startButtons.flag = 0;
+	helpButtons.m_unclickedbutton.LoadBitmapW(IDB_HELP_UNCLICKED);
+	helpButtons.m_activatebutton.LoadBitmapW(IDB_HELP_ACTIVATE);
+	helpButtons.m_clickedbutton.LoadBitmapW(IDB_HELP_CLICKED);
+	helpButtons.flag = 0;
 }
 
 CTetrisView::~CTetrisView()
@@ -74,7 +78,7 @@ void CTetrisView::OnInitialUpdate()
 	/*CFormView::OnInitialUpdate();
 	GetParentFrame()->RecalcLayout();
 	ResizeParentToFit();*/
-	SetTimer(1, 1000, NULL);
+	SetTimer(1, 100, NULL);
 	// m_nMapMode = -1;
 }
 
@@ -88,7 +92,7 @@ void CTetrisView::DrawStartbk(CDC * pDC, CRect rect)
 	pDC->StretchBlt(0, 0, rect.Width(), rect.Height(), &dc, 0, 0, bmp.bmWidth, bmp.bmHeight, SRCCOPY);
 }
 
-void CTetrisView::DrawButtons(CDC * pDC, CRect rect, int flag)
+void CTetrisView::DrawStartButtons(CDC * pDC, CRect rect, int flag)
 {
 	CDC dc;
 	BITMAP bmp;
@@ -112,6 +116,32 @@ void CTetrisView::DrawButtons(CDC * pDC, CRect rect, int flag)
 	dc.CreateCompatibleDC(pDC);
 	dc.SelectObject(*tbutton);
 	pDC->BitBlt((rect.Width() / 2) - (bmp.bmWidth / 2), (rect.Height() / 2) - (bmp.bmHeight / 2) - 80, bmp.bmWidth, bmp.bmHeight, &dc, 0, 0, SRCCOPY);
+}
+
+void CTetrisView::DrawHelpButtons(CDC * pDC, CRect rect, int flag)
+{
+	CDC dc;
+	BITMAP bmp;
+	CBitmap *tbutton = NULL;
+
+	switch (flag)
+	{
+	case 0:
+		tbutton = &helpButtons.m_unclickedbutton;
+		break;
+	case 1:
+		tbutton = &helpButtons.m_activatebutton;
+		break;
+	case 2:
+		tbutton = &helpButtons.m_clickedbutton;
+		break;
+	default:
+		break;
+	}
+	tbutton->GetBitmap(&bmp);
+	dc.CreateCompatibleDC(pDC);
+	dc.SelectObject(*tbutton);
+	pDC->BitBlt((rect.Width() / 2) - (bmp.bmWidth / 2), (rect.Height() / 2) - (bmp.bmHeight / 2) - 30, bmp.bmWidth, bmp.bmHeight, &dc, 0, 0, SRCCOPY);
 }
 
 
@@ -148,7 +178,8 @@ void CTetrisView::OnDraw(CDC* pDC)
 	{
 		// 游戏未开始，加载游戏菜单界面
 		DrawStartbk(pDC, rect);
-		DrawButtons(pDC, rect, startButtons.flag);
+		DrawStartButtons(pDC, rect, startButtons.flag);
+		DrawHelpButtons(pDC, rect, helpButtons.flag);
 	}
 }
 
@@ -185,6 +216,7 @@ void CTetrisView::OnTimer(UINT_PTR nIDEvent)
 {
 	if (m_start)
 	{
+		KillTimer(1);
 		CRect cr;
 		GetClientRect(cr);
 		//下移
@@ -209,6 +241,7 @@ void CTetrisView::OnExitGame()
 	// 退出游戏
 	m_start = false;
 	KillTimer(2);
+	SetTimer(1, 1000, NULL);
 }
 
 
@@ -249,9 +282,11 @@ void CTetrisView::OnGameLevel()
 	// 设置游戏等级
 	CLeveldlg leveldlg;
 	leveldlg.m_level = m_russia.m_Level;
+
 	if (leveldlg.DoModal() == IDOK)
 	{
 		m_russia.m_Level = leveldlg.m_level;
+		m_russia.rule.SetLevel(m_russia.m_Level);
 	}
 }
 
@@ -274,6 +309,7 @@ void CTetrisView::OnBkmusicOff()
 void CTetrisView::OnMouseMove(UINT nFlags, CPoint point)
 {
 	// TODO: Add your message handler code here and/or call default
+
 	CFormView::OnMouseMove(nFlags, point);
 }
 
@@ -281,24 +317,21 @@ void CTetrisView::OnMouseMove(UINT nFlags, CPoint point)
 void CTetrisView::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	// TODO: Add your message handler code here and/or call default
-	POINT curPos;
 	CRect rect;
 	GetClientRect(&rect);
-	GetCursorPos(&curPos);
-	bool isOnButton = (curPos.x >= ((rect.Width() / 2) - (194 / 2)) &&
-		curPos.x <= ((rect.Width() / 2) + (194 / 2)) &&
-		curPos.y >= ((rect.Height() / 2) - (41 / 2)) &&
-		curPos.y <= ((rect.Height() / 2) + (41 / 2)));
-	if (isOnButton)
+	ClientToScreen(&point);
+
+	POINT p = point;
+	bool isOnStartButton = (p.x >= ((rect.Width() / 2) - (194 / 2)) &&
+		p.x <= ((rect.Width() / 2) + (194 / 2)) &&
+		p.y >= ((rect.Height() / 2) - (41 / 2)) &&
+		p.y <= ((rect.Height() / 2) + (41 / 2)));
+	
+	if (isOnStartButton && !m_start)
 	{
 		startButtons.flag = 2;
 		OnNewGame();
 	}
-	else
-	{
-		startButtons.flag = 1;
-	}
-	startButtons.flag = 0;
 	
 	CFormView::OnLButtonDown(nFlags, point);
 }

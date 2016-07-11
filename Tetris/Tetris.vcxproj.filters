@@ -159,5 +159,17 @@
     <Image Include="res\start_buttons\clicked_start.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\help\helpbutton.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\help\helpbutton_unclicked.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\help\helpbutton_activate.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\help\helpbutton_clicked.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
