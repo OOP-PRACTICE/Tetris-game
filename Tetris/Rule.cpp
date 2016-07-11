@@ -4,6 +4,7 @@
 
 CRule::CRule()
 {
+	m_nLevel = 1;
 }
 
 
@@ -25,6 +26,7 @@ int CRule::UpLevel(int nLine, int &countline)
 		sndPlaySound(UPM, SND_ASYNC);
 		countline = 0;		// 行数清零
 	}
+
 	return m_nLevel;				//返回当前游戏等级
 }
 
