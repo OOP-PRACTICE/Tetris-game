@@ -27,6 +27,7 @@ public:
 
 // й╣ож
 	afx_msg void OnAppAbout();
+	afx_msg void OnMenuAboutButton();
 	DECLARE_MESSAGE_MAP()
 };
 

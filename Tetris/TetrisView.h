@@ -35,6 +35,7 @@ protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
 	virtual void OnInitialUpdate(); // 构造后第一次调用
 	void DrawStartbk(CDC* pDC, CRect rect);
+	void CreateMenuButtons(CRect rect);
 //	void DrawStartButtons(CDC* pDC, CRect rect, int flag = 0);
 //	void DrawHelpButtons(CDC* pDC, CRect rect, int flag = 0);
 // 实现
@@ -62,10 +63,13 @@ public:
 	afx_msg void OnGameLevel();
 	afx_msg void OnBkmusicOn();
 	afx_msg void OnBkmusicOff();
-	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
-	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+//	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+//	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnContinueGame();
 	afx_msg void OnResumeGame();
+	afx_msg void OnMenuGameStartButton();
+	afx_msg void OnMenuHelpButton();
+	afx_msg void OnMenuAboutButton();
 	CButton * NewMyButton(int nID, CRect rect, int nStyle);
 };
 
