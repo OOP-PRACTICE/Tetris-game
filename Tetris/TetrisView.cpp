@@ -48,16 +48,10 @@ CTetrisView::CTetrisView()
 	: CFormView(IDD_TETRIS_FORM)
 {
 	m_start = false;
+	// 加载背景图片
 	startBK.LoadBitmapW(IDB_START_BK);
-	startButtons.m_unclickedbutton.LoadBitmapW(IDB_UNCLICKED_START);
-	startButtons.m_activatebutton.LoadBitmapW(IDB_ACTIVATE_START);
-	startButtons.m_clickedbutton.LoadBitmapW(IDB_CLICKED_START);
-	startButtons.flag = 0;
-	helpButtons.m_unclickedbutton.LoadBitmapW(IDB_HELP_UNCLICKED);
-	helpButtons.m_activatebutton.LoadBitmapW(IDB_HELP_ACTIVATE);
-	helpButtons.m_clickedbutton.LoadBitmapW(IDB_HELP_CLICKED);
-	helpButtons.flag = 0;
 	OnBkmusicOn();
+	GameStartButton = NewMyButton(IDS_GAMESTART_MYBUTTON, CRect();
 }
 
 CTetrisView::~CTetrisView()
@@ -95,57 +89,57 @@ void CTetrisView::DrawStartbk(CDC * pDC, CRect rect)
 	pDC->StretchBlt(0, 0, rect.Width(), rect.Height(), &dc, 0, 0, bmp.bmWidth, bmp.bmHeight, SRCCOPY);
 }
 
-void CTetrisView::DrawStartButtons(CDC * pDC, CRect rect, int flag)
-{
-	CDC dc;
-	BITMAP bmp;
-	CBitmap *tbutton = NULL;
-	
-	switch (flag)
-	{
-	case 0:
-		tbutton = &startButtons.m_unclickedbutton;
-		break;
-	case 1:
-		tbutton = &startButtons.m_activatebutton;
-		break;
-	case 2:
-		tbutton = &startButtons.m_clickedbutton;
-		break;
-	default:
-		break;
-	}
-	tbutton->GetBitmap(&bmp);
-	dc.CreateCompatibleDC(pDC);
-	dc.SelectObject(*tbutton);
-	pDC->BitBlt((rect.Width() / 2) - (bmp.bmWidth / 2), (rect.Height() / 2) - (bmp.bmHeight / 2) - 80, bmp.bmWidth, bmp.bmHeight, &dc, 0, 0, SRCCOPY);
-}
+//void CTetrisView::DrawStartButtons(CDC * pDC, CRect rect, int flag)
+//{
+//	CDC dc;
+//	BITMAP bmp;
+//	CBitmap *tbutton = NULL;
+//	
+//	switch (flag)
+//	{
+//	case 0:
+//		tbutton = &startButtons.m_unclickedbutton;
+//		break;
+//	case 1:
+//		tbutton = &startButtons.m_activatebutton;
+//		break;
+//	case 2:
+//		tbutton = &startButtons.m_clickedbutton;
+//		break;
+//	default:
+//		break;
+//	}
+//	tbutton->GetBitmap(&bmp);
+//	dc.CreateCompatibleDC(pDC);
+//	dc.SelectObject(*tbutton);
+//	pDC->BitBlt((rect.Width() / 2) - (bmp.bmWidth / 2), (rect.Height() / 2) - (bmp.bmHeight / 2) - 80, bmp.bmWidth, bmp.bmHeight, &dc, 0, 0, SRCCOPY);
+//}
 
-void CTetrisView::DrawHelpButtons(CDC * pDC, CRect rect, int flag)
-{
-	CDC dc;
-	BITMAP bmp;
-	CBitmap *tbutton = NULL;
-
-	switch (flag)
-	{
-	case 0:
-		tbutton = &helpButtons.m_unclickedbutton;
-		break;
-	case 1:
-		tbutton = &helpButtons.m_activatebutton;
-		break;
-	case 2:
-		tbutton = &helpButtons.m_clickedbutton;
-		break;
-	default:
-		break;
-	}
-	tbutton->GetBitmap(&bmp);
-	dc.CreateCompatibleDC(pDC);
-	dc.SelectObject(*tbutton);
-	pDC->BitBlt((rect.Width() / 2) - (bmp.bmWidth / 2), (rect.Height() / 2) - (bmp.bmHeight / 2) - 30, bmp.bmWidth, bmp.bmHeight, &dc, 0, 0, SRCCOPY);
-}
+//void CTetrisView::DrawHelpButtons(CDC * pDC, CRect rect, int flag)
+//{
+//	CDC dc;
+//	BITMAP bmp;
+//	CBitmap *tbutton = NULL;
+//
+//	switch (flag)
+//	{
+//	case 0:
+//		tbutton = &helpButtons.m_unclickedbutton;
+//		break;
+//	case 1:
+//		tbutton = &helpButtons.m_activatebutton;
+//		break;
+//	case 2:
+//		tbutton = &helpButtons.m_clickedbutton;
+//		break;
+//	default:
+//		break;
+//	}
+//	tbutton->GetBitmap(&bmp);
+//	dc.CreateCompatibleDC(pDC);
+//	dc.SelectObject(*tbutton);
+//	pDC->BitBlt((rect.Width() / 2) - (bmp.bmWidth / 2), (rect.Height() / 2) - (bmp.bmHeight / 2) - 30, bmp.bmWidth, bmp.bmHeight, &dc, 0, 0, SRCCOPY);
+//}
 
 
 // CTetrisView 诊断
@@ -181,8 +175,6 @@ void CTetrisView::OnDraw(CDC* pDC)
 	{
 		// 游戏未开始，加载游戏菜单界面
 		DrawStartbk(pDC, rect);
-		DrawStartButtons(pDC, rect, startButtons.flag);
-		DrawHelpButtons(pDC, rect, helpButtons.flag);
 	}
 }
 
@@ -335,7 +327,6 @@ void CTetrisView::OnLButtonDown(UINT nFlags, CPoint point)
 	
 	if (isOnStartButton && !m_start)
 	{
-		startButtons.flag = 2;
 		OnNewGame();
 	}
 	
@@ -354,4 +345,16 @@ void CTetrisView::OnResumeGame()
 {
 	// 暂停游戏
 	KillTimer(2);
+}
+
+
+// 自定义按钮
+CButton* CTetrisView::NewMyButton(int nID, CRect rect, int nStyle)
+{
+	CString m_Caption;
+	m_Caption.LoadString(nID); //取按钮标题
+	CButton *p_Button = new CButton();
+	ASSERT_VALID(p_Button);
+	p_Button->Create(m_Caption, WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON | nStyle, rect, this, nID); //创建按钮
+	return p_Button;
 }

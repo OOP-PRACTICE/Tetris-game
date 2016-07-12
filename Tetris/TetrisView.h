@@ -22,8 +22,9 @@ public:
 	CTetrisDoc* GetDocument() const;
 	bool m_start;
 	CBitmap startBK;
-	Buttons startButtons;
-	Buttons helpButtons;
+	CButton *GameStartButton;
+	CButton *HelpButton;
+	CButton *AboutButton;
 // 操作
 public:
 
@@ -34,8 +35,8 @@ protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
 	virtual void OnInitialUpdate(); // 构造后第一次调用
 	void DrawStartbk(CDC* pDC, CRect rect);
-	void DrawStartButtons(CDC* pDC, CRect rect, int flag = 0);
-	void DrawHelpButtons(CDC* pDC, CRect rect, int flag = 0);
+//	void DrawStartButtons(CDC* pDC, CRect rect, int flag = 0);
+//	void DrawHelpButtons(CDC* pDC, CRect rect, int flag = 0);
 // 实现
 public:
 	virtual ~CTetrisView();
@@ -65,6 +66,7 @@ public:
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnContinueGame();
 	afx_msg void OnResumeGame();
+	CButton * NewMyButton(int nID, CRect rect, int nStyle);
 };
 
 #ifndef _DEBUG  // TetrisView.cpp 中的调试版本
