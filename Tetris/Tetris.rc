@@ -141,8 +141,9 @@ BEGIN
     POPUP "游戏"
     BEGIN
         MENUITEM "新游戏",                         ID_NEW_GAME
-        MENUITEM "继续游戏",                        ID_CONTINUE_GAME
         MENUITEM "退出游戏",                        ID_EXIT_GAME
+        MENUITEM "继续游戏",                        ID_CONTINUE_GAME
+        MENUITEM "暂停",                          ID_RESUME_GAME
     END
     MENUITEM "英雄榜",                         ID_HERO_LIST
     POPUP "设置"

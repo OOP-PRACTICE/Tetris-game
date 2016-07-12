@@ -38,6 +38,8 @@ BEGIN_MESSAGE_MAP(CTetrisView, CFormView)
 	ON_COMMAND(ID_BKMUSIC_OFF, &CTetrisView::OnBkmusicOff)
 	ON_WM_MOUSEMOVE()
 	ON_WM_LBUTTONDOWN()
+	ON_COMMAND(ID_CONTINUE_GAME, &CTetrisView::OnContinueGame)
+	ON_COMMAND(ID_RESUME_GAME, &CTetrisView::OnResumeGame)
 END_MESSAGE_MAP()
 
 // CTetrisView 构造/析构
@@ -338,4 +340,18 @@ void CTetrisView::OnLButtonDown(UINT nFlags, CPoint point)
 	}
 	
 	CFormView::OnLButtonDown(nFlags, point);
+}
+
+
+void CTetrisView::OnContinueGame()
+{
+	// 继续游戏
+	SetTimer(2, m_russia.m_Speed, NULL);
+}
+
+
+void CTetrisView::OnResumeGame()
+{
+	// 暂停游戏
+	KillTimer(2);
 }

@@ -63,6 +63,8 @@ public:
 	afx_msg void OnBkmusicOff();
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+	afx_msg void OnContinueGame();
+	afx_msg void OnResumeGame();
 };
 
 #ifndef _DEBUG  // TetrisView.cpp 中的调试版本

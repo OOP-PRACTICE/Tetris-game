@@ -26,7 +26,6 @@
 #define IDB_CLICKED_START               338
 #define IDB_HELP_UNCLICKED              340
 #define IDB_HELP_ACTIVATE               341
-#define IDB_BITMAP2                     342
 #define IDB_HELP_CLICKED                342
 #define IDC_BUTTON1                     1000
 #define IDC_LEVEL_EDIT                  1001
@@ -68,13 +67,15 @@
 #define ID_32788                        32788
 #define ID_BKMUSIC_ON                   32789
 #define ID_BKMUSIC_OFF                  32790
+#define ID_32791                        32791
+#define ID_RESUME_GAME                  32792
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        343
-#define _APS_NEXT_COMMAND_VALUE         32791
+#define _APS_NEXT_COMMAND_VALUE         32793
 #define _APS_NEXT_CONTROL_VALUE         1017
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
