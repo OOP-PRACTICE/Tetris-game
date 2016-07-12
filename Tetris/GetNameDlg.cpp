@@ -44,5 +44,5 @@ void CGetNameDlg::OnBnClickedOk()
 
 void CGetNameDlg::SetHeroData(CString name)
 {
-	WritePrivateProfileString((LPCWSTR)"HERO", (LPCWSTR)"name", name, (LPCWSTR)".\\config\\setup.ini");
+	WritePrivateProfileString(_T("HERO"), _T("name"), name, _T(".\\config\\setup.ini"));
 }

@@ -57,9 +57,9 @@ BOOL CHeroDlg::OnInitDialog()
 void CHeroDlg::GetHeroData()
 {
 	// 读取配置文件	
-	m_level = GetPrivateProfileInt((LPCWSTR)"HERO", (LPCWSTR)"level", 0, (LPCWSTR)".\\config\\setup.ini");
-	GetPrivateProfileString((LPCWSTR)"HERO", (LPCWSTR)"name", (LPCWSTR)"XXX", (LPWSTR)m_name, 127, (LPCWSTR)".\\config\\setup.ini");
-	m_score = GetPrivateProfileInt((LPCWSTR)"HERO", (LPCWSTR)"score", 0, (LPCWSTR)".\\config\\setup.ini");
+	m_level = GetPrivateProfileInt(_T("HERO"), _T("level"), 0, _T(".\\config\\setup.ini"));
+	GetPrivateProfileStringW(_T("HERO"), _T("name"), _T("XXX"), m_name.GetBuffer(127), 127, _T(".\\config\\setup.ini"));
+	m_score = GetPrivateProfileInt(_T("HERO"), _T("score"), 0, _T(".\\config\\setup.ini"));
 	// 显示在hero对话框中
 	SetDlgItemInt(IDC_SHOW_LEVEL, m_level);
 	SetDlgItemText(IDC_SHOW_NAME, (CString)m_name);
@@ -70,8 +70,8 @@ void CHeroDlg::SetHeroData(int level, int score)
 {
 	CString tm;
 	tm.Format(_T("%d"), level);
-	WritePrivateProfileString((LPCWSTR)"HERO", (LPCWSTR)"level", tm, (LPCWSTR)".\\config\\setup.ini");
+	WritePrivateProfileString(_T("HERO"), _T("level"), tm, _T(".\\config\\setup.ini"));
 	tm.Format(_T("%d"), score);
-	WritePrivateProfileString((LPCWSTR)"HERO", (LPCWSTR)"score", tm, (LPCWSTR)".\\config\\setup.ini");
+	WritePrivateProfileString(_T("HERO"), _T("score"), tm, _T(".\\config\\setup.ini"));
 }
 

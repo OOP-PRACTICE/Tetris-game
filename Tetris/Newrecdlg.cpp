@@ -27,9 +27,9 @@ void CNewrecdlg::SetHeroData(int level, int score)
 	m_level = level;
 	m_score = score;
 	tm.Format(_T("%d"), level);
-	WritePrivateProfileString((LPCWSTR)"HERO", (LPCWSTR)"level", tm, (LPCWSTR)".\\config\\setup.ini");
+	WritePrivateProfileString(_T("HERO"), _T("level"), tm, _T(".\\config\\setup.ini"));
 	tm.Format(_T("%d"), score);
-	WritePrivateProfileString((LPCWSTR)"HERO", (LPCWSTR)"score", tm, (LPCWSTR)".\\config\\setup.ini");
+	WritePrivateProfileString(_T("HERO"), _T("score"), tm, _T(".\\config\\setup.ini"));
 }
 
 void CNewrecdlg::ShowHeroData(int level, int score)

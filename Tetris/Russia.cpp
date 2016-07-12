@@ -528,6 +528,9 @@ void CRussia::HeroWrite()
 	{
 		newdlg.SetHeroData(m_Level, m_Score);
 		newdlg.DoModal();
-		getnamedlg.DoModal();
+		if (getnamedlg.DoModal() == IDOK)
+		{ 
+			getnamedlg.SetHeroData(getnamedlg.m_getname);
+		}
 	}
 }

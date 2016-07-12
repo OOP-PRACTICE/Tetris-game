@@ -15,7 +15,7 @@ public:
 // Dialog Data
 public:
 	int m_level = 1;			// 记录等级
-	CHAR m_name[128];			// 记录名字
+	CString m_name;			// 记录名字
 	int m_score = 0;			// 记录分数
 #ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_HERO_DLG };
