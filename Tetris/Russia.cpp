@@ -488,7 +488,7 @@ void CRussia::GameStart()
 
 	end = false;
 	m_Score = 0;
-	m_RowCount = 20;//初始化行数
+	m_RowCount = 21;//初始化行数
 	m_ColCount = 11;//初始化列数
 	Count = 7;
 	m_CountLine = 0;//初始化消去行数为0
