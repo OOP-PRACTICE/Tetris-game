@@ -4,7 +4,6 @@
 
 #pragma once
 #include "Russia.h"
-#include "Buttons.h"
 
 class CTetrisView : public CFormView
 {

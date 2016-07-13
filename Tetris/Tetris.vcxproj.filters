@@ -60,9 +60,6 @@
     <ClInclude Include="Leveldlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Buttons.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="BaseWork.h">
       <Filter>Header Files</Filter>
     </ClInclude>
