@@ -5,6 +5,9 @@
 #define IDD_ABOUTBOX                    100
 #define IDP_OLE_INIT_FAILED             100
 #define IDD_TETRIS_FORM                 101
+#define IDS_GAMESTART_MYBUTTON          101
+#define IDS_HELP_MYBUTTON               102
+#define IDS_ABOUT_MYBUTTON              103
 #define IDR_MAINFRAME                   128
 #define IDR_TetrisTYPE                  130
 #define IDD_HERO_DLG                    310

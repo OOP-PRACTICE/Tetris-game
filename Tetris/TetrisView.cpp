@@ -1,7 +1,6 @@
 
 // TetrisView.cpp : CTetrisView 类的实现
 //
-
 #include "stdafx.h"
 // SHARED_HANDLERS 可以在实现预览、缩略图和搜索筛选器句柄的
 // ATL 项目中进行定义，并允许与该项目共享文档代码。
@@ -11,7 +10,7 @@
 
 #include "TetrisDoc.h"
 #include "TetrisView.h"
-
+#include "Tetris.h"
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -36,10 +35,13 @@ BEGIN_MESSAGE_MAP(CTetrisView, CFormView)
 	ON_COMMAND(ID_GAME_LEVEL, &CTetrisView::OnGameLevel)
 	ON_COMMAND(ID_BKMUSIC_ON, &CTetrisView::OnBkmusicOn)
 	ON_COMMAND(ID_BKMUSIC_OFF, &CTetrisView::OnBkmusicOff)
-	ON_WM_MOUSEMOVE()
-	ON_WM_LBUTTONDOWN()
+//	ON_WM_MOUSEMOVE()
+//	ON_WM_LBUTTONDOWN()
 	ON_COMMAND(ID_CONTINUE_GAME, &CTetrisView::OnContinueGame)
 	ON_COMMAND(ID_RESUME_GAME, &CTetrisView::OnResumeGame)
+	ON_COMMAND(IDS_GAMESTART_MYBUTTON, &CTetrisView::OnMenuGameStartButton)
+	ON_COMMAND(IDS_HELP_MYBUTTON, &CTetrisView::OnMenuHelpButton)
+	//ON_COMMAND(IDS_ABOUT_MYBUTTON, &CTetrisView::OnMenuAboutButton)
 END_MESSAGE_MAP()
 
 // CTetrisView 构造/析构
@@ -48,15 +50,8 @@ CTetrisView::CTetrisView()
 	: CFormView(IDD_TETRIS_FORM)
 {
 	m_start = false;
+	// 加载背景图片
 	startBK.LoadBitmapW(IDB_START_BK);
-	startButtons.m_unclickedbutton.LoadBitmapW(IDB_UNCLICKED_START);
-	startButtons.m_activatebutton.LoadBitmapW(IDB_ACTIVATE_START);
-	startButtons.m_clickedbutton.LoadBitmapW(IDB_CLICKED_START);
-	startButtons.flag = 0;
-	helpButtons.m_unclickedbutton.LoadBitmapW(IDB_HELP_UNCLICKED);
-	helpButtons.m_activatebutton.LoadBitmapW(IDB_HELP_ACTIVATE);
-	helpButtons.m_clickedbutton.LoadBitmapW(IDB_HELP_CLICKED);
-	helpButtons.flag = 0;
 	OnBkmusicOn();
 }
 
@@ -83,6 +78,9 @@ void CTetrisView::OnInitialUpdate()
 	ResizeParentToFit();*/
 	//SetTimer(1, 100, NULL);
 	// m_nMapMode = -1;
+	CRect rect;
+	GetClientRect(&rect);
+	CreateMenuButtons(rect);
 }
 
 void CTetrisView::DrawStartbk(CDC * pDC, CRect rect)
@@ -95,57 +93,70 @@ void CTetrisView::DrawStartbk(CDC * pDC, CRect rect)
 	pDC->StretchBlt(0, 0, rect.Width(), rect.Height(), &dc, 0, 0, bmp.bmWidth, bmp.bmHeight, SRCCOPY);
 }
 
-void CTetrisView::DrawStartButtons(CDC * pDC, CRect rect, int flag)
+void CTetrisView::CreateMenuButtons(CRect rect)
 {
-	CDC dc;
-	BITMAP bmp;
-	CBitmap *tbutton = NULL;
-	
-	switch (flag)
-	{
-	case 0:
-		tbutton = &startButtons.m_unclickedbutton;
-		break;
-	case 1:
-		tbutton = &startButtons.m_activatebutton;
-		break;
-	case 2:
-		tbutton = &startButtons.m_clickedbutton;
-		break;
-	default:
-		break;
-	}
-	tbutton->GetBitmap(&bmp);
-	dc.CreateCompatibleDC(pDC);
-	dc.SelectObject(*tbutton);
-	pDC->BitBlt((rect.Width() / 2) - (bmp.bmWidth / 2), (rect.Height() / 2) - (bmp.bmHeight / 2) - 80, bmp.bmWidth, bmp.bmHeight, &dc, 0, 0, SRCCOPY);
+	// 自定义按钮的位置
+	int l = (rect.Width() / 2) - 90;
+	int t = (rect.Height() / 2) - 21 - 60;
+	int r = (rect.Width() / 2) + 90;
+	int b = (rect.Height() / 2) + 21 - 60;
+	int BtOffset = 80;
+	GameStartButton = NewMyButton(IDS_GAMESTART_MYBUTTON, CRect(l, t, r, b), 0);
+	HelpButton = NewMyButton(IDS_HELP_MYBUTTON, CRect(l, t + BtOffset, r, b + BtOffset), 0);
+	AboutButton = NewMyButton(IDS_ABOUT_MYBUTTON, CRect(l, t + 2 * BtOffset, r, b + 2 * BtOffset), 0);
 }
 
-void CTetrisView::DrawHelpButtons(CDC * pDC, CRect rect, int flag)
-{
-	CDC dc;
-	BITMAP bmp;
-	CBitmap *tbutton = NULL;
+//void CTetrisView::DrawStartButtons(CDC * pDC, CRect rect, int flag)
+//{
+//	CDC dc;
+//	BITMAP bmp;
+//	CBitmap *tbutton = NULL;
+//	
+//	switch (flag)
+//	{
+//	case 0:
+//		tbutton = &startButtons.m_unclickedbutton;
+//		break;
+//	case 1:
+//		tbutton = &startButtons.m_activatebutton;
+//		break;
+//	case 2:
+//		tbutton = &startButtons.m_clickedbutton;
+//		break;
+//	default:
+//		break;
+//	}
+//	tbutton->GetBitmap(&bmp);
+//	dc.CreateCompatibleDC(pDC);
+//	dc.SelectObject(*tbutton);
+//	pDC->BitBlt((rect.Width() / 2) - (bmp.bmWidth / 2), (rect.Height() / 2) - (bmp.bmHeight / 2) - 80, bmp.bmWidth, bmp.bmHeight, &dc, 0, 0, SRCCOPY);
+//}
 
-	switch (flag)
-	{
-	case 0:
-		tbutton = &helpButtons.m_unclickedbutton;
-		break;
-	case 1:
-		tbutton = &helpButtons.m_activatebutton;
-		break;
-	case 2:
-		tbutton = &helpButtons.m_clickedbutton;
-		break;
-	default:
-		break;
-	}
-	tbutton->GetBitmap(&bmp);
-	dc.CreateCompatibleDC(pDC);
-	dc.SelectObject(*tbutton);
-	pDC->BitBlt((rect.Width() / 2) - (bmp.bmWidth / 2), (rect.Height() / 2) - (bmp.bmHeight / 2) - 30, bmp.bmWidth, bmp.bmHeight, &dc, 0, 0, SRCCOPY);
-}
+//void CTetrisView::DrawHelpButtons(CDC * pDC, CRect rect, int flag)
+//{
+//	CDC dc;
+//	BITMAP bmp;
+//	CBitmap *tbutton = NULL;
+//
+//	switch (flag)
+//	{
+//	case 0:
+//		tbutton = &helpButtons.m_unclickedbutton;
+//		break;
+//	case 1:
+//		tbutton = &helpButtons.m_activatebutton;
+//		break;
+//	case 2:
+//		tbutton = &helpButtons.m_clickedbutton;
+//		break;
+//	default:
+//		break;
+//	}
+//	tbutton->GetBitmap(&bmp);
+//	dc.CreateCompatibleDC(pDC);
+//	dc.SelectObject(*tbutton);
+//	pDC->BitBlt((rect.Width() / 2) - (bmp.bmWidth / 2), (rect.Height() / 2) - (bmp.bmHeight / 2) - 30, bmp.bmWidth, bmp.bmHeight, &dc, 0, 0, SRCCOPY);
+//}
 
 
 // CTetrisView 诊断
@@ -181,8 +192,6 @@ void CTetrisView::OnDraw(CDC* pDC)
 	{
 		// 游戏未开始，加载游戏菜单界面
 		DrawStartbk(pDC, rect);
-		DrawStartButtons(pDC, rect, startButtons.flag);
-		DrawHelpButtons(pDC, rect, helpButtons.flag);
 	}
 }
 
@@ -214,6 +223,10 @@ void CTetrisView::OnNewGame()
 	m_russia.GameStart();
 	KillTimer(1);		// 游戏开始关闭第一个Timer
 	SetTimer(2, m_russia.m_Speed, NULL);
+	// 游戏开始删除三个按钮
+	delete GameStartButton;
+	delete HelpButton;
+	delete AboutButton;
 }
 
 
@@ -243,11 +256,17 @@ void CTetrisView::OnTimer(UINT_PTR nIDEvent)
 
 void CTetrisView::OnExitGame()
 {
+	CRect rect;
+	GetClientRect(&rect);
 	// 退出游戏
 	m_start = false;
 	KillTimer(2);
 	//SetTimer(1, 1000, NULL);
 	Invalidate();
+	CreateMenuButtons(rect);
+	OnBkmusicOff();
+	Sleep(200);
+	OnBkmusicOn();
 }
 
 
@@ -312,35 +331,34 @@ void CTetrisView::OnBkmusicOff()
 }
 
 
-void CTetrisView::OnMouseMove(UINT nFlags, CPoint point)
-{
-	// TODO: Add your message handler code here and/or call default
+//void CTetrisView::OnMouseMove(UINT nFlags, CPoint point)
+//{
+//	// TODO: Add your message handler code here and/or call default
+//
+//	CFormView::OnMouseMove(nFlags, point);
+//}
 
-	CFormView::OnMouseMove(nFlags, point);
-}
 
-
-void CTetrisView::OnLButtonDown(UINT nFlags, CPoint point)
-{
-	// TODO: Add your message handler code here and/or call default
-	CRect rect;
-	GetClientRect(&rect);
-	ClientToScreen(&point);
-
-	POINT p = point;
-	bool isOnStartButton = (p.x >= ((rect.Width() / 2) - (194 / 2)) &&
-		p.x <= ((rect.Width() / 2) + (194 / 2)) &&
-		p.y >= ((rect.Height() / 2) - (41 / 2)) &&
-		p.y <= ((rect.Height() / 2) + (41 / 2)));
-	
-	if (isOnStartButton && !m_start)
-	{
-		startButtons.flag = 2;
-		OnNewGame();
-	}
-	
-	CFormView::OnLButtonDown(nFlags, point);
-}
+//void CTetrisView::OnLButtonDown(UINT nFlags, CPoint point)
+//{
+//	// TODO: Add your message handler code here and/or call default
+//	CRect rect;
+//	GetClientRect(&rect);
+//	ClientToScreen(&point);
+//
+//	POINT p = point;
+//	bool isOnStartButton = (p.x >= ((rect.Width() / 2) - (194 / 2)) &&
+//		p.x <= ((rect.Width() / 2) + (194 / 2)) &&
+//		p.y >= ((rect.Height() / 2) - (41 / 2)) &&
+//		p.y <= ((rect.Height() / 2) + (41 / 2)));
+//	
+//	if (isOnStartButton && !m_start)
+//	{
+//		OnNewGame();
+//	}
+//	
+//	CFormView::OnLButtonDown(nFlags, point);
+//}
 
 
 void CTetrisView::OnContinueGame()
@@ -354,4 +372,26 @@ void CTetrisView::OnResumeGame()
 {
 	// 暂停游戏
 	KillTimer(2);
+}
+
+void CTetrisView::OnMenuGameStartButton()
+{
+	OnNewGame();
+}
+
+void CTetrisView::OnMenuHelpButton()
+{
+	OnHelpDoc();
+}
+
+
+// 自定义按钮
+CButton* CTetrisView::NewMyButton(int nID, CRect rect, int nStyle)
+{
+	CString m_Caption;
+	m_Caption.LoadString(nID); //取按钮标题
+	CButton *p_Button = new CButton();
+	ASSERT_VALID(p_Button);
+	p_Button->Create(m_Caption, WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON | nStyle, rect, this, nID); //创建按钮
+	return p_Button;
 }
