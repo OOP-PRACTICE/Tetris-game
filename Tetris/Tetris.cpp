@@ -23,6 +23,7 @@ BEGIN_MESSAGE_MAP(CTetrisApp, CWinApp)
 	// 基于文件的标准文档命令
 	ON_COMMAND(ID_FILE_NEW, &CWinApp::OnFileNew)
 	ON_COMMAND(ID_FILE_OPEN, &CWinApp::OnFileOpen)
+	ON_COMMAND(IDS_ABOUT_MYBUTTON, &CTetrisApp::OnAppAbout)
 END_MESSAGE_MAP()
 
 

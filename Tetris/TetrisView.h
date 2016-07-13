@@ -69,7 +69,7 @@ public:
 	afx_msg void OnResumeGame();
 	afx_msg void OnMenuGameStartButton();
 	afx_msg void OnMenuHelpButton();
-	afx_msg void OnMenuAboutButton();
+	//afx_msg void OnMenuAboutButton();
 	CButton * NewMyButton(int nID, CRect rect, int nStyle);
 };
 

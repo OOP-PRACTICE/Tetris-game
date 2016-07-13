@@ -41,7 +41,7 @@ BEGIN_MESSAGE_MAP(CTetrisView, CFormView)
 	ON_COMMAND(ID_RESUME_GAME, &CTetrisView::OnResumeGame)
 	ON_COMMAND(IDS_GAMESTART_MYBUTTON, &CTetrisView::OnMenuGameStartButton)
 	ON_COMMAND(IDS_HELP_MYBUTTON, &CTetrisView::OnMenuHelpButton)
-	ON_COMMAND(IDS_ABOUT_MYBUTTON, &CTetrisView::OnMenuAboutButton)
+	//ON_COMMAND(IDS_ABOUT_MYBUTTON, &CTetrisView::OnMenuAboutButton)
 END_MESSAGE_MAP()
 
 // CTetrisView ¹¹Ôì/Îö¹¹
@@ -382,11 +382,6 @@ void CTetrisView::OnMenuGameStartButton()
 void CTetrisView::OnMenuHelpButton()
 {
 	OnHelpDoc();
-}
-
-void CTetrisView::OnMenuAboutButton()
-{
-	
 }
 
 
