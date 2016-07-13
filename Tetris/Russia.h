@@ -35,7 +35,7 @@ public:
 	CBitmap rightFrame;
 	CBitmap middleFrame;
 	CRule rule;
-	CBaseWork baseWord;
+	CBaseWork baseWork;
 	bool gameover;
 	CRussia();
 	~CRussia();

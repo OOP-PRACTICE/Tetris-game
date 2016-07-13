@@ -113,8 +113,7 @@ void CTetrisView::showGameOver(CDC * pDC, CRect rect)
 	CString szText = _T("GAME OVER");
 	
 	pDC->TextOutW(x, y, szText);
-	Invalidate();
-	for (int i = 1; i<50000; i++);
+	//for (int i = 1; i<50000; i++);
 }
 
 //void CTetrisView::DrawStartButtons(CDC * pDC, CRect rect, int flag)
@@ -206,6 +205,7 @@ void CTetrisView::OnDraw(CDC* pDC)
 	}
 	if (m_russia.gameover)
 	{
+
 		showGameOver(pDC, rect);
 	}
 }
@@ -241,6 +241,7 @@ void CTetrisView::OnNewGame()
 	// 游戏开始
 	//Invalidate();		// 刷新屏幕，更新等级
 	m_start = true;
+	m_russia.gameover = false;
 	CRect cr;
 	GetClientRect(&cr);
 	m_russia.GameStart();
@@ -267,9 +268,10 @@ void CTetrisView::OnTimer(UINT_PTR nIDEvent)
 		SetTimer(2, m_russia.m_Speed, NULL);
 		CFormView::OnTimer(nIDEvent);
 	}
-	else
+	else if (m_russia.gameover)
 	{
-		//Invalidate();
+		Invalidate();
+		KillTimer(2);
 	}	
 }
 

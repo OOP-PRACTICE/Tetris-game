@@ -525,7 +525,9 @@ void CRussia::HeroWrite()
 	CNewrecdlg newdlg;
 	CGetNameDlg getnamedlg;
 	int t_level, t_score;
-	t_score = GetPrivateProfileInt((LPCWSTR)"HERO", (LPCWSTR)"score", 0, (LPCWSTR)".\\config\\setup.ini");
+	CString filePath;
+	filePath = baseWork.GetExePath(_T("\config\\setup.ini"));
+	t_score = GetPrivateProfileInt(_T("HERO"), _T("score"), 0, filePath);
 	if (m_Score > t_score)
 	{
 		newdlg.SetHeroData(m_Level, m_Score);
