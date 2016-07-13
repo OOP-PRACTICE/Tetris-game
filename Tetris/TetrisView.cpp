@@ -218,6 +218,7 @@ void CTetrisView::OnNewGame()
 	// 防止二次释放按钮
 	if (!m_start)
 	{
+		// 游戏开始删除三个按钮
 		delete GameStartButton;
 		delete HelpButton;
 		delete AboutButton;
@@ -230,7 +231,7 @@ void CTetrisView::OnNewGame()
 	m_russia.GameStart();
 	KillTimer(1);		// 游戏开始关闭第一个Timer
 	SetTimer(2, m_russia.m_Speed, NULL);
-	// 游戏开始删除三个按钮
+	SetFocus();
 }
 
 
