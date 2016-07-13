@@ -68,7 +68,7 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDR_MAINFRAME           ICON                    "res\\Tetris.ico"
+IDR_MAINFRAME           ICON                    "res\\game.ico"
 
 IDR_TetrisTYPE          ICON                    "res\\TetrisDoc.ico"
 
@@ -77,10 +77,6 @@ IDR_TetrisTYPE          ICON                    "res\\TetrisDoc.ico"
 //
 // Bitmap
 //
-
-IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
-
-IDB_BACKGROUND          BITMAP                  "res\\Background.bmp"
 
 IDB_SQUARE              BITMAP                  "res\\square.bmp"
 
@@ -97,38 +93,6 @@ IDB_RIGHTCOL            BITMAP                  "res\\rightcol.bmp"
 IDB_MIDDLE              BITMAP                  "res\\middle.bmp"
 
 IDB_START_BK            BITMAP                  "res\\gameRun.bmp"
-
-IDB_UNCLICKED_START     BITMAP                  "res\\start_buttons\\unclicked_start.bmp"
-
-IDB_ACTIVATE_START      BITMAP                  "res\\start_buttons\\activate_start.bmp"
-
-IDB_CLICKED_START       BITMAP                  "res\\start_buttons\\clicked_start.bmp"
-
-IDB_HELP_UNCLICKED      BITMAP                  "res\\help\\helpbutton_unclicked.bmp"
-
-IDB_HELP_ACTIVATE       BITMAP                  "res\\help\\helpbutton_activate.bmp"
-
-IDB_HELP_CLICKED        BITMAP                  "res\\help\\helpbutton_clicked.bmp"
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// Toolbar
-//
-
-IDR_MAINFRAME TOOLBAR 16, 15
-BEGIN
-    BUTTON      ID_FILE_NEW
-    BUTTON      ID_FILE_OPEN
-    BUTTON      ID_FILE_SAVE
-    SEPARATOR
-    BUTTON      ID_EDIT_CUT
-    BUTTON      ID_EDIT_COPY
-    BUTTON      ID_EDIT_PASTE
-    SEPARATOR
-    BUTTON      ID_FILE_PRINT
-    BUTTON      ID_APP_ABOUT
-END
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -286,15 +250,15 @@ VS_VERSION_INFO VERSIONINFO
 BEGIN
     BLOCK "StringFileInfo"
     BEGIN
-        BLOCK "080404B0"
+        BLOCK "080404b0"
         BEGIN
-            VALUE "CompanyName", "TODO: <公司名>"
+            VALUE "CompanyName", "<nwsuaf>"
             VALUE "FileDescription", "Tetris"
             VALUE "FileVersion", "1.0.0.1"
             VALUE "InternalName", "Tetris.exe"
-            VALUE "LegalCopyright", "TODO:  (C) <公司名>。  保留所有权利。"
-            VALUE "OriginalFilename", "Tetris.exe"
-            VALUE "ProductName", "TODO: <产品名>"
+            VALUE "LegalCopyright", "(C) <nwsuaf>。  保留所有权利。"
+            VALUE "OriginalFilename", "Tetris"
+            VALUE "ProductName", "TODO: <俄罗斯方块>"
             VALUE "ProductVersion", "1.0.0.1"
         END
     END
