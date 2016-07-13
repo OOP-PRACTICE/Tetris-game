@@ -1,6 +1,6 @@
 #pragma once
 
-
+#include "BaseWork.h"
 // CGetNameDlg dialog
 
 class CGetNameDlg : public CDialogEx
@@ -22,6 +22,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	CString m_getname;
+	CBaseWork baseWork;
 	afx_msg void OnBnClickedOk();
 	void SetHeroData(CString name);
 };

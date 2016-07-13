@@ -8,6 +8,7 @@
 #define KEY_RIGHT 2
 #define KEY_DOWN 3
 #define KEY_UP 4
+#include "BaseWork.h"
 
 class CRussia
 {
@@ -34,7 +35,7 @@ public:
 	CBitmap rightFrame;
 	CBitmap middleFrame;
 	CRule rule;
-
+	CBaseWork baseWord;
 	CRussia();
 	~CRussia();
 	//É¾³ýÐÐ

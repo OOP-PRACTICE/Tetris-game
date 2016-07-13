@@ -63,6 +63,9 @@
     <ClInclude Include="Buttons.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="BaseWork.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Tetris.cpp">
@@ -99,6 +102,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Leveldlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseWork.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

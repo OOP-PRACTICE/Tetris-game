@@ -44,5 +44,7 @@ void CGetNameDlg::OnBnClickedOk()
 
 void CGetNameDlg::SetHeroData(CString name)
 {
-	WritePrivateProfileString(_T("HERO"), _T("name"), name, _T(".\\config\\setup.ini"));
+	CString filePath;
+	filePath = baseWork.GetExePath(_T("\config\\setup.ini"));
+	WritePrivateProfileString(_T("HERO"), _T("name"), name, filePath);
 }

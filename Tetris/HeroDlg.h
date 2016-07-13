@@ -1,6 +1,6 @@
 #pragma once
 #include "afxwin.h"
-
+#include "BaseWork.h"
 
 // CHeroDlg dialog
 
@@ -17,6 +17,7 @@ public:
 	int m_level = 1;			// 记录等级
 	CString m_name;			// 记录名字
 	int m_score = 0;			// 记录分数
+	CBaseWork baseWork;
 #ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_HERO_DLG };
 #endif

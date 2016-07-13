@@ -1,6 +1,6 @@
 #pragma once
 #include "afxwin.h"
-
+#include "BaseWork.h"
 
 // CNewrecdlg dialog
 
@@ -18,6 +18,7 @@ public:
 public:
 	int m_score;
 	int m_level;
+	CBaseWork baseWork;
 #ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_NEWREC_DLG };
 #endif

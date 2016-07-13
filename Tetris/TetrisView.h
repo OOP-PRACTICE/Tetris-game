@@ -25,6 +25,7 @@ public:
 	CButton *GameStartButton;
 	CButton *HelpButton;
 	CButton *AboutButton;
+	CBaseWork baseWork;
 // ²Ù×÷
 public:
 

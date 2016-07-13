@@ -26,10 +26,12 @@ void CNewrecdlg::SetHeroData(int level, int score)
 	CString tm;
 	m_level = level;
 	m_score = score;
+	CString filePath;
+	filePath = baseWork.GetExePath(_T("\config\\setup.ini"));
 	tm.Format(_T("%d"), level);
-	WritePrivateProfileString(_T("HERO"), _T("level"), tm, _T(".\\config\\setup.ini"));
+	WritePrivateProfileString(_T("HERO"), _T("level"), tm, filePath);
 	tm.Format(_T("%d"), score);
-	WritePrivateProfileString(_T("HERO"), _T("score"), tm, _T(".\\config\\setup.ini"));
+	WritePrivateProfileString(_T("HERO"), _T("score"), tm, filePath);
 }
 
 void CNewrecdlg::ShowHeroData(int level, int score)
