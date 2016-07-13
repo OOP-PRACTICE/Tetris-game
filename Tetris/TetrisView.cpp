@@ -215,6 +215,13 @@ void CTetrisView::OnHelpDoc()
 
 void CTetrisView::OnNewGame()
 {
+	// 防止二次释放按钮
+	if (!m_start)
+	{
+		delete GameStartButton;
+		delete HelpButton;
+		delete AboutButton;
+	}
 	// 游戏开始
 	//Invalidate();		// 刷新屏幕，更新等级
 	m_start = true;
@@ -224,9 +231,6 @@ void CTetrisView::OnNewGame()
 	KillTimer(1);		// 游戏开始关闭第一个Timer
 	SetTimer(2, m_russia.m_Speed, NULL);
 	// 游戏开始删除三个按钮
-	delete GameStartButton;
-	delete HelpButton;
-	delete AboutButton;
 }
 
 
