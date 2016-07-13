@@ -36,6 +36,7 @@ public:
 	CBitmap middleFrame;
 	CRule rule;
 	CBaseWork baseWord;
+	bool gameover;
 	CRussia();
 	~CRussia();
 	//É¾³ýÐÐ
@@ -56,6 +57,7 @@ public:
 	void GameStart();
 	//Ó¢ÐÛ°ñÅÐ¶Ï
 	void HeroWrite();
+	void ShowGameOver();
 };
 
 #endif

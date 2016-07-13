@@ -17,6 +17,7 @@ CRussia::CRussia()
 	rightFrame.LoadBitmapW(IDB_RIGHTCOL);
 	middleFrame.LoadBitmapW(IDB_MIDDLE);
 	m_Level = 0;
+	gameover = false;
 }
 
 
@@ -93,6 +94,7 @@ void CRussia::LineDelete()
 
 	if (end)
 	{
+		ShowGameOver();
 		HeroWrite();
 	}
 }
@@ -533,4 +535,9 @@ void CRussia::HeroWrite()
 			getnamedlg.SetHeroData(getnamedlg.m_getname);
 		}
 	}
+}
+
+void CRussia::ShowGameOver()
+{
+	gameover = true;
 }

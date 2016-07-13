@@ -106,6 +106,17 @@ void CTetrisView::CreateMenuButtons(CRect rect)
 	AboutButton = NewMyButton(IDS_ABOUT_MYBUTTON, CRect(l, t + 2 * BtOffset, r, b + 2 * BtOffset), 0);
 }
 
+void CTetrisView::showGameOver(CDC * pDC, CRect rect)
+{
+	int x = rect.Width() / 2;
+	int y = rect.Height() / 2;
+	CString szText = _T("GAME OVER");
+	
+	pDC->TextOutW(x, y, szText);
+	Invalidate();
+	for (int i = 1; i<50000; i++);
+}
+
 //void CTetrisView::DrawStartButtons(CDC * pDC, CRect rect, int flag)
 //{
 //	CDC dc;
@@ -192,6 +203,10 @@ void CTetrisView::OnDraw(CDC* pDC)
 	{
 		// 游戏未开始，加载游戏菜单界面
 		DrawStartbk(pDC, rect);
+	}
+	if (m_russia.gameover)
+	{
+		showGameOver(pDC, rect);
 	}
 }
 

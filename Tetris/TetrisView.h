@@ -39,6 +39,7 @@ protected:
 	void CreateMenuButtons(CRect rect);
 //	void DrawStartButtons(CDC* pDC, CRect rect, int flag = 0);
 //	void DrawHelpButtons(CDC* pDC, CRect rect, int flag = 0);
+	void showGameOver(CDC* pDC, CRect rect);
 // й╣ож
 public:
 	virtual ~CTetrisView();
