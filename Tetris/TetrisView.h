@@ -23,7 +23,7 @@ public:
 	CBitmap startBK;
 	CButton *GameStartButton;
 	CButton *HelpButton;
-	CButton *AboutButton;
+	CButton *ExitButton;
 	CBaseWork baseWork;
 // ²Ù×÷
 public:

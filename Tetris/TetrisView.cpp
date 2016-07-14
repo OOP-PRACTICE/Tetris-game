@@ -39,7 +39,7 @@ BEGIN_MESSAGE_MAP(CTetrisView, CFormView)
 	ON_COMMAND(ID_RESUME_GAME, &CTetrisView::OnResumeGame)
 	ON_COMMAND(IDS_GAMESTART_MYBUTTON, &CTetrisView::OnMenuGameStartButton)
 	ON_COMMAND(IDS_HELP_MYBUTTON, &CTetrisView::OnMenuHelpButton)
-	ON_COMMAND(IDS_ABOUT_MYBUTTON, &CTetrisView::OnMenuExitButton)
+	ON_COMMAND(IDS_MENUEXIT_BUTTON, &CTetrisView::OnMenuExitButton)
 	ON_WM_ERASEBKGND()
 END_MESSAGE_MAP()
 
@@ -99,8 +99,8 @@ void CTetrisView::CreateMenuButtons(CRect rect)
 	int b = (rect.Height() / 2) + 21 - 60;
 	int BtOffset = 80;
 	GameStartButton = NewMyButton(IDS_GAMESTART_MYBUTTON, CRect(l, t, r, b), 0);
-	HelpButton = NewMyButton(IDS_HELP_MYBUTTON, CRect(l, t + BtOffset, r, b + BtOffset), 0);
-	AboutButton = NewMyButton(IDS_ABOUT_MYBUTTON, CRect(l, t + 2 * BtOffset, r, b + 2 * BtOffset), 0);
+	HelpButton = NewMyButton(IDS_HELP_MYBUTTON, CRect(l, t + 2 * BtOffset, r, b + 2 * BtOffset), 0);
+	ExitButton = NewMyButton(IDS_MENUEXIT_BUTTON, CRect(l, t + BtOffset, r, b + BtOffset), 0);
 }
 
 void CTetrisView::showGameOver(CDC * pDC, CRect rect)
@@ -182,7 +182,7 @@ void CTetrisView::OnNewGame()
 		// 游戏开始删除三个按钮
 		delete GameStartButton;
 		delete HelpButton;
-		delete AboutButton;
+		delete ExitButton;
 	}
 	// 游戏开始
 	//Invalidate();		// 刷新屏幕，更新等级
@@ -322,7 +322,8 @@ void CTetrisView::OnMenuHelpButton()
 
 void CTetrisView::OnMenuExitButton()
 {
-	SendMessage(WM_CLOSE);
+	// 退出游戏
+	PostQuitMessage(0);
 }
 
 
@@ -341,5 +342,6 @@ BOOL CTetrisView::OnEraseBkgnd(CDC* pDC)
 {
 	// TODO: Add your message handler code here and/or call default
 
-	return CFormView::OnEraseBkgnd(pDC);
+	//return CFormView::OnEraseBkgnd(pDC);
+	return TRUE;
 }

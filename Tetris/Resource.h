@@ -8,6 +8,7 @@
 #define IDS_GAMESTART_MYBUTTON          101
 #define IDS_HELP_MYBUTTON               102
 #define IDS_ABOUT_MYBUTTON              103
+#define IDS_MENUEXIT_BUTTON             104
 #define IDR_MAINFRAME                   128
 #define IDR_TetrisTYPE                  130
 #define IDD_HERO_DLG                    310

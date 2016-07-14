@@ -20,7 +20,7 @@ void CRule::SetLevel(int nLevel)
 int CRule::UpLevel(int nLine, int &countline)
 {
 	LPCWSTR UPM = L".\\sound\\upgrade.wav";
-	if (nLine / 20)					//如果可以整除，等级升级
+	if (nLine / 2)					//如果可以整除，等级升级
 	{
 		m_nLevel++;
 		sndPlaySound(UPM, SND_ASYNC);
