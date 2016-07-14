@@ -40,6 +40,7 @@ BEGIN_MESSAGE_MAP(CTetrisView, CFormView)
 	ON_COMMAND(IDS_GAMESTART_MYBUTTON, &CTetrisView::OnMenuGameStartButton)
 	ON_COMMAND(IDS_HELP_MYBUTTON, &CTetrisView::OnMenuHelpButton)
 	//ON_COMMAND(IDS_ABOUT_MYBUTTON, &CTetrisView::OnMenuAboutButton)
+	ON_WM_ERASEBKGND()
 END_MESSAGE_MAP()
 
 // CTetrisView 构造/析构
@@ -110,6 +111,7 @@ void CTetrisView::showGameOver(CDC * pDC, CRect rect)
 	font.CreatePointFont(500, _T("黑体"));
 	CString szText = _T("GAME OVER");
 	pDC->SelectObject(font);
+	pDC->SetBkMode(TRANSPARENT);	// 设置字体为透明
 	pDC->TextOutW(20, y - 60, szText);
 }
 
@@ -328,4 +330,11 @@ CButton* CTetrisView::NewMyButton(int nID, CRect rect, int nStyle)
 	ASSERT_VALID(p_Button);
 	p_Button->Create(m_Caption, WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON | nStyle, rect, this, nID); //创建按钮
 	return p_Button;
+}
+
+BOOL CTetrisView::OnEraseBkgnd(CDC* pDC)
+{
+	// TODO: Add your message handler code here and/or call default
+
+	return CFormView::OnEraseBkgnd(pDC);
 }

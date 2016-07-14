@@ -67,6 +67,7 @@ public:
 	afx_msg void OnMenuGameStartButton();
 	afx_msg void OnMenuHelpButton();
 	CButton * NewMyButton(int nID, CRect rect, int nStyle);
+	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
 };
 
 #ifndef _DEBUG  // TetrisView.cpp 中的调试版本
