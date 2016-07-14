@@ -106,8 +106,11 @@ void CTetrisView::showGameOver(CDC * pDC, CRect rect)
 {
 	int x = rect.Width() / 2;
 	int y = rect.Height() / 2;
+	CFont font;
+	font.CreatePointFont(500, _T("∫⁄ÃÂ"));
 	CString szText = _T("GAME OVER");
-	pDC->TextOutW(x - 140, y, szText);
+	pDC->SelectObject(font);
+	pDC->TextOutW(20, y - 60, szText);
 }
 
 // CTetrisView ’Ô∂œ
@@ -209,7 +212,6 @@ void CTetrisView::OnTimer(UINT_PTR nIDEvent)
 		SetTimer(2, m_russia.m_Speed, NULL);
 		if (m_russia.gameover)
 		{
-			KillTimer(2);
 			showGameOver(GetDC(), cr);
 		}
 		CFormView::OnTimer(nIDEvent);
