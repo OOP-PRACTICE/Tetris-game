@@ -37,7 +37,6 @@ bool CRule::Win(int Now[4][4], int Russia[100][100], CPoint NowPosition)
 	if (m_nLevel == 11)			//游戏等级超过最高
 	{							//超过10级游戏结束
 		sndPlaySound(VM, SND_ASYNC);
-
 		return true;
 	}
 

@@ -16,7 +16,7 @@ CRussia::CRussia()
 	bottomFrame.LoadBitmapW(IDB_BOTTOM);
 	rightFrame.LoadBitmapW(IDB_RIGHTCOL);
 	middleFrame.LoadBitmapW(IDB_MIDDLE);
-	m_Level = 0;
+	m_Level = 1;
 	gameover = false;
 }
 
@@ -497,12 +497,13 @@ void CRussia::GameStart()
 	Count = 7;
 	m_CountLine = 0;//初始化消去行数为0
 	TCHAR pszTmp[128] = { 0 };
-
-	GetPrivateProfileString(_T("SETUP"), _T("level"), _T("1"), pszTmp, 127, _T(".\\setup.ini"));//读取.ini文件，读取当前游戏等级
-
+	CString filePath;
+	filePath = baseWork.GetExePath(_T("\config\\setup.ini"));
+	GetPrivateProfileString(_T("SETUP"), _T("level"), _T("1"), pszTmp, 127, filePath);//读取.ini文件，读取当前游戏等级
+	//rule.SetLevel(1);
 	m_Level = _wtoi(pszTmp);// TCHAR转为int，初始化等级
 	m_Speed = 320 - m_Level * 20;//初始化速度
-
+	
 	for (int i = 0; i < m_RowCount; i++)//初始化界面
 	{
 		for (int j = 0; j < m_ColCount; j++)

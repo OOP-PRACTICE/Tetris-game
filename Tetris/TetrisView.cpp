@@ -188,6 +188,12 @@ void CTetrisView::OnNewGame()
 	//Invalidate();		// 刷新屏幕，更新等级
 	m_start = true;
 	m_russia.gameover = false;
+	m_russia.m_Level = 1;
+	CString filePath;
+	CString tm;
+	filePath = baseWork.GetExePath(_T("\config\\setup.ini"));
+	tm.Format(_T("%d"), 1);
+	WritePrivateProfileString(_T("SETUP"), _T("level"), tm, filePath);
 	CRect cr;
 	GetClientRect(&cr);
 	m_russia.GameStart();
@@ -277,8 +283,14 @@ void CTetrisView::OnGameLevel()
 
 	if (leveldlg.DoModal() == IDOK)
 	{
+		int tLevel = leveldlg.m_level;
 		m_russia.m_Level = leveldlg.m_level;
 		m_russia.rule.SetLevel(m_russia.m_Level);
+		CString filePath;
+		CString tm;
+		filePath = baseWork.GetExePath(_T("\config\\setup.ini"));
+		tm.Format(_T("%d"), tLevel);
+		WritePrivateProfileString(_T("SETUP"), _T("level"), tm, filePath);
 	}
 }
 
