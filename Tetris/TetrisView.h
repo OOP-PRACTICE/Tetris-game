@@ -66,6 +66,7 @@ public:
 	afx_msg void OnResumeGame();
 	afx_msg void OnMenuGameStartButton();
 	afx_msg void OnMenuHelpButton();
+	afx_msg void OnMenuExitButton();
 	CButton * NewMyButton(int nID, CRect rect, int nStyle);
 };
 

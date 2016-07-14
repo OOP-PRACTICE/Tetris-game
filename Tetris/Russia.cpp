@@ -453,6 +453,7 @@ void CRussia::DrawScore(CDC * pDC)
 	// 设置分数的位置
 	int scoreYpos = 145, scoreXpos = 410;
 	// 输出提示
+	pDC->SetBkMode(TRANSPARENT);
 	pDC->TextOut(scoreXpos - 50, scoreYpos, _T("等级:"));
 	pDC->TextOut(scoreXpos - 50, scoreYpos - 60, _T("行数:"));
 	pDC->TextOut(scoreXpos - 50, scoreYpos - 120, _T("得分:"));
@@ -462,8 +463,9 @@ void CRussia::DrawScore(CDC * pDC)
 	pDC->SelectObject(&font);
 	
 	CString str;
-	pDC->SetTextColor(RGB(39, 244, 10));	//设置字体颜色及背景颜色
-	pDC->SetBkColor(RGB(255, 255, 0));
+	pDC->SetTextColor(RGB(0, 0, 0));	//设置字体颜色及背景颜色
+	//pDC->SetBkColor(RGB(255, 255, 0));
+	pDC->SetBkMode(TRANSPARENT);
 
 	str.Format(_T("%d"), m_Level);
 
