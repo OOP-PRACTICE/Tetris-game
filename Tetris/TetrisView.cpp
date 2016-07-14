@@ -35,8 +35,6 @@ BEGIN_MESSAGE_MAP(CTetrisView, CFormView)
 	ON_COMMAND(ID_GAME_LEVEL, &CTetrisView::OnGameLevel)
 	ON_COMMAND(ID_BKMUSIC_ON, &CTetrisView::OnBkmusicOn)
 	ON_COMMAND(ID_BKMUSIC_OFF, &CTetrisView::OnBkmusicOff)
-//	ON_WM_MOUSEMOVE()
-//	ON_WM_LBUTTONDOWN()
 	ON_COMMAND(ID_CONTINUE_GAME, &CTetrisView::OnContinueGame)
 	ON_COMMAND(ID_RESUME_GAME, &CTetrisView::OnResumeGame)
 	ON_COMMAND(IDS_GAMESTART_MYBUTTON, &CTetrisView::OnMenuGameStartButton)
@@ -76,8 +74,6 @@ void CTetrisView::OnInitialUpdate()
 	/*CFormView::OnInitialUpdate();
 	GetParentFrame()->RecalcLayout();
 	ResizeParentToFit();*/
-	//SetTimer(1, 100, NULL);
-	// m_nMapMode = -1;
 	CRect rect;
 	GetClientRect(&rect);
 	CreateMenuButtons(rect);
@@ -111,63 +107,8 @@ void CTetrisView::showGameOver(CDC * pDC, CRect rect)
 	int x = rect.Width() / 2;
 	int y = rect.Height() / 2;
 	CString szText = _T("GAME OVER");
-	
-	pDC->TextOutW(x, y, szText);
-	//for (int i = 1; i<50000; i++);
+	pDC->TextOutW(x - 140, y, szText);
 }
-
-//void CTetrisView::DrawStartButtons(CDC * pDC, CRect rect, int flag)
-//{
-//	CDC dc;
-//	BITMAP bmp;
-//	CBitmap *tbutton = NULL;
-//	
-//	switch (flag)
-//	{
-//	case 0:
-//		tbutton = &startButtons.m_unclickedbutton;
-//		break;
-//	case 1:
-//		tbutton = &startButtons.m_activatebutton;
-//		break;
-//	case 2:
-//		tbutton = &startButtons.m_clickedbutton;
-//		break;
-//	default:
-//		break;
-//	}
-//	tbutton->GetBitmap(&bmp);
-//	dc.CreateCompatibleDC(pDC);
-//	dc.SelectObject(*tbutton);
-//	pDC->BitBlt((rect.Width() / 2) - (bmp.bmWidth / 2), (rect.Height() / 2) - (bmp.bmHeight / 2) - 80, bmp.bmWidth, bmp.bmHeight, &dc, 0, 0, SRCCOPY);
-//}
-
-//void CTetrisView::DrawHelpButtons(CDC * pDC, CRect rect, int flag)
-//{
-//	CDC dc;
-//	BITMAP bmp;
-//	CBitmap *tbutton = NULL;
-//
-//	switch (flag)
-//	{
-//	case 0:
-//		tbutton = &helpButtons.m_unclickedbutton;
-//		break;
-//	case 1:
-//		tbutton = &helpButtons.m_activatebutton;
-//		break;
-//	case 2:
-//		tbutton = &helpButtons.m_clickedbutton;
-//		break;
-//	default:
-//		break;
-//	}
-//	tbutton->GetBitmap(&bmp);
-//	dc.CreateCompatibleDC(pDC);
-//	dc.SelectObject(*tbutton);
-//	pDC->BitBlt((rect.Width() / 2) - (bmp.bmWidth / 2), (rect.Height() / 2) - (bmp.bmHeight / 2) - 30, bmp.bmWidth, bmp.bmHeight, &dc, 0, 0, SRCCOPY);
-//}
-
 
 // CTetrisView 诊断
 
@@ -266,13 +207,13 @@ void CTetrisView::OnTimer(UINT_PTR nIDEvent)
 		KillTimer(2);
 		//调整速度
 		SetTimer(2, m_russia.m_Speed, NULL);
+		if (m_russia.gameover)
+		{
+			KillTimer(2);
+			showGameOver(GetDC(), cr);
+		}
 		CFormView::OnTimer(nIDEvent);
 	}
-	else if (m_russia.gameover)
-	{
-		Invalidate();
-		KillTimer(2);
-	}	
 }
 
 
@@ -351,37 +292,6 @@ void CTetrisView::OnBkmusicOff()
 	// 关闭背景音乐
 	sndPlaySound(NULL, SND_ASYNC);
 }
-
-
-//void CTetrisView::OnMouseMove(UINT nFlags, CPoint point)
-//{
-//	// TODO: Add your message handler code here and/or call default
-//
-//	CFormView::OnMouseMove(nFlags, point);
-//}
-
-
-//void CTetrisView::OnLButtonDown(UINT nFlags, CPoint point)
-//{
-//	// TODO: Add your message handler code here and/or call default
-//	CRect rect;
-//	GetClientRect(&rect);
-//	ClientToScreen(&point);
-//
-//	POINT p = point;
-//	bool isOnStartButton = (p.x >= ((rect.Width() / 2) - (194 / 2)) &&
-//		p.x <= ((rect.Width() / 2) + (194 / 2)) &&
-//		p.y >= ((rect.Height() / 2) - (41 / 2)) &&
-//		p.y <= ((rect.Height() / 2) + (41 / 2)));
-//	
-//	if (isOnStartButton && !m_start)
-//	{
-//		OnNewGame();
-//	}
-//	
-//	CFormView::OnLButtonDown(nFlags, point);
-//}
-
 
 void CTetrisView::OnContinueGame()
 {
