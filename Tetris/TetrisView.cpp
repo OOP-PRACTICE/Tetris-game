@@ -336,5 +336,5 @@ BOOL CTetrisView::OnEraseBkgnd(CDC* pDC)
 {
 	// TODO: Add your message handler code here and/or call default
 
-	return CFormView::OnEraseBkgnd(pDC);
+	return TRUE;
 }

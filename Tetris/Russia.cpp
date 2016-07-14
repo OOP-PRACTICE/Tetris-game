@@ -396,30 +396,37 @@ void CRussia::DrawWill()
 
 void CRussia::DrawBK(CDC * pDC, CRect r)
 {
-	CDC Dc;
+	CDC maskDc;
+	CBitmap MemBitmap;
+	CDC memDC;
 	int x, y;
 	x = r.Width();
 	y = r.Height();
-
-	if (Dc.CreateCompatibleDC(pDC) == FALSE)//一个CDC对象,声明后是“空”的,没有设备属性,CreateCompatibleDC进行初始化
+	MemBitmap.CreateCompatibleBitmap(pDC, r.Width(), r.Height());
+	CBitmap *pOldBit = memDC.SelectObject(&MemBitmap);
+	if (memDC.CreateCompatibleDC(pDC) == FALSE)//一个CDC对象,声明后是“空”的,没有设备属性,CreateCompatibleDC进行初始化
 											//pDC=NULL时该函数创建一个与应用程序的当前显示器兼容的内存设备上下文环境。
 	{
 		AfxMessageBox(L"Can't creat DC");
 	}
-
-	Dc.SelectObject(bkMap);
-	pDC->BitBlt(0, 0, x, y, &Dc, 0, 0, SRCCOPY);//画背景,SRCCOPY是直接复制原设备到逻辑设备
-	DrawScore(pDC);  // 画分数、速度、难度
-	Dc.SelectObject(topFrame);//上边框
-	pDC->StretchBlt(0, 0, 29 * 20, 50, &Dc, 0, 0, 20, 30, SRCCOPY);
-	Dc.SelectObject(bottomFrame);//下边框
-	pDC->StretchBlt(0, y - 30, 29 * 20, 50, &Dc, 0, 0, 20, 30, SRCCOPY);
-	Dc.SelectObject(leftFrame);//左边框
-	pDC->StretchBlt(0, 0, 32, y, &Dc, 0, 0, 15, 555, SRCCOPY);
-	Dc.SelectObject(middleFrame);//中间边框
-	pDC->StretchBlt(330, 20, 32, y, &Dc, 0, 0, 15, 567, SRCCOPY);
-	Dc.SelectObject(rightFrame);//右边框
-	pDC->StretchBlt(570, 0, 32, y, &Dc, 0, 0, 15, 555, SRCCOPY);
+	if (maskDc.CreateCompatibleDC(pDC) == FALSE)//一个CDC对象,声明后是“空”的,没有设备属性,CreateCompatibleDC进行初始化
+												//pDC=NULL时该函数创建一个与应用程序的当前显示器兼容的内存设备上下文环境。
+	{
+		AfxMessageBox(L"Can't creat DC");
+	}
+	maskDc.SelectObject(bkMap);
+	memDC.BitBlt(0, 0, x, y, &maskDc, 0, 0, SRCCOPY);//画背景,SRCCOPY是直接复制原设备到逻辑设备
+	DrawScore(&memDC);  // 画分数、速度、难度
+	maskDc.SelectObject(topFrame);//上边框
+	memDC.StretchBlt(0, 0, 29 * 20, 50, &maskDc, 0, 0, 20, 30, SRCCOPY);
+	maskDc.SelectObject(bottomFrame);//下边框
+	memDC.StretchBlt(0, y - 30, 29 * 20, 50, &maskDc, 0, 0, 20, 30, SRCCOPY);
+	maskDc.SelectObject(leftFrame);//左边框
+	memDC.StretchBlt(0, 0, 32, y, &maskDc, 0, 0, 15, 555, SRCCOPY);
+	maskDc.SelectObject(middleFrame);//中间边框
+	memDC.StretchBlt(330, 20, 32, y, &maskDc, 0, 0, 15, 567, SRCCOPY);
+	maskDc.SelectObject(rightFrame);//右边框
+	memDC.StretchBlt(570, 0, 32, y, &maskDc, 0, 0, 15, 555, SRCCOPY);
 	//pDC->BitBlt(40, 0, x, y, &Dc, 0, 0, SRCCOPY);
 	for (int i = 0; i < m_RowCount; i++) 
 	{
@@ -427,8 +434,8 @@ void CRussia::DrawBK(CDC * pDC, CRect r)
 		{
 			if (Russia[i][j] == 1)
 			{
-				Dc.SelectObject(fkMap);
-				pDC->BitBlt(j * 30, i * 30, 30, 30, &Dc, 0, 0, SRCCOPY);
+				maskDc.SelectObject(fkMap);
+				memDC.BitBlt(j * 30, i * 30, 30, 30, &maskDc, 0, 0, SRCCOPY);
 			}
 		}
 	}
@@ -438,12 +445,13 @@ void CRussia::DrawBK(CDC * pDC, CRect r)
 		{
 			if (Will[n][m] == 1)
 			{
-				Dc.SelectObject(fkMap);
-				pDC->BitBlt(365 + m * 30, 240 + n * 30,
-					30 * ((x + y) / 1090), 30 * ((x + y) / 1090), &Dc, 0, 0, SRCCOPY);
+				maskDc.SelectObject(fkMap);
+				memDC.BitBlt(365 + m * 30, 240 + n * 30,
+					30 * ((x + y) / 1090), 30 * ((x + y) / 1090), &maskDc, 0, 0, SRCCOPY);
 			}
 		}
 	}
+	pDC->BitBlt(0, 0, r.Width(), r.Height(), &memDC, 0, 0, SRCCOPY);
 }
 
 void CRussia::DrawScore(CDC * pDC)
