@@ -224,6 +224,7 @@
     <ClCompile Include="TetrisView.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram.cd" />
     <None Include="res\Tetris.rc2" />
     <None Include="Tetris.reg" />
   </ItemGroup>

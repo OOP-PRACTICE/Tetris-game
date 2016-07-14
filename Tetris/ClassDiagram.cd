@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CAboutDlg" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAABAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tetris.cpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CBaseWork" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAABEAAAAAAAAAA=</HashCode>
+      <FileName>BaseWork.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CGetNameDlg" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAwAAAAAABAAAIAAAAAAAAAAAAAEAAABAAA=</HashCode>
+      <FileName>GetNameDlg.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CHelpDlg" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAABEAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HelpDlg.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CHeroDlg" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAIAAAEAAAgAAAAAABAGQAAAAAAAgAAAAAAAAAgBAAA=</HashCode>
+      <FileName>HeroDlg.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CLeveldlg" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIEAEAAAAAAAABAAAAAAAAAAAAAAAAAAAAgACAA=</HashCode>
+      <FileName>Leveldlg.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CMainFrame" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAACAAAiAAAgCAAAgAAAAAAAAAAABA=</HashCode>
+      <FileName>MainFrm.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CNewrecdlg" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAQEAAAwAAAAAABAAAAAAAAAAAAAAAAAAAAgBQAA=</HashCode>
+      <FileName>Newrecdlg.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRule" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EQAAAAEAAAAAAAAAAEAQAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Rule.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CRussia" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIQRAACAIRiCACAABAABQQAYCASKgAAAEEADQoBQBI=</HashCode>
+      <FileName>Russia.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CTetrisApp" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAAAAABAAAAAAQAAAABAAAAAAA=</HashCode>
+      <FileName>Tetris.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CTetrisDoc" Collapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAgAAAAACAAAgAAgAWggAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TetrisDoc.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CTetrisView" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAACgAAAAkCgAGJBAgQAIgIIQAWAAIEgAYEBBEAA=</HashCode>
+      <FileName>TetrisView.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>
