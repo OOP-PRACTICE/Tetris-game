@@ -233,6 +233,7 @@ void CTetrisView::OnExitGame()
 	GetClientRect(&rect);
 	// ÍË³öÓÎÏ·
 	m_start = false;
+	m_russia.gameover = false;
 	KillTimer(2);
 	//SetTimer(1, 1000, NULL);
 	Invalidate();
