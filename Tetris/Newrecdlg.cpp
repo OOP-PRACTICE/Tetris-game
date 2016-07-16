@@ -34,16 +34,6 @@ void CNewrecdlg::SetHeroData(int level, int score)
 	WritePrivateProfileString(_T("HERO"), _T("score"), tm, filePath);
 }
 
-void CNewrecdlg::ShowHeroData(int level, int score)
-{
-	/*CString temp;
-	temp.Format(_T("等级: %d"), level);
-	SetDlgItemInt(IDC_NEWLEVEL_INFO, level);
-	SetDlgItemText(IDC_NEWLEVEL_INFO, temp);
-	temp.Format(_T("分数: %d"), score);
-	SetDlgItemText(IDC_SCORE_INFO, temp);*/
-}
-
 void CNewrecdlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);

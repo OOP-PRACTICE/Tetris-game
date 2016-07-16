@@ -12,7 +12,6 @@ public:
 	CNewrecdlg(CWnd* pParent = NULL);   // standard constructor
 	virtual ~CNewrecdlg();
 	void SetHeroData(int level, int score);		// 修改配置文件中的英雄信息（级别、分数）
-	void ShowHeroData(int level, int score);
 
 // Dialog Data
 public:
