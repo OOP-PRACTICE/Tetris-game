@@ -205,23 +205,33 @@ void CTetrisView::OnNewGame()
 
 void CTetrisView::OnTimer(UINT_PTR nIDEvent)
 {
+	CDC *pDC = GetDC();
+	CDC dc;
+	CBitmap *cacheBitmap = new CBitmap;
+	CRect cr;
+	GetClientRect(cr);
+
+	dc.CreateCompatibleDC(pDC);
+	cacheBitmap->CreateCompatibleBitmap(pDC, cr.Width(), cr.Height());
+	CBitmap *pOldBit = dc.SelectObject(cacheBitmap);
+
 	if (m_start)
 	{
 		KillTimer(1);
-		CRect cr;
-		GetClientRect(cr);
+		
 		//下移
 		m_russia.Move(KEY_DOWN);
 		//重画
-		m_russia.DrawBK(GetDC(), cr);
+		m_russia.DrawBK(&dc, cr);
 		//关闭Timer2
 		KillTimer(2);
 		//调整速度
 		SetTimer(2, m_russia.m_Speed, NULL);
 		if (m_russia.gameover)
 		{
-			showGameOver(GetDC(), cr);
+			showGameOver(&dc, cr);
 		}
+		pDC->BitBlt(0, 0, cr.Width(), cr.Height(), &dc, 0, 0, SRCCOPY);
 		CFormView::OnTimer(nIDEvent);
 	}
 }
