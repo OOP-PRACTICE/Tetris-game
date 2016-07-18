@@ -63,11 +63,11 @@
       <FileName>Rule.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="CRussia" Collapsed="true">
+  <Class Name="CSquare" Collapsed="true">
     <Position X="2.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIQRAACAIRiCACAABAABQQAYCASKgAAAEEADQoBQBI=</HashCode>
-      <FileName>Russia.h</FileName>
+      <FileName>Square.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CTetrisApp" Collapsed="true">

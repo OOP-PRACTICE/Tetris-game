@@ -188,15 +188,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseWork.h" />
+    <ClInclude Include="GameState.h" />
     <ClInclude Include="GetNameDlg.h" />
     <ClInclude Include="HelpDlg.h" />
     <ClInclude Include="HeroDlg.h" />
     <ClInclude Include="Leveldlg.h" />
     <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="MusicCtrl.h" />
     <ClInclude Include="Newrecdlg.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Rule.h" />
-    <ClInclude Include="Russia.h" />
+    <ClInclude Include="Square.h" />
+    <ClInclude Include="State.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Tetris.h" />
@@ -210,9 +213,10 @@
     <ClCompile Include="HeroDlg.cpp" />
     <ClCompile Include="Leveldlg.cpp" />
     <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="MusicCtrl.cpp" />
     <ClCompile Include="Newrecdlg.cpp" />
     <ClCompile Include="Rule.cpp" />
-    <ClCompile Include="Russia.cpp" />
+    <ClCompile Include="Square.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

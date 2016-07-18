@@ -32,6 +32,7 @@ static UINT indicators[] =
 CMainFrame::CMainFrame()
 {
 	// TODO: 在此添加成员初始化代码
+	m_bAutoMenuEnable = FALSE;
 }
 
 CMainFrame::~CMainFrame()
@@ -42,7 +43,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if (CFrameWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
-
+	// 去掉状态栏和工具栏
 	//if (!m_wndToolBar.CreateEx(this, TBSTYLE_FLAT, WS_CHILD | WS_VISIBLE | CBRS_TOP | CBRS_GRIPPER | CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC) ||
 		//!m_wndToolBar.LoadToolBar(IDR_MAINFRAME))
 	//{
@@ -50,12 +51,12 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		//return -1;      // 未能创建
 	//}
 
-	if (!m_wndStatusBar.Create(this))
-	{
-		TRACE0("未能创建状态栏\n");
-		return -1;      // 未能创建
-	}
-	m_wndStatusBar.SetIndicators(indicators, sizeof(indicators)/sizeof(UINT));
+	//if (!m_wndStatusBar.Create(this))
+	//{
+	//	TRACE0("未能创建状态栏\n");
+	//	return -1;      // 未能创建
+	//}
+	//m_wndStatusBar.SetIndicators(indicators, sizeof(indicators)/sizeof(UINT));
 
 	// TODO: 如果不需要可停靠工具栏，则删除这三行
 	//m_wndToolBar.EnableDocking(CBRS_ALIGN_ANY);

@@ -3,7 +3,7 @@
 //
 
 #pragma once
-#include "Russia.h"
+#include "Square.h"
 
 class CTetrisView : public CFormView
 {
@@ -46,7 +46,7 @@ public:
 #endif
 	// member variables
 protected:
-	CRussia m_russia;
+	CSquare m_russia;
 // 生成的消息映射函数
 protected:
 	DECLARE_MESSAGE_MAP()

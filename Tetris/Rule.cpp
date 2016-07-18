@@ -30,7 +30,7 @@ int CRule::UpLevel(int nLine, int &countline)
 	return m_nLevel;				//返回当前游戏等级
 }
 
-bool CRule::Win(int Now[4][4], int Russia[100][100], CPoint NowPosition)
+bool CRule::Win(int Now[4][4], int Square[100][100], CPoint NowPosition)
 {
 	LPCWSTR VM = L".\\sound\\victory.wav";
 	LPCWSTR FM = L".\\sound\\fail.wav";
@@ -46,7 +46,7 @@ bool CRule::Win(int Now[4][4], int Russia[100][100], CPoint NowPosition)
 		{
 			if (Now[i][j] == 1)
 			{//到了顶点
-				if (Russia[i + NowPosition.x][j + NowPosition.y] == 1)
+				if (Square[i + NowPosition.x][j + NowPosition.y] == 1)
 				{
 					sndPlaySound(FM, SND_ASYNC);
 					return true;	//游戏结束

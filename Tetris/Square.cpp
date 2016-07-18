@@ -1,11 +1,11 @@
 #include "stdafx.h"
-#include "Russia.h"
+#include "Square.h"
 #include "Tetris.h"
 #include "Newrecdlg.h"
 #include "GetNameDlg.h"
 #include "HeroDlg.h"
 
-CRussia::CRussia()
+CSquare::CSquare()
 {
 	//CDC dcMemory;
 	//dcMemory.CreateCompatibleDC(pDC);
@@ -21,12 +21,12 @@ CRussia::CRussia()
 }
 
 
-CRussia::~CRussia()
+CSquare::~CSquare()
 {
 }
 
 //消行处理
-void CRussia::LineDelete()
+void CSquare::LineDelete()
 {
 	int m = 0;		//本次共消去的行数
 	bool flag = 0;
@@ -36,7 +36,7 @@ void CRussia::LineDelete()
 		flag = true;
 		for (int j = 1; j<m_ColCount; j++)
 		{
-			if (Russia[i][j] == 0)
+			if (Square[i][j] == 0)
 			{
 				flag = false;
 			}
@@ -51,13 +51,13 @@ void CRussia::LineDelete()
 				//上行给下行
 				for (int l = 1; l<m_ColCount; l++)
 				{
-					Russia[k][l] = Russia[k - 1][l];
+					Square[k][l] = Square[k - 1][l];
 				}
 			}
 			//第一行为零
 			for (int l = 1; l<m_ColCount; l++)
 			{
-				Russia[0][l] = 0;
+				Square[0][l] = 0;
 			}
 		}
 	}
@@ -87,7 +87,7 @@ void CRussia::LineDelete()
 	m_Level = rule.UpLevel(m_CountLine, m_CountLine);
 	
 
-	end = rule.Win(Now, Russia, NowPosition);
+	end = rule.Win(Now, Square, NowPosition);
 
 	//速度
 	m_Speed = 320 - m_Level * 20;
@@ -99,7 +99,7 @@ void CRussia::LineDelete()
 	}
 }
 
-void CRussia::Move(int direction)
+void CSquare::Move(int direction)
 {
 	if (end) return;
 
@@ -135,7 +135,7 @@ void CRussia::Move(int direction)
 
 //旋转函数
 //不能旋转返回false，反之返回true
-bool CRussia::Change(int a[][4], CPoint p, int b[][100])
+bool CSquare::Change(int a[][4], CPoint p, int b[][100])
 {
 	int tmp[4][4];
 	int i, j;
@@ -192,7 +192,7 @@ bool CRussia::Change(int a[][4], CPoint p, int b[][100])
 
 //碰撞检测
 //无碰撞返回false，反之返回true
-bool CRussia::Meet(int a[][4], int direction, CPoint p)
+bool CSquare::Meet(int a[][4], int direction, CPoint p)
 {
 	int i, j;
 	//先把原位置清0 
@@ -202,7 +202,7 @@ bool CRussia::Meet(int a[][4], int direction, CPoint p)
 		{
 			if (a[i][j] == 1)
 			{
-				Russia[p.x + i][p.y + j] = 0;
+				Square[p.x + i][p.y + j] = 0;
 			}
 		}
 	}
@@ -217,18 +217,18 @@ bool CRussia::Meet(int a[][4], int direction, CPoint p)
 				{
 				case 1:	//左移
 					if ((p.y + j - 1)<1) goto exit;
-					if (Russia[p.x + i][p.y + j - 1] == 1) goto exit;
+					if (Square[p.x + i][p.y + j - 1] == 1) goto exit;
 					break;
 				case 2://右移
 					if ((p.y + j + 1) >= m_ColCount) goto exit;
-					if (Russia[p.x + i][p.y + j + 1] == 1) goto exit;
+					if (Square[p.x + i][p.y + j + 1] == 1) goto exit;
 					break;
 				case 3://下移
 					if ((p.x + i + 1) >= m_RowCount) goto exit;
-					if (Russia[p.x + i + 1][p.y + j] == 1) goto exit;
+					if (Square[p.x + i + 1][p.y + j] == 1) goto exit;
 					break;
 				case 4://变换
-					if (!Change(a, p, Russia)) goto exit;
+					if (!Change(a, p, Square)) goto exit;
 					for (i = 0; i<4; i++)
 					{
 						for (j = 0; j<4; j++)
@@ -265,7 +265,7 @@ bool CRussia::Meet(int a[][4], int direction, CPoint p)
 		{
 			if (a[i][j] == 1)
 			{
-				Russia[x + i][y + j] = 1;
+				Square[x + i][y + j] = 1;
 			}
 		}
 	}
@@ -278,7 +278,7 @@ exit:
 		{
 			if (a[i][j] == 1)
 			{
-				Russia[p.x + i][p.y + j] = 1;
+				Square[p.x + i][p.y + j] = 1;
 			}
 		}
 	}
@@ -286,7 +286,7 @@ exit:
 }
 
 
-void CRussia::DrawWill()
+void CSquare::DrawWill()
 {
 	int i, j;
 	int k = 4, l = 4;
@@ -394,7 +394,7 @@ void CRussia::DrawWill()
 }
 
 
-void CRussia::DrawBK(CDC * pDC, CRect r)
+void CSquare::DrawBK(CDC * pDC, CRect r)
 {
 	CDC Dc;
 	int x, y;
@@ -425,7 +425,7 @@ void CRussia::DrawBK(CDC * pDC, CRect r)
 	{
 		for (int j = 0; j < m_ColCount; j++)
 		{
-			if (Russia[i][j] == 1)
+			if (Square[i][j] == 1)
 			{
 				Dc.SelectObject(fkMap);
 				pDC->BitBlt(j * 30, i * 30, 30, 30, &Dc, 0, 0, SRCCOPY);
@@ -446,7 +446,7 @@ void CRussia::DrawBK(CDC * pDC, CRect r)
 	}
 }
 
-void CRussia::DrawScore(CDC * pDC)
+void CSquare::DrawScore(CDC * pDC)
 {
 	int nOldDC = pDC->SaveDC();
 	CFont font;
@@ -487,7 +487,7 @@ void CRussia::DrawScore(CDC * pDC)
 }
 
 //开始游戏
-void CRussia::GameStart()
+void CSquare::GameStart()
 {
 
 	end = false;
@@ -508,7 +508,7 @@ void CRussia::GameStart()
 	{
 		for (int j = 0; j < m_ColCount; j++)
 		{
-			Russia[i][j] = 0;
+			Square[i][j] = 0;
 		}
 	}
 	for (int i = 0; i < 4; i++)//初始化图形
@@ -523,7 +523,7 @@ void CRussia::GameStart()
 	DrawWill();
 }
 
-void CRussia::HeroWrite()
+void CSquare::HeroWrite()
 {
 	CNewrecdlg newdlg;
 	CGetNameDlg getnamedlg;
@@ -542,7 +542,7 @@ void CRussia::HeroWrite()
 	}
 }
 
-void CRussia::ShowGameOver()
+void CSquare::ShowGameOver()
 {
 	gameover = true;
 }

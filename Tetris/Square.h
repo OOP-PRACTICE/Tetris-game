@@ -10,11 +10,11 @@
 #define KEY_UP 4
 #include "BaseWork.h"
 
-class CRussia
+class CSquare
 {
 public:
 
-	int Russia[100][100];
+	int Square[100][100];
 	int Now[4][4];//现在图形
 	int Will[4][4];//下个图形
 	int After[4][4];
@@ -37,8 +37,8 @@ public:
 	CRule rule;
 	CBaseWork baseWork;
 	bool gameover;
-	CRussia();
-	~CRussia();
+	CSquare();
+	~CSquare();
 	//删除行
 	void LineDelete();
 	//方块移动
