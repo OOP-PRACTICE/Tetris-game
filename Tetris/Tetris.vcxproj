@@ -194,7 +194,6 @@
     <ClInclude Include="HeroDlg.h" />
     <ClInclude Include="Leveldlg.h" />
     <ClInclude Include="MainFrm.h" />
-    <ClInclude Include="MusicCtrl.h" />
     <ClInclude Include="Newrecdlg.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Rule.h" />
@@ -213,7 +212,6 @@
     <ClCompile Include="HeroDlg.cpp" />
     <ClCompile Include="Leveldlg.cpp" />
     <ClCompile Include="MainFrm.cpp" />
-    <ClCompile Include="MusicCtrl.cpp" />
     <ClCompile Include="Newrecdlg.cpp" />
     <ClCompile Include="Rule.cpp" />
     <ClCompile Include="Square.cpp" />
@@ -256,6 +254,12 @@
     <Image Include="res\TetrisDoc.ico" />
     <Image Include="res\Toolbar.bmp" />
     <Image Include="res\top.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Sound\BGM.wav" />
+    <Media Include="Sound\fail.wav" />
+    <Media Include="Sound\upgrade.wav" />
+    <Media Include="Sound\victory.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

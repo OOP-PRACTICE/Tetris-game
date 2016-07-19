@@ -60,8 +60,8 @@ public:
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
 	afx_msg void OnGameLevel();
-	afx_msg void OnBkmusicOn();
-	afx_msg void OnBkmusicOff();
+	//afx_msg void OnBkmusicOn();
+	//afx_msg void OnBkmusicOff();
 	afx_msg void OnContinueGame();
 	afx_msg void OnResumeGame();
 	afx_msg void OnMenuGameStartButton();

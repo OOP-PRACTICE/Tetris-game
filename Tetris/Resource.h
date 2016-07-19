@@ -24,6 +24,11 @@
 #define IDB_RIGHTCOL                    332
 #define IDB_MIDDLE                      333
 #define IDB_START_BK                    335
+#define IDR_BG_MUSIC                    344
+#define IDR_FILE_MUSIC                  345
+#define IDR_FAIL_MUSIC                  345
+#define IDR_UPGRADE_MUSIC               346
+#define IDR_VICT_MUSIC                  347
 #define IDC_BUTTON1                     1000
 #define IDC_LEVEL_EDIT                  1001
 #define IDC_NAME_EDIT                   1002
@@ -71,7 +76,7 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        344
+#define _APS_NEXT_RESOURCE_VALUE        348
 #define _APS_NEXT_COMMAND_VALUE         32793
 #define _APS_NEXT_CONTROL_VALUE         1017
 #define _APS_NEXT_SYMED_VALUE           310

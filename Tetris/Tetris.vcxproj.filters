@@ -69,9 +69,6 @@
     <ClInclude Include="Square.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MusicCtrl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Tetris.cpp">
@@ -111,9 +108,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Square.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MusicCtrl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -190,5 +184,19 @@
     <Image Include="res\game.ico">
       <Filter>Resource Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Sound\BGM.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Sound\fail.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Sound\upgrade.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Sound\victory.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
   </ItemGroup>
 </Project>

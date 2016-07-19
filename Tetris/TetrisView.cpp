@@ -33,8 +33,8 @@ BEGIN_MESSAGE_MAP(CTetrisView, CFormView)
 	ON_COMMAND(ID_EXIT_GAME, &CTetrisView::OnExitGame)
 	ON_WM_KEYDOWN()
 	ON_COMMAND(ID_GAME_LEVEL, &CTetrisView::OnGameLevel)
-	ON_COMMAND(ID_BKMUSIC_ON, &CTetrisView::OnBkmusicOn)
-	ON_COMMAND(ID_BKMUSIC_OFF, &CTetrisView::OnBkmusicOff)
+	//ON_COMMAND(ID_BKMUSIC_ON, &CTetrisView::OnBkmusicOn)
+	//ON_COMMAND(ID_BKMUSIC_OFF, &CTetrisView::OnBkmusicOff)
 	ON_COMMAND(ID_CONTINUE_GAME, &CTetrisView::OnContinueGame)
 	ON_COMMAND(ID_RESUME_GAME, &CTetrisView::OnResumeGame)
 	ON_COMMAND(IDS_GAMESTART_MYBUTTON, &CTetrisView::OnMenuGameStartButton)
@@ -51,7 +51,6 @@ CTetrisView::CTetrisView()
 	m_start = false;
 	// º”‘ÿ±≥æ∞Õº∆¨
 	startBK.LoadBitmapW(IDB_START_BK);
-	OnBkmusicOn();
 }
 
 CTetrisView::~CTetrisView()
@@ -238,9 +237,9 @@ void CTetrisView::OnExitGame()
 	//SetTimer(1, 1000, NULL);
 	Invalidate();
 	CreateMenuButtons(rect);
-	OnBkmusicOff();
+	//OnBkmusicOff();
 	Sleep(200);
-	OnBkmusicOn();
+	//OnBkmusicOn();
 }
 
 
@@ -296,19 +295,19 @@ void CTetrisView::OnGameLevel()
 }
 
 
-void CTetrisView::OnBkmusicOn()
-{
-	// ¥Úø™±≥æ∞“Ù¿÷
-	LPCWSTR BGM = L".\\sound\\BGM.wav";
-	sndPlaySound(BGM, SND_ASYNC | SND_LOOP);
-}
+//void CTetrisView::OnBkmusicOn()
+//{
+//	// ¥Úø™±≥æ∞“Ù¿÷
+//	LPCWSTR BGM = L".\\sound\\BGM.wav";
+//	sndPlaySound(BGM, SND_ASYNC | SND_LOOP);
+//}
 
 
-void CTetrisView::OnBkmusicOff()
-{
-	// πÿ±’±≥æ∞“Ù¿÷
-	sndPlaySound(NULL, SND_ASYNC);
-}
+//void CTetrisView::OnBkmusicOff()
+//{
+//	// πÿ±’±≥æ∞“Ù¿÷
+//	sndPlaySound(NULL, SND_ASYNC);
+//}
 
 void CTetrisView::OnContinueGame()
 {

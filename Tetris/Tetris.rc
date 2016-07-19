@@ -113,11 +113,6 @@ BEGIN
     POPUP "设置"
     BEGIN
         MENUITEM "游戏等级",                        ID_GAME_LEVEL
-        POPUP "背景音乐"
-        BEGIN
-            MENUITEM "开",                           ID_BKMUSIC_ON
-            MENUITEM "关",                           ID_BKMUSIC_OFF
-        END
     END
     MENUITEM "帮助",                          ID_HELP_DOC
     MENUITEM "关于",                          ID_APP_ABOUT
@@ -370,6 +365,20 @@ IDD_GAME_LEVEL_DIALOG AFX_DIALOG_LAYOUT
 BEGIN
     0
 END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// WAVE
+//
+
+IDR_BG_MUSIC            WAVE                    "Sound\\BGM.wav"
+
+IDR_FAIL_MUSIC          WAVE                    "Sound\\fail.wav"
+
+IDR_UPGRADE_MUSIC       WAVE                    "Sound\\upgrade.wav"
+
+IDR_VICT_MUSIC          WAVE                    "Sound\\victory.wav"
 
 
 /////////////////////////////////////////////////////////////////////////////
