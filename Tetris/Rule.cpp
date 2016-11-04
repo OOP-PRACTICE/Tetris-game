@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Rule.h"
 #include <mmsystem.h>
-
+#include "resource.h"
 CRule::CRule()
 {
 	m_nLevel = 1;
@@ -19,11 +19,10 @@ void CRule::SetLevel(int nLevel)
 
 int CRule::UpLevel(int nLine, int &countline)
 {
-	LPCWSTR UPM = L".\\sound\\upgrade.wav";
 	if (nLine / 2)					//如果可以整除，等级升级
 	{
 		m_nLevel++;
-		sndPlaySound(UPM, SND_ASYNC);
+		PlaySound((LPCTSTR)IDR_UPGRADE_WAVE, AfxGetInstanceHandle(), SND_RESOURCE | SND_ASYNC);
 		countline = 0;		// 行数清零
 	}
 
@@ -32,11 +31,9 @@ int CRule::UpLevel(int nLine, int &countline)
 
 bool CRule::Win(int Now[4][4], int Russia[100][100], CPoint NowPosition)
 {
-	LPCWSTR VM = L".\\sound\\victory.wav";
-	LPCWSTR FM = L".\\sound\\fail.wav";
 	if (m_nLevel == 11)			//游戏等级超过最高
 	{							//超过10级游戏结束
-		sndPlaySound(VM, SND_ASYNC);
+		PlaySound((LPCTSTR)IDR_VICTORY_WAVE, AfxGetInstanceHandle(), SND_RESOURCE | SND_ASYNC);
 		return true;
 	}
 
@@ -48,7 +45,7 @@ bool CRule::Win(int Now[4][4], int Russia[100][100], CPoint NowPosition)
 			{//到了顶点
 				if (Russia[i + NowPosition.x][j + NowPosition.y] == 1)
 				{
-					sndPlaySound(FM, SND_ASYNC);
+					PlaySound((LPCTSTR)IDR_FAIL_WAVE, AfxGetInstanceHandle(), SND_RESOURCE | SND_ASYNC);
 					return true;	//游戏结束
 				}
 			}

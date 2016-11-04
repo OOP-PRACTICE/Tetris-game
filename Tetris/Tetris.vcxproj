@@ -226,7 +226,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+    <None Include="res\music1.bin" />
     <None Include="res\Tetris.rc2" />
+    <None Include="res\wave1.bin" />
+    <None Include="res\wave2.bin" />
     <None Include="Tetris.reg" />
   </ItemGroup>
   <ItemGroup>
@@ -253,6 +256,12 @@
     <Image Include="res\TetrisDoc.ico" />
     <Image Include="res\Toolbar.bmp" />
     <Image Include="res\top.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Sound\BGM.wav" />
+    <Media Include="Sound\fail.wav" />
+    <Media Include="Sound\upgrade.wav" />
+    <Media Include="Sound\victory.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

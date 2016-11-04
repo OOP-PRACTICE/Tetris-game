@@ -111,6 +111,15 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="ClassDiagram.cd" />
+    <None Include="res\music1.bin">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\wave2.bin">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\wave1.bin">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Tetris.rc">
@@ -178,5 +187,19 @@
     <Image Include="res\game.ico">
       <Filter>Resource Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Sound\upgrade.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Sound\BGM.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Sound\fail.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Sound\victory.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
   </ItemGroup>
 </Project>

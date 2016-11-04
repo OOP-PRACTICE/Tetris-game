@@ -374,6 +374,20 @@ END
 
 /////////////////////////////////////////////////////////////////////////////
 //
+// WAVE
+//
+
+IDR_UPGRADE_WAVE        WAVE                    "Sound\\upgrade.wav"
+
+IDR_BGM_WAVE            WAVE                    "Sound\\BGM.wav"
+
+IDR_FAIL_WAVE           WAVE                    "Sound\\fail.wav"
+
+IDR_VICTORY_WAVE        WAVE                    "Sound\\victory.wav"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
 // String Table
 //
 

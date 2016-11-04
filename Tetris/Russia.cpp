@@ -138,21 +138,21 @@ void CRussia::Move(int direction)
 bool CRussia::Change(int a[][4], CPoint p, int b[][100])
 {
 	int tmp[4][4];
-	int i, j;
+	// int i, j;
 	int k = 4, l = 4;
 
-	for (i = 0; i<4; i++)
+	for (int i = 0; i<4; i++)
 	{
-		for (j = 0; j<4; j++)
+		for (int j = 0; j<4; j++)
 		{
 			tmp[i][j] = a[j][3 - i];
 			After[i][j] = 0;	//存放变换后的方块矩阵
 		}
 	}
 
-	for (i = 0; i<4; i++)
+	for (int i = 0; i<4; i++)
 	{
-		for (j = 0; j<4; j++)
+		for (int j = 0; j<4; j++)
 		{
 			if (tmp[i][j] == 1)
 			{
@@ -161,17 +161,17 @@ bool CRussia::Change(int a[][4], CPoint p, int b[][100])
 			}
 		}
 	}
-	for (i = k; i<4; i++)
+	for (int i = k; i<4; i++)
 	{
-		for (j = l; j<4; j++)
+		for (int j = l; j<4; j++)
 		{
 			After[i - k][j - l] = tmp[i][j];
 		}	//把变换后的矩阵移到左上角
 	}
 	//判断是否接触，是：返回失败
-	for (i = 0; i<4; i++)
+	for (int i = 0; i<4; i++)
 	{
-		for (j = 0; j<4; j++)
+		for (int j = 0; j<4; j++)
 		{
 			if (After[i][j] == 0)
 			{

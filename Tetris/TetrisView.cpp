@@ -309,8 +309,7 @@ void CTetrisView::OnGameLevel()
 void CTetrisView::OnBkmusicOn()
 {
 	// ´ò¿ª±³¾°ÒôÀÖ
-	LPCWSTR BGM = L".\\sound\\BGM.wav";
-	sndPlaySound(BGM, SND_ASYNC | SND_LOOP);
+	PlaySound((LPCTSTR)IDR_BGM_WAVE, AfxGetInstanceHandle(), SND_RESOURCE | SND_SYNC | SND_LOOP);
 }
 
 
